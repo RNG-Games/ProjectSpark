@@ -14,7 +14,7 @@ namespace _ProjectSpark.gamestates
 	    private Vertex[] line = {new Vertex(new Vector2f(50, 50)), new Vertex(new Vector2f(100,100)) };
 	    private float _time = 0;
         Text text = new Text(){ Font = new Font(Resources.GetFont("trebuc.ttf"))};
-        Player player = new Player();
+        Player player = Player.getPlayer();
         Block bl1 = new Regular(15, 15);
         LargeBlock bl2 = new LargeBlock("regular", 4, 9, 5, 10);
         LargeBlock bl3 = new LargeBlock("spike", 4, 9, 4, 4);

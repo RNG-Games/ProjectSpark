@@ -16,17 +16,26 @@ namespace _ProjectSpark.actors
         Sprite texture;
         float speed;
         private bool dead = false;
+        private static bool spawned = false;
+        private static Player instance;
 
         Vector2f gravity = new Vector2f(0, 500);
         Vector2f velocity = new Vector2f(0, 500);
 
-        public Player()
+        private Player()
         {
             position = new Vector2f(1000, 0);
             speed = 1000f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
         }
 
+        public static Player getPlayer()
+        {
+            if (spawned) return instance;
+            instance = new actors.Player();
+            spawned = true;
+            return instance; 
+        }
         public void Draw(RenderWindow _window)
         {
             if (dead) return;

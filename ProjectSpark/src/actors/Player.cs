@@ -15,6 +15,7 @@ namespace _ProjectSpark.actors
         Vector2f position;
         Sprite texture;
         float speed;
+        private bool dead = false;
 
         Vector2f gravity = new Vector2f(0, 500);
         Vector2f velocity = new Vector2f(0, 500);
@@ -28,6 +29,7 @@ namespace _ProjectSpark.actors
 
         public void Draw(RenderWindow _window)
         {
+            if (dead) return;
             _window.Draw(texture);
         }
 
@@ -43,6 +45,8 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
+            if (dead) return;
+
             position += _deltaTime * velocity;
             velocity += _deltaTime * gravity;
 
@@ -61,6 +65,11 @@ namespace _ProjectSpark.actors
                 position.Y = 0;
                 velocity = new Vector2f(0, 500);
             }
+        }
+
+        public void kill()
+        {
+            dead = true;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace _ProjectSpark.actors
         public Player()
         {
             position = new Vector2f(1000, 0);
-            speed = 600f;
+            speed = 1000f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
         }
 
@@ -54,6 +54,13 @@ namespace _ProjectSpark.actors
 
             position += move;
             texture.Position = position;
+
+            //just for test purposes:
+            if (position.Y > 1000)
+            {
+                position.Y = 0;
+                velocity = new Vector2f(0, 500);
+            }
         }
     }
 }

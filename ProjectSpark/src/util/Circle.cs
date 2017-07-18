@@ -51,6 +51,19 @@ namespace _ProjectSpark.util
             return distancePow2 < (c.radius + radius) * (c.radius + radius);                        /* since distance ^2 is used, the 
                                                                                                        (radius + radius) is squared too*/
         }
+
+        public bool intersectsWithRectangle(Vector2f topleft, int width, int height)
+        {
+            for (float i = topleft.X; i <= topleft.X + width; i++)
+            {
+                for (float j = topleft.Y; j <= topleft.Y + height; j++)
+                {
+                    var distance = (middle.X - i) * (middle.X - i) + (middle.Y - j) * (middle.Y - j);
+                    if (distance * distance <= radius) return true;
+                }
+            }
+            return false;
+        }
     }
 
 

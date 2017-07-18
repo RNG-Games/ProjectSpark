@@ -14,6 +14,7 @@ namespace _ProjectSpark.actors
     {
         Vector2f position;
         Sprite texture;
+        float speed;
 
         Vector2f gravity = new Vector2f(0, 500);
         Vector2f velocity = new Vector2f(0, 500);
@@ -21,6 +22,7 @@ namespace _ProjectSpark.actors
         public Player()
         {
             position = new Vector2f(1000, 0);
+            speed = 600f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
         }
 
@@ -43,6 +45,14 @@ namespace _ProjectSpark.actors
         {
             position += _deltaTime * velocity;
             velocity += _deltaTime * gravity;
+
+            var move = new Vector2f(0, 0);
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+                move.X -= speed * _deltaTime;
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+                move.X += speed * _deltaTime;
+
+            position += move;
             texture.Position = position;
         }
     }

@@ -16,5 +16,10 @@ namespace _ProjectSpark.actors.blocks
         {
             texture = new Sprite(Resources.GetTexture("testblock.png")) { Position = position };
         }
+
+        public override void Update(float _deltaTime)
+        {
+
+        }
     }
 }

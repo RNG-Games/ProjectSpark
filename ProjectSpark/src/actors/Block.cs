@@ -36,7 +36,7 @@ namespace _ProjectSpark.actors
             return 0f;
         }
 
-        public void Update(float _deltaTime)
+        public virtual void Update(float _deltaTime)
         {
             return;
         }

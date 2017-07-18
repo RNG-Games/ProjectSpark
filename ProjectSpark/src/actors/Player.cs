@@ -15,6 +15,8 @@ namespace _ProjectSpark.actors
         Vector2f position;
         Sprite texture;
         float speed;
+        private bool leftlock = false;
+        private bool rightlock = false;
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
@@ -60,9 +62,9 @@ namespace _ProjectSpark.actors
             velocity += _deltaTime * gravity;
 
             var move = new Vector2f(0, 0);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left) && !leftlock)
                 move.X -= speed * _deltaTime;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right) && !rightlock)
                 move.X += speed * _deltaTime;
 
             position += move;
@@ -74,11 +76,24 @@ namespace _ProjectSpark.actors
                 position.Y = 0;
                 velocity = new Vector2f(0, 500);
             }
+
+            leftlock = false;
+            rightlock = false;
         }
 
         public Circle hitbox()
         {
             return new Circle(position + new Vector2f(24, 24), 24);
+        }
+
+        public void setLeftlock()
+        {
+            leftlock = true;
+        }
+
+        public void setRightlock()
+        {
+            rightlock = true;
         }
 
         public void kill()

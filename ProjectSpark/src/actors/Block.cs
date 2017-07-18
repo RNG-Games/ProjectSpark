@@ -12,12 +12,13 @@ namespace _ProjectSpark.actors
 {
     abstract class Block : IActable
     {
+        private const int size = 48;
         protected Vector2f position;
         protected Sprite texture;
 
         public Block(int x, int y)
         {
-            position = new Vector2f(48*x, 48*y);
+            position = new Vector2f(size*x, size*y);
         }
 
         public void Draw(RenderWindow _window)

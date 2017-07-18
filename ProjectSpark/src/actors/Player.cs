@@ -62,5 +62,10 @@ namespace _ProjectSpark.actors
                 velocity = new Vector2f(0, 500);
             }
         }
+
+        public Circle hitbox()
+        {
+            return new Circle(position + new Vector2f(24, 24), 24);
+        }
     }
 }

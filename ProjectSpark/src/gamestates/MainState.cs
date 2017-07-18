@@ -15,8 +15,10 @@ namespace _ProjectSpark.gamestates
 	    private float _time = 0;
         Text text = new Text(){ Font = new Font(Resources.GetFont("trebuc.ttf"))};
         Player player = new Player();
-        Block bl1 = new Regular(3, 3);
+        Block bl1 = new Regular(15, 15);
         LargeBlock bl2 = new LargeBlock("regular", 4, 9, 5, 10);
+        LargeBlock bl3 = new LargeBlock("spike", 4, 9, 4, 4);
+        Block bl4 = new Spike(15, 14);
 
 	    public override void Draw(RenderWindow _window)
 		{
@@ -28,10 +30,12 @@ namespace _ProjectSpark.gamestates
             //_window.SetView(_view);
             _window.Draw(line,0,2, PrimitiveType.Lines);
             _window.Draw(text);
-            player.Draw(_window);
             bl1.Draw(_window);
             bl2.Draw(_window);
-		}
+            bl3.Draw(_window);
+            bl4.Draw(_window);
+            player.Draw(_window);
+        }
 
 		public override void Update(float _deltaTime)
 		{
@@ -41,6 +45,8 @@ namespace _ProjectSpark.gamestates
             player.Update(_deltaTime);
             bl1.Update(_deltaTime);
             bl2.Update(_deltaTime);
+            bl3.Update(_deltaTime);
+            bl4.Update(_deltaTime);
 		}
 	    private View _view = new View(new Vector2f(0,0), new Vector2f(200, 200));
 	}

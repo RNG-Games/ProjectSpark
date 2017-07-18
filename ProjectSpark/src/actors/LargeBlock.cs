@@ -28,6 +28,15 @@ namespace _ProjectSpark.actors
                         }
                     }
                     break;
+                case "spike":
+                    for (int i = leftmost; i <= rightmost; i++)
+                    {
+                        for (int j = topmost; j <= bottommost; j++)
+                        {
+                            blocklist.Add(new Spike(i, j));
+                        }
+                    }
+                    break;
                 default:
                     break;
             }

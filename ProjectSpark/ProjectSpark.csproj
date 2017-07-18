@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="src\actors\Block.cs" />
     <Compile Include="src\actors\blocks\Regular.cs" />
+    <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\LargeBlock.cs" />
     <Compile Include="src\actors\Player.cs" />
@@ -95,6 +96,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="content\texture\player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="content\texture\spike.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="content\texture\testblock.png">

@@ -50,6 +50,9 @@ namespace _ProjectSpark.actors
                 Player.getPlayer().setLine();
                 if (!enabled) Program.MoveCameraDown(position - 48, 3, resetLine);
                 enabled = true;
+                Vector2f plPos = Player.getPlayer().getPosition();
+                if (plPos.X <= borders.X) Player.getPlayer().setLeftlock();
+                if (plPos.X >= borders.Y-24) Player.getPlayer().setRightlock();
             }
             
         }

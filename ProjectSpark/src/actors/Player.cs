@@ -29,7 +29,7 @@ namespace _ProjectSpark.actors
         private Player()
         {
             position = new Vector2f(1000, 0);
-            speed = 1000f;
+            speed = 800f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
         }
 
@@ -40,6 +40,12 @@ namespace _ProjectSpark.actors
             spawned = true;
             return instance; 
         }
+
+        public Vector2f getPosition()
+        {
+            return position;
+        }
+
         public void Draw(RenderWindow _window)
         {
             if (dead) return;

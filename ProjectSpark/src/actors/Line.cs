@@ -16,6 +16,7 @@ namespace _ProjectSpark.actors
         Vector2f borders;
         float position;
         bool enabled = false;
+        bool done = false;
 
         public Line(Vector2f borders, float y)
         {
@@ -41,14 +42,22 @@ namespace _ProjectSpark.actors
 
         public virtual void Update(float _deltaTime)
         {
+            if (done) return;
+
             float length = Math.Abs(borders.Y - borders.X);
-            if (Player.getPlayer().hitbox().intersectsWithRectangle(new Vector2f(borders.X, position + 18),  (int) length, 1))
+            if (Player.getPlayer().hitbox().intersectsWithRectangle(new Vector2f(borders.X, position + 10),  (int) length, 1))
             {
                 Player.getPlayer().setLine();
-                if (!enabled) Program.MoveCameraDown(position - 48, 3);
+                if (!enabled) Program.MoveCameraDown(position - 48, 3, resetLine);
                 enabled = true;
             }
             
+        }
+
+        private void resetLine()
+        {
+            Player.getPlayer().resetLine();
+            done = true;
         }
     }
 }

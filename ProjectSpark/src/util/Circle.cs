@@ -59,7 +59,7 @@ namespace _ProjectSpark.util
                 for (float j = topleft.Y; j <= topleft.Y + height; j++)
                 {
                     var distance = (middle.X - i) * (middle.X - i) + (middle.Y - j) * (middle.Y - j);
-                    if (distance * distance <= radius) return true;
+                    if (distance <= radius * radius) return true;
                 }
             }
             return false;

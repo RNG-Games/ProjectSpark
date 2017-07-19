@@ -20,7 +20,7 @@ namespace _ProjectSpark.actors.blocks
 
         public override void Update(float _deltaTime)
         {
-            if (Player.getPlayer().hitbox().intersectsWithRectangle(position, 48, 48))
+            if (Player.getPlayer().hitbox().intersectsWithRectangle(position + new Vector2f(2,2), 44, 44))
             {
                 Player.getPlayer().kill();
             }

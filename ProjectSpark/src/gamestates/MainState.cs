@@ -20,6 +20,8 @@ namespace _ProjectSpark.gamestates
         LargeBlock bl3 = new LargeBlock("spike", 4, 9, 4, 4);
         Block bl4 = new Spike(15, 14);
         Line test = new Line(new Vector2f(500, 1500), 900);
+        Block bl5 = new Trampoline(25, 14);
+
 	    public override void Draw(RenderWindow _window)
 		{
 		    text.DisplayedString = "FALLING CIRCLE!!!!";
@@ -33,6 +35,7 @@ namespace _ProjectSpark.gamestates
             bl2.Draw(_window);
             bl3.Draw(_window);
             bl4.Draw(_window);
+            bl5.Draw(_window);
             player.Draw(_window);
             test.Draw(_window);
 
@@ -47,6 +50,7 @@ namespace _ProjectSpark.gamestates
             bl2.Update(_deltaTime);
             bl3.Update(_deltaTime);
             bl4.Update(_deltaTime);
+            bl5.Update(_deltaTime);
             test.Update(_deltaTime);
 		}
 

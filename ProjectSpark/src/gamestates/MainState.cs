@@ -27,7 +27,6 @@ namespace _ProjectSpark.gamestates
             _window.Clear(new Color(0, 0, 0));
             testSprite.Scale = new Vector2f(64, 64);
 			_window.Draw(testSprite);
-            //_window.SetView(_view);
             _window.Draw(line,0,2, PrimitiveType.Lines);
             _window.Draw(text);
             bl1.Draw(_window);
@@ -40,7 +39,6 @@ namespace _ProjectSpark.gamestates
 		public override void Update(float _deltaTime)
 		{
 		    _time += _deltaTime;
-            _view.Zoom(1.00005f);
             if(Keyboard.IsKeyPressed(Keyboard.Key.V)) testSprite.Position += new Vector2f(2f, 2f);
             player.Update(_deltaTime);
             bl1.Update(_deltaTime);
@@ -48,6 +46,13 @@ namespace _ProjectSpark.gamestates
             bl3.Update(_deltaTime);
             bl4.Update(_deltaTime);
 		}
-	    private View _view = new View(new Vector2f(0,0), new Vector2f(200, 200));
+
+	    public override void KeyPressed(object sender, KeyEventArgs e)
+	    {
+	        if (e.Code == Keyboard.Key.A)
+	        {
+	            Program.MoveCameraDown(Program.Window.GetView().Center.Y, 3);
+	        }
+	    }
 	}
 }

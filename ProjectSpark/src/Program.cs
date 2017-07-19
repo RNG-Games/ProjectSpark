@@ -5,6 +5,7 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using _ProjectSpark.gamestates;
+using _ProjectSpark.math;
 
 namespace _ProjectSpark
 {
@@ -63,7 +64,7 @@ namespace _ProjectSpark
                     States.Push(_current.NewState);
                     _current.NewState = null;
                 }
-                if(States.Count == 0)
+                if (States.Count == 0)
                     Window.Close();
             }
 
@@ -86,8 +87,9 @@ namespace _ProjectSpark
             _deltaTime = _clock.ElapsedTime.AsSeconds();
             _gameTime += _deltaTime;
             _clock.Restart();
-			_text.DisplayedString =$"{_gameTime:f2} s";
+            _text.DisplayedString = $"{_gameTime:f2} s";
             _current = States.Peek();
+            UpdateCamera(_deltaTime);
             _current.Update(_deltaTime);
         }
 
@@ -96,7 +98,6 @@ namespace _ProjectSpark
             Window.Clear(new Color(100, 149, 237));
             _current.Draw(Window);
             Window.Draw(_text);
-            Window.SetView(new View(new Vector2f(960, 540), new Vector2f(1920, 1080)));
             Window.Display();
         }
 
@@ -133,6 +134,7 @@ namespace _ProjectSpark
             Window.SetVisible(true);
             Window.SetActive(true);
             Window.RequestFocus();
+            Window.SetView(new View(new Vector2f(960, 540), new Vector2f(1920, 1080)));
         }
 
         public static void DetachWindow()
@@ -155,11 +157,11 @@ namespace _ProjectSpark
 
         private static void Window_OnKeyPressed(object sender, KeyEventArgs e)
         {
-			_current.KeyPressed(sender, e);
-            #if DEBUG
+            _current.KeyPressed(sender, e);
+#if DEBUG
             if (e.Code == Keyboard.Key.J)
                 Debug = !Debug;
-            #endif
+#endif
 
             if (e.Code == Keyboard.Key.F11)
             {
@@ -172,5 +174,70 @@ namespace _ProjectSpark
 
         #endregion
 
+        #region Camera Stuff
+
+        public enum Edge
+        {
+            top,
+            bottom,
+            right,
+            left
+        }
+
+        /// <summary>
+        /// Enable moving camera down. 
+        /// </summary>
+        /// <param name="endposition">point to which the top edge should move to</param>
+        /// <param name="time">Time in which the endposition should be reached(in s)</param>
+        public static void MoveCameraDown(float endposition, float time)
+        {
+            if (moveCamera)
+                throw new InvalidOperationException();
+            cameraTargetPosition = endposition;
+            cameraSpeed = (endposition - (Window.GetView().Center.Y - Window.GetView().Size.Y))/time;
+            moveCamera = true;
+        }
+
+        /// <summary>
+        /// Same as otherMoveCameraDown, but also invokes a given method when done
+        /// </summary>
+        /// <param name="endposition"></param>
+        /// <param name="time"></param>
+        /// <param name="release">Method (returns void), which will be invoked on completion</param>
+        public static void MoveCameraDown(float endposition, float time, Action release)
+        {
+            MoveCameraDown(endposition,time);
+            recall = release;
+
+        }
+
+        private static float cameraSpeed;
+        private static float cameraTargetPosition;
+        private static bool moveCamera = false;
+        private static Action recall;
+
+        private static void UpdateCamera(float _deltaTime)
+        {
+            var center = Window.GetView().Center;
+            var size = Window.GetView().Size;
+            if (moveCamera)
+            {
+                if (center.Y - size.Y / 2 >= cameraTargetPosition)
+                {
+                    CameraMovementDone();
+                    return;
+                }
+                Window.SetView(new View(new Vector2f(center.X, center.Y + cameraSpeed * _deltaTime), size));
+            }
+        }
+
+        private static void CameraMovementDone()
+        {
+            cameraSpeed = 0f;
+            moveCamera = false;
+            recall?.Invoke();
+            recall = null;
+        }
+        #endregion
     }
 }

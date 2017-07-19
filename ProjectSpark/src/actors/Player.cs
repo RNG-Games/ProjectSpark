@@ -20,6 +20,8 @@ namespace _ProjectSpark.actors
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
+        private Vector2f borders;
+        private bool onLine = false;
 
         Vector2f gravity = new Vector2f(0, 500);
         Vector2f velocity = new Vector2f(0, 500);
@@ -58,8 +60,10 @@ namespace _ProjectSpark.actors
         {
             if (dead) return;
 
+            if (!onLine) { 
             position += _deltaTime * velocity;
             velocity += _deltaTime * gravity;
+            }
 
             var move = new Vector2f(0, 0);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left) && !leftlock)
@@ -99,6 +103,21 @@ namespace _ProjectSpark.actors
         public void kill()
         {
             dead = true;
+        }
+
+        public void setBorders(float x, float y)
+        {
+            borders = new Vector2f(x, y);
+        }
+
+        public void setLine()
+        {
+            onLine = true;
+        }
+
+        public void resetLine()
+        {
+            onLine = false;
         }
     }
 }

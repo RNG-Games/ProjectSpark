@@ -69,6 +69,7 @@
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\LargeBlock.cs" />
+    <Compile Include="src\actors\Line.cs" />
     <Compile Include="src\actors\Player.cs" />
     <Compile Include="src\actors\TextBox.cs" />
     <Compile Include="src\gamestates\GameState.cs" />

@@ -19,7 +19,7 @@ namespace _ProjectSpark.gamestates
         LargeBlock bl2 = new LargeBlock("regular", 4, 9, 5, 10);
         LargeBlock bl3 = new LargeBlock("spike", 4, 9, 4, 4);
         Block bl4 = new Spike(15, 14);
-
+        Line test = new Line(new Vector2f(500, 1500), 900);
 	    public override void Draw(RenderWindow _window)
 		{
 		    text.DisplayedString = "FALLING CIRCLE!!!!";
@@ -34,6 +34,8 @@ namespace _ProjectSpark.gamestates
             bl3.Draw(_window);
             bl4.Draw(_window);
             player.Draw(_window);
+            test.Draw(_window);
+
         }
 
 		public override void Update(float _deltaTime)
@@ -45,6 +47,7 @@ namespace _ProjectSpark.gamestates
             bl2.Update(_deltaTime);
             bl3.Update(_deltaTime);
             bl4.Update(_deltaTime);
+            test.Update(_deltaTime);
 		}
 
 	    public override void KeyPressed(object sender, KeyEventArgs e)

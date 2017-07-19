@@ -116,6 +116,11 @@ namespace _ProjectSpark.actors
             velocity = new Vector2f(velocity.X, v);
         }
 
+        public void setVelocity(Vector2f v)
+        {
+            velocity = v;
+        }
+
         public void setBorders(float x, float y)
         {
             borders = new Vector2f(x, y);

@@ -19,7 +19,7 @@ namespace _ProjectSpark.gamestates
         LargeBlock bl2 = new LargeBlock("regular", 4, 9, 5, 10);
         LargeBlock bl3 = new LargeBlock("spike", 4, 9, 4, 4);
         Block bl4 = new Spike(15, 14);
-        Line test = new Line(new Vector2f(500, 1500), 900);
+        Line test = new Line(new Vector2f(9, 30), 20);
         Block bl5 = new Trampoline(25, 14);
 
 	    public override void Draw(RenderWindow _window)

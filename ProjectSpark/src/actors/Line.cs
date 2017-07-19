@@ -20,8 +20,8 @@ namespace _ProjectSpark.actors
 
         public Line(Vector2f borders, float y)
         {
-            this.borders = borders;
-            position = y;
+            this.borders = borders*48;
+            position = y*48;
         }
 
         public void Draw(RenderWindow _window)

@@ -32,6 +32,7 @@ namespace _ProjectSpark
         private static float _gameTime;
         private static GameState _current;
         private static Text _text;
+        private static Vector2f globalCenter = new Vector2f(960, 540);
 
         #endregion
 
@@ -134,7 +135,7 @@ namespace _ProjectSpark
             Window.SetVisible(true);
             Window.SetActive(true);
             Window.RequestFocus();
-            Window.SetView(new View(new Vector2f(960, 540), new Vector2f(1920, 1080)));
+            Window.SetView(new View(globalCenter, new Vector2f(1920, 1080)));
         }
 
         public static void DetachWindow()
@@ -218,16 +219,16 @@ namespace _ProjectSpark
 
         private static void UpdateCamera(float _deltaTime)
         {
-            var center = Window.GetView().Center;
             var size = Window.GetView().Size;
             if (moveCamera)
             {
-                if (center.Y - size.Y / 2 >= cameraTargetPosition)
+                if (globalCenter.Y - size.Y / 2 >= cameraTargetPosition)
                 {
                     CameraMovementDone();
                     return;
                 }
-                Window.SetView(new View(new Vector2f(center.X, center.Y + cameraSpeed * _deltaTime), size));
+                globalCenter = new Vector2f(globalCenter.X, globalCenter.Y + cameraSpeed * _deltaTime);
+                Window.SetView(new View(globalCenter, size));
             }
         }
 

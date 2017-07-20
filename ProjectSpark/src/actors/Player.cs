@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NetEXT.Animation;
 using _ProjectSpark.util;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using NetEXT.Particles;
+using NetEXT.MathFunctions;
 
 namespace _ProjectSpark.actors
 {
@@ -23,6 +26,9 @@ namespace _ProjectSpark.actors
         private Vector2f borders;
         private bool onLine = false;
 
+        private ParticleSystem system;
+        private UniversalEmitter emitter;
+
         Vector2f gravity = new Vector2f(0, 500);
         Vector2f velocity = new Vector2f(0, 500);
 
@@ -31,6 +37,12 @@ namespace _ProjectSpark.actors
             position = new Vector2f(1000, 0);
             speed = 800f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
+            system = new ParticleSystem(Resources.GetTexture("pixel.png"));
+            emitter = new UniversalEmitter();
+            emitter.EmissionRate = 1000f;
+            emitter.ParticleLifetime =
+                NetEXT.MathFunctions.Distributions.Uniform(Time.FromSeconds(0.001f), Time.FromSeconds(0.7f));
+            system.AddEmitter(emitter, Time.FromSeconds(0.3f));
         }
 
         public static Player getPlayer()
@@ -48,7 +60,11 @@ namespace _ProjectSpark.actors
 
         public void Draw(RenderWindow _window)
         {
-            if (dead) return;
+            if (dead)
+            {
+                system.Draw(_window,RenderStates.Default);
+                return;
+            }
             _window.Draw(texture);
         }
 
@@ -64,7 +80,11 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
-            if (dead) return;
+            if (dead)
+            {
+                system.Update(Time.FromSeconds(_deltaTime));
+                return;
+            }
 
             if (!onLine) { 
             position += _deltaTime * velocity;
@@ -108,6 +128,9 @@ namespace _ProjectSpark.actors
 
         public void kill()
         {
+            system.Position = position + new Vector2f(12,12);
+            emitter.ParticleVelocity = Distributions.Deflect(new Vector2f(200, 200), 360f);
+            emitter.ParticleRotation = Distributions.Uniform(0f, 360f);
             dead = true;
         }
 

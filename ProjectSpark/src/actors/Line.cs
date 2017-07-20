@@ -43,18 +43,27 @@ namespace _ProjectSpark.actors
         public virtual void Update(float _deltaTime)
         {
             if (done) return;
+            Vector2f playerPos = Player.getPlayer().getPosition() + new Vector2f(24,24);
+            Vector2f next;
 
-            float length = Math.Abs(borders.Y - borders.X);
-            if (Player.getPlayer().hitbox().intersectsWithRectangle(new Vector2f(borders.X, position + 10),  (int) length, 1))
+            if (playerPos.X >= borders.X && playerPos.X <= borders.Y)
             {
-                Player.getPlayer().setLine();
+                next = Player.getPlayer().getPosition() + _deltaTime * Player.getPlayer().getVelocity();
+                if (next.Y > position - 24) Player.getPlayer().setCurrLine(position-24);
+            }
+
+            
+            float length = Math.Abs(borders.Y - borders.X);
+            if (Player.getPlayer().getOnLine())
+            {
+                Console.WriteLine(position);
                 if (!enabled) Program.MoveCameraDown(position - 48, 3, resetLine);
                 enabled = true;
                 Vector2f plPos = Player.getPlayer().getPosition();
-                //if (plPos.X <= borders.X) Player.getPlayer().setLeftlock();
-                //if (plPos.X >= borders.Y-24) Player.getPlayer().setRightlock();
+                if (Player.getPlayer().getLeftBorder() < borders.X - 24) Player.getPlayer().setLeftBorder((int) borders.X - 24);
+                if (Player.getPlayer().getRightBorder() > borders.Y + 24) Player.getPlayer().setRightBorder((int) borders.Y + 24);
             }
-            
+
         }
 
         private void resetLine()

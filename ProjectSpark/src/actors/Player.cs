@@ -23,6 +23,8 @@ namespace _ProjectSpark.actors
         private static Player instance;
         private Vector2f borders;
         private bool onLine = false;
+        private bool fixLine = false;
+        private float currLine = 0;
 
         private int leftBorder = int.MinValue;
         private int rightBorder = int.MaxValue;
@@ -30,8 +32,8 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        Vector2f gravity = new Vector2f(0, 30);
-        Vector2f velocity = new Vector2f(0, 10);
+        Vector2f gravity = new Vector2f(0, 500);
+        Vector2f velocity = new Vector2f(0, 500);
 
         private Player()
         {
@@ -52,6 +54,7 @@ namespace _ProjectSpark.actors
             instance = new actors.Player();
             spawned = true;
             return instance; 
+            
         }
 
         public Vector2f getPosition()
@@ -81,7 +84,6 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
-            Console.WriteLine(_deltaTime);
             if (dead)
             {
                 system.Update(Time.FromSeconds(_deltaTime));
@@ -105,14 +107,23 @@ namespace _ProjectSpark.actors
             texture.Position = position;
 
             //just for test purposes:
+
             if (position.Y > 2000)
             {
                 position.Y = 0;
                 velocity = new Vector2f(0, 500);
             }
 
+            if (fixLine)
+            {
+                position.Y = currLine;
+                onLine = true;
+            }
+
             leftBorder = int.MinValue;
             rightBorder = int.MaxValue;
+            fixLine = false;
+            currLine = 0;
         }
 
         public Circle hitbox()
@@ -143,9 +154,9 @@ namespace _ProjectSpark.actors
             borders = new Vector2f(x, y);
         }
 
-        public void setLine()
+        public bool getOnLine()
         {
-            onLine = true;
+            return onLine;
         }
 
         public void resetLine()
@@ -171,6 +182,17 @@ namespace _ProjectSpark.actors
         public void setRightBorder(int value)
         {
             rightBorder = value;
+        }
+
+        public Vector2f getVelocity()
+        {
+            return velocity;
+        }
+
+        public void setCurrLine(float y)
+        {
+            fixLine = true;
+            currLine = y;
         }
     }
 }

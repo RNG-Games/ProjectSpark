@@ -47,17 +47,17 @@ namespace _ProjectSpark.gamestates
 		{
 		    _time += _deltaTime;
             //if(Keyboard.IsKeyPressed(Keyboard.Key.V)) testSprite.Position += new Vector2f(2f, 2f);
-            player.Update(_deltaTime);
             bl1.Update(_deltaTime);
             bl2.Update(_deltaTime);
             bl3.Update(_deltaTime);
             bl4.Update(_deltaTime);
             bl5.Update(_deltaTime);
-            test.Update(_deltaTime);
             e1.Update(_deltaTime);
-		}
+            test.Update(_deltaTime);
+            player.Update(_deltaTime);
+        }
 
-	    public override void KeyPressed(object sender, KeyEventArgs e)
+        public override void KeyPressed(object sender, KeyEventArgs e)
 	    {
 	    }
 	}

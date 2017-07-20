@@ -18,19 +18,20 @@ namespace _ProjectSpark.actors
         Vector2f position;
         Sprite texture;
         float speed;
-        private bool leftlock = false;
-        private bool rightlock = false;
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
         private Vector2f borders;
         private bool onLine = false;
 
+        private int leftBorder = int.MinValue;
+        private int rightBorder = int.MaxValue;
+
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        Vector2f gravity = new Vector2f(0, 500);
-        Vector2f velocity = new Vector2f(0, 500);
+        Vector2f gravity = new Vector2f(0, 30);
+        Vector2f velocity = new Vector2f(0, 10);
 
         private Player()
         {
@@ -92,38 +93,30 @@ namespace _ProjectSpark.actors
             }
 
             var move = new Vector2f(0, 0);
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Left) && !leftlock)
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                 move.X -= speed * _deltaTime;
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Right) && !rightlock)
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 move.X += speed * _deltaTime;
 
             position += move;
+            if (position.X < leftBorder) position.X = leftBorder;
+            if (position.X > rightBorder - 48) position.X = rightBorder - 48;
             texture.Position = position;
 
             //just for test purposes:
-            if (position.Y > 1000)
+            if (position.Y > 2000)
             {
                 position.Y = 0;
                 velocity = new Vector2f(0, 500);
             }
 
-            leftlock = false;
-            rightlock = false;
+            leftBorder = int.MinValue;
+            rightBorder = int.MaxValue;
         }
 
         public Circle hitbox()
         {
             return new Circle(position + new Vector2f(24, 24), 24);
-        }
-
-        public void setLeftlock()
-        {
-            leftlock = true;
-        }
-
-        public void setRightlock()
-        {
-            rightlock = true;
         }
 
         public void kill()
@@ -157,6 +150,26 @@ namespace _ProjectSpark.actors
         public void resetLine()
         {
             onLine = false;
+        }
+
+        public int getLeftBorder()
+        {
+            return leftBorder;
+        }
+
+        public int getRightBorder()
+        {
+            return rightBorder;
+        }
+
+        public void setLeftBorder(int value)
+        {
+            leftBorder = value;
+        }
+
+        public void setRightBorder(int value)
+        {
+            rightBorder = value;
         }
     }
 }

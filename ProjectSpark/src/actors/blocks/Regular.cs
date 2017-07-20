@@ -19,15 +19,16 @@ namespace _ProjectSpark.actors.blocks
 
         public override void Update(float _deltaTime)
         {
-            if (Player.getPlayer().hitbox().intersectsWithRectangle(position, 48, 48))
+            Vector2f playerPos = Player.getPlayer().getPosition();
+            if (playerPos.Y >= position.Y && playerPos.Y <= position.Y + 48)
             {
-                if (Player.getPlayer().hitbox().middle.X < position.X)
+                if (playerPos.X >= position.X && position.X + 48 > Player.getPlayer().getLeftBorder())
                 {
-                    Player.getPlayer().setRightlock();
+                    Player.getPlayer().setLeftBorder((int) position.X + 48);
                 }
-                else
+                if (playerPos.X <= position.X && position.X < Player.getPlayer().getRightBorder())
                 {
-                    Player.getPlayer().setLeftlock();
+                    Player.getPlayer().setRightBorder((int) position.X);
                 }
             }
         }

@@ -81,6 +81,7 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
+            Console.WriteLine(_deltaTime);
             if (dead)
             {
                 system.Update(Time.FromSeconds(_deltaTime));
@@ -122,8 +123,8 @@ namespace _ProjectSpark.actors
         public void kill()
         {
             system.Position = position + new Vector2f(12,12);
-            emitter.ParticleVelocity = Distributions.Deflect(new Vector2f(200, 200), 360f);
-            emitter.ParticleRotation = Distributions.Uniform(0f, 360f);
+            emitter.ParticleVelocity = Distributions.Deflect(new Vector2f(500, 500), 360f);
+            emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
             dead = true;
         }
 

@@ -72,6 +72,8 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
+    <Compile Include="src\actors\enemies\Stationary.cs" />
+    <Compile Include="src\actors\Enemy.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\LargeBlock.cs" />
     <Compile Include="src\actors\Light.cs" />
@@ -100,7 +102,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\texture\light.png">
+    <Content Include="content\texture\evil.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="content\texture\pixel.png">

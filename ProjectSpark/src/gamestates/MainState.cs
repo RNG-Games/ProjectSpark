@@ -4,7 +4,7 @@ using SFML.System;
 using SFML.Window;
 using _ProjectSpark.actors;
 using _ProjectSpark.actors.blocks;
-using _ProjectSpark.actors.lights;
+using _ProjectSpark.actors.enemies;
 
 namespace _ProjectSpark.gamestates
 {
@@ -21,7 +21,8 @@ namespace _ProjectSpark.gamestates
         Block bl4 = new Spike(15, 14);
         Line test = new Line(new Vector2f(9, 30), 20);
         Block bl5 = new Trampoline(25, 14);
-        Light l1 = new PlayerLight();
+        Enemy e1 = new Stationary(26, 14);
+
 
 	    public override void Draw(RenderWindow _window)
 		{
@@ -37,11 +38,9 @@ namespace _ProjectSpark.gamestates
             bl3.Draw(_window);
             bl4.Draw(_window);
             bl5.Draw(_window);
-           //1.Draw(_window);
+            e1.Draw(_window);
             player.Draw(_window);
             test.Draw(_window);
-
-
         }
 
 		public override void Update(float _deltaTime)
@@ -55,7 +54,7 @@ namespace _ProjectSpark.gamestates
             bl4.Update(_deltaTime);
             bl5.Update(_deltaTime);
             test.Update(_deltaTime);
-            l1.Update(_deltaTime);
+            e1.Update(_deltaTime);
 		}
 
 	    public override void KeyPressed(object sender, KeyEventArgs e)

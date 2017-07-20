@@ -29,7 +29,7 @@ namespace _ProjectSpark.gamestates
             actors.Add(new Trampoline(25, 14));
 
             // enemies
-            actors.Add(new Stationary(26, 14));
+            actors.Add(new Horizontal(26, 14, 20, 30));
 
             // lines
             actors.Add(new Line(new Vector2f(9, 30), 20));

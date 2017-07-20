@@ -16,7 +16,7 @@ namespace _ProjectSpark.actors.enemies
         public Stationary(int x, int y) : base(x, y)
         {
             texture = new Sprite(Resources.GetTexture("evil.png")) { Position = position };
-            hitbox = new Circle(position + new Vector2f(24, 24), 24); ;
+            hitbox = new Circle(position + new Vector2f(24, 24), 24); 
         }
 
         public override void Update(float _deltaTime)

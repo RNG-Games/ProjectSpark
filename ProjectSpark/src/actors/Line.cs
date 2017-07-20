@@ -56,7 +56,6 @@ namespace _ProjectSpark.actors
             float length = Math.Abs(borders.Y - borders.X);
             if (Player.getPlayer().getOnLine())
             {
-                Console.WriteLine(position);
                 if (!enabled) Program.MoveCameraDown(position - 48, 3, resetLine);
                 enabled = true;
                 Vector2f plPos = Player.getPlayer().getPosition();

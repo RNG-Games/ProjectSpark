@@ -32,8 +32,8 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        Vector2f gravity = new Vector2f(0, 500);
-        Vector2f velocity = new Vector2f(0, 500);
+        Vector2f gravity = new Vector2f(0, 30);
+        Vector2f velocity = new Vector2f(0, 30);
 
         private Player()
         {

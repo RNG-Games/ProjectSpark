@@ -22,9 +22,9 @@ namespace _ProjectSpark.actors.enemies
             {
             acceleration = _acceleration;
             velocity = _velocity;
-            borders = new Vector2f(leftBorder, rightBorder)*48;
+            borders = new Vector2f(leftBorder, rightBorder) * scale;
             texture = new Sprite(Resources.GetTexture("evil.png")) { Position = position };
-            hitbox = new Circle(position + new Vector2f(24, 24), 24); 
+            hitbox = new Circle(position + new Vector2f(scale/2, scale/2), scale/2); 
         }
 
         public override void Update(float _deltaTime)

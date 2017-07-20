@@ -20,11 +20,11 @@ namespace _ProjectSpark.actors.blocks
         public override void Update(float _deltaTime)
         {
             Vector2f playerPos = Player.getPlayer().getPosition();
-            if (playerPos.Y >= position.Y && playerPos.Y <= position.Y + 48)
+            if (playerPos.Y >= position.Y && playerPos.Y <= position.Y + scale)
             {
-                if (playerPos.X >= position.X && position.X + 48 > Player.getPlayer().getLeftBorder())
+                if (playerPos.X >= position.X && position.X + scale > Player.getPlayer().getLeftBorder())
                 {
-                    Player.getPlayer().setLeftBorder((int) position.X + 48);
+                    Player.getPlayer().setLeftBorder((int) position.X + scale);
                 }
                 if (playerPos.X <= position.X && position.X < Player.getPlayer().getRightBorder())
                 {

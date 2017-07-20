@@ -14,14 +14,15 @@ namespace _ProjectSpark.actors
     class Line : IActable
     {
         Vector2f borders;
+        int scale = Resources.getScale();
         float position;
         bool enabled = false;
         bool done = false;
 
         public Line(Vector2f borders, float y)
         {
-            this.borders = borders*48;
-            position = y*48;
+            this.borders = borders*scale;
+            position = y*scale;
         }
 
         public void Draw(RenderWindow _window)
@@ -43,24 +44,24 @@ namespace _ProjectSpark.actors
         public virtual void Update(float _deltaTime)
         {
             if (done) return;
-            Vector2f playerPos = Player.getPlayer().getPosition() + new Vector2f(24,24);
+            Vector2f playerPos = Player.getPlayer().getPosition() + new Vector2f(scale/2, scale/2);
             Vector2f next;
 
             if (playerPos.X >= borders.X && playerPos.X <= borders.Y)
             {
                 next = Player.getPlayer().getPosition() + _deltaTime * Player.getPlayer().getVelocity();
-                if (next.Y > position - 24) Player.getPlayer().setCurrLine(position-24);
+                if (next.Y > position - scale/2) Player.getPlayer().setCurrLine(position- scale/2);
             }
 
             
             float length = Math.Abs(borders.Y - borders.X);
             if (Player.getPlayer().getOnLine())
             {
-                if (!enabled) Program.MoveCameraDown(position - 48, 3, resetLine);
+                if (!enabled) Program.MoveCameraDown(position - scale, 3, resetLine);
                 enabled = true;
                 Vector2f plPos = Player.getPlayer().getPosition();
-                if (Player.getPlayer().getLeftBorder() < borders.X - 24) Player.getPlayer().setLeftBorder((int) borders.X - 24);
-                if (Player.getPlayer().getRightBorder() > borders.Y + 24) Player.getPlayer().setRightBorder((int) borders.Y + 24);
+                if (Player.getPlayer().getLeftBorder() < borders.X - scale/2) Player.getPlayer().setLeftBorder((int) borders.X - scale/2);
+                if (Player.getPlayer().getRightBorder() > borders.Y + scale/2) Player.getPlayer().setRightBorder((int) borders.Y + scale/2);
             }
 
         }

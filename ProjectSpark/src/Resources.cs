@@ -17,6 +17,11 @@ namespace _ProjectSpark
 			return Textures[textureName];
 		}
 
+        public static int getScale()
+        {
+            return 48;
+        }
+
 		public static Font GetFont(string fontName)
 		{
 			if (!Fonts.ContainsKey(fontName))

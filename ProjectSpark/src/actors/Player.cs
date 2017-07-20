@@ -15,6 +15,7 @@ namespace _ProjectSpark.actors
 {
     class Player : IActable
     {
+        int scale = Resources.getScale();
         Vector2f position;
         Sprite texture;
         float speed;
@@ -103,7 +104,7 @@ namespace _ProjectSpark.actors
 
             position += move;
             if (position.X < leftBorder) position.X = leftBorder;
-            if (position.X > rightBorder - 48) position.X = rightBorder - 48;
+            if (position.X > rightBorder - scale) position.X = rightBorder - scale;
             texture.Position = position;
 
             //just for test purposes:
@@ -128,7 +129,7 @@ namespace _ProjectSpark.actors
 
         public Circle hitbox()
         {
-            return new Circle(position + new Vector2f(24, 24), 24);
+            return new Circle(position + new Vector2f(scale/2, scale/2), scale/2);
         }
 
         public void kill()

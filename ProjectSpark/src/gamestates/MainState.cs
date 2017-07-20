@@ -60,10 +60,6 @@ namespace _ProjectSpark.gamestates
 
 	    public override void KeyPressed(object sender, KeyEventArgs e)
 	    {
-	        if (e.Code == Keyboard.Key.A)
-	        {
-	            Program.MoveCameraDown(Program.Window.GetView().Center.Y, 3);
-	        }
 	    }
 	}
 }

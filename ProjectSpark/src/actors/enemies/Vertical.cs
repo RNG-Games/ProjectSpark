@@ -9,7 +9,8 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.enemies
 {
-    class Horizontal : Enemy {
+    class Vertical : Enemy
+    {
         // change these if you want to change the speed
         private const float _acc = 400;
         private const float _v = 200;
@@ -21,20 +22,20 @@ namespace _ProjectSpark.actors.enemies
         private float velocity = _v;
 
 
-        public Horizontal(int y, int leftBorder, int rightBorder) : base(leftBorder, y)
+        public Vertical(int x, int upperBorder, int lowerBorder) : base(x, upperBorder)
             {
-            borders = new Vector2f(leftBorder, rightBorder) * scale;
-            texture = new Sprite(Resources.GetTexture("evil.png")) { Position = position }; 
+            borders = new Vector2f(upperBorder, lowerBorder) * scale;
+            texture = new Sprite(Resources.GetTexture("evil.png")) { Position = position };
         }
 
         public override void Update(float _deltaTime)
         {
             Console.WriteLine(velocity);
-            if (position.X >= borders.Y - scale) acceleration = -_acc;
-            else if (position.X <= borders.X + 2*scale) acceleration = _acc;
+            if (position.Y >= borders.Y - scale) acceleration = -_acc;
+            else if (position.Y <= borders.X + 2 * scale) acceleration = _acc;
             else acceleration = 0;
 
-            position.X += _deltaTime * velocity; // move
+            position.Y += _deltaTime * velocity; // move
             velocity += _deltaTime * acceleration;
 
             if (velocity > _v) velocity = _v;

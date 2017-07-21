@@ -29,10 +29,12 @@ namespace _ProjectSpark.gamestates
             actors.Add(new Trampoline(25, 14));
             actors.Add(new Regular(30, 14));
             actors.Add(new Regular(28, 14));
+            actors.Add(new Regular(29, 13));
+            actors.Add(new Regular(29, 15));
 
             // enemies
             actors.Add(new Horizontal(14, 28, 30));
-
+            actors.Add(new Vertical(29, 13, 15));
             // lines
             actors.Add(new Line(new Vector2f(9, 30), 20));
         }

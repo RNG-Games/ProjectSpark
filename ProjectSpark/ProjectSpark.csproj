@@ -74,6 +74,7 @@
     <Compile Include="src\actors\blocks\Trampoline.cs" />
     <Compile Include="src\actors\enemies\Horizontal.cs" />
     <Compile Include="src\actors\enemies\Stationary.cs" />
+    <Compile Include="src\actors\enemies\Vertical.cs" />
     <Compile Include="src\actors\Enemy.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\LargeBlock.cs" />

@@ -24,7 +24,7 @@ namespace _ProjectSpark.gamestates
             // blocks
             actors.Add(new Regular(15, 15));
             actors.Add(new LargeBlock("regular", 4, 9, 5, 10));
-            //actors.Add(new LargeBlock("spike", 4, 9, 4, 4));
+            actors.Add(new LargeBlock("spike", 4, 9, 4, 4));
             actors.Add(new Spike(15, 14));
             actors.Add(new Trampoline(25, 14));
             actors.Add(new Regular(30, 14));

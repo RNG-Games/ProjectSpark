@@ -27,9 +27,11 @@ namespace _ProjectSpark.gamestates
             actors.Add(new LargeBlock("spike", 4, 9, 4, 4));
             actors.Add(new Spike(15, 14));
             actors.Add(new Trampoline(25, 14));
+            actors.Add(new Regular(30, 14));
+            actors.Add(new Regular(28, 14));
 
             // enemies
-            actors.Add(new Horizontal(26, 14, 20, 30));
+            actors.Add(new Horizontal(14, 28, 30));
 
             // lines
             actors.Add(new Line(new Vector2f(9, 30), 20));

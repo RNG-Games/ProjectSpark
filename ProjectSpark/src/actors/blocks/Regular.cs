@@ -20,15 +20,27 @@ namespace _ProjectSpark.actors.blocks
         public override void Update(float _deltaTime)
         {
             Vector2f playerPos = Player.getPlayer().getPosition();
-            if (playerPos.Y >= position.Y && playerPos.Y <= position.Y + scale)
+            if (playerPos.Y >= position.Y - scale && playerPos.Y <= position.Y + scale)
             {
-                if (playerPos.X >= position.X && position.X + scale > Player.getPlayer().getLeftBorder())
+                double newLeftBorder, newRightBorder;
+                if (position.Y - playerPos.Y > scale / 2 || playerPos.Y - position.Y > scale / 2)
                 {
-                    Player.getPlayer().setLeftBorder((int) position.X + scale);
+                    newLeftBorder = position.X + scale / 2 + Math.Sqrt(scale * scale / 4 - (Math.Abs(position.Y - playerPos.Y) - scale / 2) * (Math.Abs(position.Y - playerPos.Y) - scale / 2));
+                    newRightBorder = position.X + scale / 2 - Math.Sqrt(scale * scale / 4 - (Math.Abs(position.Y - playerPos.Y) - scale / 2) * (Math.Abs(position.Y - playerPos.Y) - scale / 2));
                 }
-                if (playerPos.X <= position.X && position.X < Player.getPlayer().getRightBorder())
+                else
                 {
-                    Player.getPlayer().setRightBorder((int) position.X);
+                    newLeftBorder = position.X + scale;
+                    newRightBorder = position.X;
+                }
+
+                if (playerPos.X >= position.X && newLeftBorder > Player.getPlayer().getLeftBorder())
+                {
+                    Player.getPlayer().setLeftBorder((int) newLeftBorder);
+                }
+                if (playerPos.X <= position.X && newRightBorder < Player.getPlayer().getRightBorder())
+                {
+                    Player.getPlayer().setRightBorder((int) newRightBorder);
                 }
             }
         }

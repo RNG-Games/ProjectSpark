@@ -16,6 +16,7 @@ namespace _ProjectSpark.actors.blocks
         public Spike(int x, int y) : base(x, y)
         {
             texture = new Sprite(Resources.GetTexture("spike.png")) { Position = position };
+            texture.Texture.Smooth = true;
         }
 
         public override void Update(float _deltaTime)

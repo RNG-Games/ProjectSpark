@@ -27,10 +27,10 @@ namespace _ProjectSpark.gamestates
             actors.Add(new LargeBlock("spike", 4, 9, 4, 4));
             actors.Add(new Spike(15, 14));
             actors.Add(new Trampoline(25, 14));
-            actors.Add(new Regular(30, 14));
-            actors.Add(new Regular(28, 14));
-            actors.Add(new Regular(29, 13));
-            actors.Add(new Regular(29, 15));
+            actors.Add(new Decoration(30, 14, "testdeco.png"));
+            actors.Add(new Decoration(28, 14, "testdeco.png"));
+            actors.Add(new Decoration(29, 13, "testdeco.png"));
+            actors.Add(new Decoration(29, 15, "testdeco.png"));
 
             // enemies
             actors.Add(new Horizontal(14, 28, 30));
@@ -42,7 +42,7 @@ namespace _ProjectSpark.gamestates
         public override void Draw(RenderWindow _window) {
 		    text.DisplayedString = "FALLING CIRCLE!!!!";
             text.Position = new Vector2f(200, 200);
-            _window.Clear(new Color(0, 0, 0));			
+            _window.Clear(new Color(222, 206, 206));			
 
 
             _window.Draw(text);

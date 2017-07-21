@@ -27,7 +27,7 @@ namespace _ProjectSpark.actors
 
         public void Draw(RenderWindow _window)
         {
-            Vertex[] line = { new Vertex(new Vector2f(borders.X, position)), new Vertex(new Vector2f(borders.Y, position)) };
+            Vertex[] line = { new Vertex(new Vector2f(borders.X, position), new Color(79,60,59)), new Vertex(new Vector2f(borders.Y, position), new Color(79, 60, 59)) };
             _window.Draw(line, 0, 2, PrimitiveType.Lines);
         }
 

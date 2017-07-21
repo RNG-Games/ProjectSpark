@@ -30,7 +30,6 @@ namespace _ProjectSpark.actors.enemies
 
         public override void Update(float _deltaTime)
         {
-            Console.WriteLine(velocity);
             if (position.Y >= borders.Y - scale) acceleration = -_acc;
             else if (position.Y <= borders.X + 2 * scale) acceleration = _acc;
             else acceleration = 0;

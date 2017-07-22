@@ -30,7 +30,7 @@ namespace _ProjectSpark.gamestates
         {
             // blocks
             actors.Add(new Trampoline(25, 14));
-            actors.Add(new Regular(26, 7));
+            actors.Add(new Spike(26, 7));
 
             // enemies
 

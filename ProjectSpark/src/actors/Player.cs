@@ -35,6 +35,7 @@ namespace _ProjectSpark.actors
         private UniversalEmitter emitter;
 
         Vector2f gravity = new Vector2f(0, 800);
+        Vector2f upwardGravity = new Vector2f(0, 1200);
         private const float _vel = 500;
         Vector2f velocity = new Vector2f(0, _vel);
 
@@ -97,7 +98,14 @@ namespace _ProjectSpark.actors
 
             if (!onLine) { 
             position += _deltaTime * velocity;
-            velocity += _deltaTime * gravity;
+            if (velocity.Y < 0)
+                {
+                    velocity += _deltaTime * upwardGravity;
+                }
+            else
+                {
+                    velocity += _deltaTime * gravity;
+                }
             }
 
             var move = new Vector2f(0, 0);

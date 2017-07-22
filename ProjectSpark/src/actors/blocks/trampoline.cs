@@ -48,7 +48,7 @@ namespace _ProjectSpark.actors.blocks
                 /* signals to player class */
                 if (bounce && Player.getPlayer().hitbox().intersectsWithRectangle(position + new Vector2f(2, 2), 44, 44))
                 {
-                    Player.getPlayer().setVelocity(-700);
+                    Player.getPlayer().setVelocity(-900);
                 }
                 if (!bounce && playerPos.X >= position.X && newLeftBorder > Player.getPlayer().getLeftBorder())
                 {

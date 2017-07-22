@@ -35,7 +35,8 @@ namespace _ProjectSpark.actors
         private UniversalEmitter emitter;
 
         Vector2f gravity = new Vector2f(0, 30);
-        Vector2f velocity = new Vector2f(0, 30);
+        private const float _vel = 30;
+        Vector2f velocity = new Vector2f(0, _vel);
 
         private Player()
         {
@@ -140,10 +141,10 @@ namespace _ProjectSpark.actors
 
         public void kill()
         {
-            system.Position = position + new Vector2f(12,12);
+            /*system.Position = position + new Vector2f(12,12);
             emitter.ParticleVelocity = Distributions.Deflect(direction, 15f);
             //emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
-            emitter.ParticleScale = new Vector2f(0.5f, 0.5f);
+            emitter.ParticleScale = new Vector2f(0.5f, 0.5f);*/
             dead = true;
         }
 
@@ -202,6 +203,11 @@ namespace _ProjectSpark.actors
             this.currLine = currLine;
             currLineY = y;
             fixLine = true;
+        }
+
+        public void resetVelocity()
+        {
+            velocity.Y = _vel;
         }
     }
 }

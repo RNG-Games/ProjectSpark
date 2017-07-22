@@ -60,6 +60,7 @@ namespace _ProjectSpark.actors
         protected void resetLine()
         {
             Player.getPlayer().resetLine();
+            Player.getPlayer().resetVelocity();
             done = true;
         }
 

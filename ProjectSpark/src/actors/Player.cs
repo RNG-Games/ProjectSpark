@@ -34,13 +34,13 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        Vector2f gravity = new Vector2f(0, 30);
-        Vector2f velocity = new Vector2f(0, 30);
+        Vector2f gravity = new Vector2f(0, 800);
+        Vector2f velocity = new Vector2f(0, 500);
 
         private Player()
         {
             position = new Vector2f(1000, 48);
-            speed = 800f;
+            speed = 400f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
             system = new ParticleSystem(Resources.GetTexture("player.png"));
             emitter = new UniversalEmitter();

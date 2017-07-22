@@ -29,26 +29,18 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
-            actors.Add(new Regular(15, 15));
-            actors.Add(new LargeBlock("regular", 4, 9, 5, 10));
-            actors.Add(new LargeBlock("spike", 4, 9, 4, 4));
-            actors.Add(new Spike(15, 14));
             actors.Add(new Trampoline(25, 14));
-            actors.Add(new Decoration(30, 14, "testdeco.png"));
-            actors.Add(new Decoration(28, 14, "testdeco.png"));
-            actors.Add(new Decoration(29, 13, "testdeco.png"));
-            actors.Add(new Decoration(29, 15, "testdeco.png"));
+            actors.Add(new Regular(26, 7));
 
             // enemies
-            actors.Add(new Horizontal(14, 28, 30));
-            actors.Add(new Vertical(29, 13, 15));
+
             // lines
 
             actors.Add(new Checkpoint(true, new Vector2f(9, 30), 1));
             actors.Add(new Transition(new Vector2f(9, 30), 20));
 
             //Finalize Setup
-            foreach (var checkpoint in actors.Where(a => a is /*CheckPoint Class*/))
+            //foreach (var checkpoint in actors.Where(a => a is /*CheckPoint Class*/))
             {
                 //TODO wichtig für checkpoint
                 //

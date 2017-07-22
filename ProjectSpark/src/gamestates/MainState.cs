@@ -29,8 +29,19 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
-            actors.Add(new Trampoline(25, 14));
-            actors.Add(new Spike(26, 7));
+            actors.Add(new LargeBlock("spike", 10, 10, 6, 7));
+            actors.Add(new LargeBlock("spike", 11, 11, 8, 9));
+            actors.Add(new LargeBlock("spike", 12, 12, 10, 11));
+            actors.Add(new LargeBlock("spike", 13, 13, 12, 13));
+            actors.Add(new LargeBlock("spike", 14, 14, 14, 15));
+            actors.Add(new LargeBlock("spike", 15, 15, 16, 17));
+            actors.Add(new LargeBlock("spike", 14, 14, 6, 7));
+            actors.Add(new LargeBlock("spike", 15, 15, 8, 9));
+            actors.Add(new LargeBlock("spike", 16, 16, 10, 11));
+            actors.Add(new LargeBlock("spike", 17, 17, 12, 13));
+            actors.Add(new LargeBlock("spike", 18, 18, 14, 15));
+            actors.Add(new LargeBlock("spike", 19, 19, 16, 17));
+
 
             // enemies
 

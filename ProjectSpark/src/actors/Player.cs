@@ -33,8 +33,8 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        const float _spd = 400f;
-        const float _onLineSpd = 600f;
+        const float _spd = 500f;
+        const float _onLineSpd = 700f;
         float speed = _spd;
 
         Vector2f gravity = new Vector2f(0, 800);

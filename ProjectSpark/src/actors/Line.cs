@@ -43,6 +43,7 @@ namespace _ProjectSpark.actors
 
         public virtual void Update(float _deltaTime)
         {
+
             if (done) return;
             Vector2f playerPos = Player.getPlayer().getPosition() + new Vector2f(scale/2, scale/2);
             Vector2f next;
@@ -50,7 +51,7 @@ namespace _ProjectSpark.actors
             if (playerPos.X >= borders.X && playerPos.X <= borders.Y)
             {
                 next = Player.getPlayer().getPosition() + _deltaTime * Player.getPlayer().getVelocity();
-                if (next.Y > position - scale/2) Player.getPlayer().setCurrLine(position- scale/2, this);
+                if (next.Y > position - scale/2 && next.Y <= position) Player.getPlayer().setCurrLine(position- scale/2, this);
             }
 
         }

@@ -19,11 +19,17 @@ namespace _ProjectSpark.actors.lines
         {
             this.start = start;
             this.borders = borders * scale;
+            if (start)
+            {
+                Player.getPlayer().setCurrLine(position - scale / 2, this);
+                Player.getPlayer().setPosition(new Vector2f(this.borders.X + Math.Abs(this.borders.Y - this.borders.X)/2, y));
+            }
             position = y * scale;
         }
 
         public override void Update(float _deltaTime)
         {
+
             base.Update(_deltaTime);
             if (onLine)
             {

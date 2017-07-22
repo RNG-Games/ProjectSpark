@@ -44,7 +44,8 @@ namespace _ProjectSpark.actors
 
         private Player()
         {
-            position = new Vector2f(1000, 48);
+            onLine = true;
+            position = new Vector2f(1000, 24);
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
             system = new ParticleSystem(Resources.GetTexture("player.png"));
             emitter = new UniversalEmitter();
@@ -92,6 +93,7 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
+            
             if (dead)
             {
                 system.Update(Time.FromSeconds(_deltaTime));
@@ -223,6 +225,11 @@ namespace _ProjectSpark.actors
         public void resetVelocity()
         {
             velocity.Y = _vel;
+        }
+
+        public void setPosition(Vector2f pos)
+        {
+            position = pos;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace _ProjectSpark.actors.lines
 
     class Checkpoint : Line
     {
+        public Action setCheckpoint;
         bool start = false;
         public Checkpoint(bool start, Vector2f borders, float y) : base(borders, y)
         {
@@ -26,11 +27,14 @@ namespace _ProjectSpark.actors.lines
             base.Update(_deltaTime);
             if (onLine)
             {
+                if (!start) setCheckpoint?.Invoke();
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) resetLine();
                 Vector2f plPos = Player.getPlayer().getPosition();
                 if (Player.getPlayer().getLeftBorder() < borders.X - scale / 2) Player.getPlayer().setLeftBorder((int)borders.X - scale / 2);
                 if (Player.getPlayer().getRightBorder() > borders.Y + scale / 2) Player.getPlayer().setRightBorder((int)borders.Y + scale / 2);
             }
         }
+
+        
     }
 }

@@ -39,8 +39,9 @@ namespace _ProjectSpark.gamestates
             actors.Add(new Checkpoint(true, new Vector2f(9, 30), 1));
             actors.Add(new Transition(new Vector2f(9, 30), 20));
 
+            /*
             //Finalize Setup
-            //foreach (var checkpoint in actors.Where(a => a is /*CheckPoint Class*/))
+            foreach (var checkpoint in actors.Where(a => a is CheckPoint Class))
             {
                 //TODO wichtig für checkpoint
                 //
@@ -49,7 +50,7 @@ namespace _ProjectSpark.gamestates
                 //wenn gemacht, nächste Zeile auskommentoeren
                 //checkpoint.createSave = SetCheckpoint
             }
-            //TODO gleichermaßen sollte der Player bei Tod die RestoreCheckpoint ausführen
+            //TODO gleichermaßen sollte der Player bei Tod die RestoreCheckpoint ausführen*/
         }
 
         public override void Draw(RenderWindow _window) {

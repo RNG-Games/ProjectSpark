@@ -61,6 +61,7 @@ namespace _ProjectSpark.actors
         {
             Player.getPlayer().resetLine();
             Player.getPlayer().resetVelocity();
+            onLine = false;
             done = true;
         }
 

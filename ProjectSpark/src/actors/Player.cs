@@ -33,8 +33,10 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        float speed = 400f;
-        float onLineSpeed = 600f;
+        const float _spd = 400f;
+        const float _onLineSpd = 600f;
+        float speed = _spd;
+
         Vector2f gravity = new Vector2f(0, 800);
         Vector2f upwardGravity = new Vector2f(0, 1200);
         private const float _vel = 500;
@@ -109,18 +111,13 @@ namespace _ProjectSpark.actors
             }
 
             var move = new Vector2f(0, 0);
+            speed = onLine ? _onLineSpd : _spd;
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
-                if (onLine)
-                    move.X -= onLineSpeed * _deltaTime;
-                else
                     move.X -= speed * _deltaTime;
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
-                if (onLine)
-                    move.X += onLineSpeed * _deltaTime;
-                else
                     move.X += speed * _deltaTime;
             }
 

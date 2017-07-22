@@ -82,6 +82,8 @@
     <Compile Include="src\actors\Light.cs" />
     <Compile Include="src\actors\lights\PlayerLight.cs" />
     <Compile Include="src\actors\Line.cs" />
+    <Compile Include="src\actors\lines\Checkpoint.cs" />
+    <Compile Include="src\actors\lines\Transition.cs" />
     <Compile Include="src\actors\Player.cs" />
     <Compile Include="src\actors\TextBox.cs" />
     <Compile Include="src\gamestates\GameState.cs" />

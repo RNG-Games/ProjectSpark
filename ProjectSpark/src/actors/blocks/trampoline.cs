@@ -48,6 +48,7 @@ namespace _ProjectSpark.actors.blocks
                 /* signals to player class */
                 if (bounce && Player.getPlayer().hitbox().intersectsWithRectangle(position + new Vector2f(2, 2), 44, 44))
                 {
+                    texture.Scale = new Vector2f(1, 0.6f);
                     Player.getPlayer().setVelocity(-700);
                 }
                 if (!bounce && playerPos.X >= position.X && newLeftBorder > Player.getPlayer().getLeftBorder())

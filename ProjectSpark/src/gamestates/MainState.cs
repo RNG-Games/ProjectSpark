@@ -5,6 +5,7 @@ using SFML.Window;
 using _ProjectSpark.actors;
 using _ProjectSpark.actors.blocks;
 using _ProjectSpark.actors.enemies;
+using _ProjectSpark.actors.lines;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,7 +37,9 @@ namespace _ProjectSpark.gamestates
             actors.Add(new Horizontal(14, 28, 30));
             actors.Add(new Vertical(29, 13, 15));
             // lines
-            actors.Add(new Line(new Vector2f(9, 30), 20));
+
+            actors.Add(new Checkpoint(true, new Vector2f(9, 30), 1));
+            actors.Add(new Transition(new Vector2f(9, 30), 20));
         }
 
         public override void Draw(RenderWindow _window) {

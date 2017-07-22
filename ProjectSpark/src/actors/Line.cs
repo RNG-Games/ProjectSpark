@@ -11,21 +11,21 @@ using SFML.Window;
 namespace _ProjectSpark.actors
 {
 
-    class Line : IActable
+    abstract class Line : IActable
     {
-        Vector2f borders;
-        int scale = Resources.getScale();
-        float position;
-        bool enabled = false;
-        bool done = false;
-
+        protected Vector2f borders;
+        protected int scale = Resources.getScale();
+        protected float position;
+        protected bool enabled = false;
+        protected bool done = false;
+        protected bool onLine = false;
         public Line(Vector2f borders, float y)
         {
             this.borders = borders*scale;
             position = y*scale;
         }
 
-        public void Draw(RenderWindow _window)
+        public virtual void Draw(RenderWindow _window)
         {
             Vertex[] line = { new Vertex(new Vector2f(borders.X, position), new Color(79,60,59)), new Vertex(new Vector2f(borders.Y, position), new Color(79, 60, 59)) };
             _window.Draw(line, 0, 2, PrimitiveType.Lines);
@@ -50,26 +50,20 @@ namespace _ProjectSpark.actors
             if (playerPos.X >= borders.X && playerPos.X <= borders.Y)
             {
                 next = Player.getPlayer().getPosition() + _deltaTime * Player.getPlayer().getVelocity();
-                if (next.Y > position - scale/2) Player.getPlayer().setCurrLine(position- scale/2);
-            }
-
-            
-            float length = Math.Abs(borders.Y - borders.X);
-            if (Player.getPlayer().getOnLine())
-            {
-                if (!enabled) Program.MoveCameraDown(position - scale, 3, resetLine);
-                enabled = true;
-                Vector2f plPos = Player.getPlayer().getPosition();
-                if (Player.getPlayer().getLeftBorder() < borders.X - scale/2) Player.getPlayer().setLeftBorder((int) borders.X - scale/2);
-                if (Player.getPlayer().getRightBorder() > borders.Y + scale/2) Player.getPlayer().setRightBorder((int) borders.Y + scale/2);
+                if (next.Y > position - scale/2) Player.getPlayer().setCurrLine(position- scale/2, this);
             }
 
         }
 
-        private void resetLine()
+        protected void resetLine()
         {
             Player.getPlayer().resetLine();
             done = true;
+        }
+
+        public void setLine()
+        {
+            onLine = true;
         }
     }
 }

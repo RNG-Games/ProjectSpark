@@ -25,23 +25,24 @@ namespace _ProjectSpark.actors
         private Vector2f borders;
         private bool onLine = false;
         private bool fixLine = false;
-        private float currLine = 0;
-
+        private Line currLine = null;
+        private float currLineY = 0;
+        private Vector2f direction = new Vector2f(0,0);
         private int leftBorder = int.MinValue;
         private int rightBorder = int.MaxValue;
 
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
-        Vector2f gravity = new Vector2f(0, 500);
-        Vector2f velocity = new Vector2f(0, 500);
+        Vector2f gravity = new Vector2f(0, 30);
+        Vector2f velocity = new Vector2f(0, 30);
 
         private Player()
         {
-            position = new Vector2f(1000, 0);
+            position = new Vector2f(1000, 48);
             speed = 800f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
-            system = new ParticleSystem(Resources.GetTexture("pixel.png"));
+            system = new ParticleSystem(Resources.GetTexture("player.png"));
             emitter = new UniversalEmitter();
             emitter.EmissionRate = 1000f;
             emitter.ParticleLifetime =
@@ -102,6 +103,7 @@ namespace _ProjectSpark.actors
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 move.X += speed * _deltaTime;
 
+            direction.X = move.X;
             position += move;
             if (position.X < leftBorder) position.X = leftBorder;
             if (position.X > rightBorder - scale) position.X = rightBorder - scale;
@@ -117,14 +119,16 @@ namespace _ProjectSpark.actors
 
             if (fixLine)
             {
-                position.Y = currLine;
+                position.Y = currLineY;
+                currLine.setLine();
                 onLine = true;
             }
 
             leftBorder = int.MinValue;
             rightBorder = int.MaxValue;
             fixLine = false;
-            currLine = 0;
+            currLine = null;
+            direction.Y = velocity.Y;
         }
 
         public Circle hitbox()
@@ -135,8 +139,9 @@ namespace _ProjectSpark.actors
         public void kill()
         {
             system.Position = position + new Vector2f(12,12);
-            emitter.ParticleVelocity = Distributions.Deflect(new Vector2f(500, 500), 360f);
-            emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
+            emitter.ParticleVelocity = Distributions.Deflect(direction, 15f);
+            //emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
+            emitter.ParticleScale = new Vector2f(0.5f, 0.5f);
             dead = true;
         }
 
@@ -190,10 +195,11 @@ namespace _ProjectSpark.actors
             return velocity;
         }
 
-        public void setCurrLine(float y)
+        public void setCurrLine(float y, Line currLine)
         {
+            this.currLine = currLine;
+            currLineY = y;
             fixLine = true;
-            currLine = y;
         }
     }
 }

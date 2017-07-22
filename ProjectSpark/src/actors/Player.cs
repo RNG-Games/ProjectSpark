@@ -18,7 +18,6 @@ namespace _ProjectSpark.actors
         int scale = Resources.getScale();
         Vector2f position;
         Sprite texture;
-        float speed;
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
@@ -34,6 +33,8 @@ namespace _ProjectSpark.actors
         private ParticleSystem system;
         private UniversalEmitter emitter;
 
+        float speed = 400f;
+        float onLineSpeed = 600f;
         Vector2f gravity = new Vector2f(0, 800);
         Vector2f upwardGravity = new Vector2f(0, 1200);
         private const float _vel = 500;
@@ -42,7 +43,6 @@ namespace _ProjectSpark.actors
         private Player()
         {
             position = new Vector2f(1000, 48);
-            speed = 400f;
             texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
             system = new ParticleSystem(Resources.GetTexture("player.png"));
             emitter = new UniversalEmitter();
@@ -110,9 +110,19 @@ namespace _ProjectSpark.actors
 
             var move = new Vector2f(0, 0);
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
-                move.X -= speed * _deltaTime;
+            {
+                if (onLine)
+                    move.X -= onLineSpeed * _deltaTime;
+                else
+                    move.X -= speed * _deltaTime;
+            }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
-                move.X += speed * _deltaTime;
+            {
+                if (onLine)
+                    move.X += onLineSpeed * _deltaTime;
+                else
+                    move.X += speed * _deltaTime;
+            }
 
             direction.X = move.X;
             position += move;

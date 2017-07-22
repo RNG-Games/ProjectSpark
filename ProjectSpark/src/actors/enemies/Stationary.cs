@@ -26,5 +26,7 @@ namespace _ProjectSpark.actors.enemies
                 Player.getPlayer().kill();
             }
         }
+
+        public new virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

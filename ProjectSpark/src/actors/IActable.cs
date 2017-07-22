@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
+using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
@@ -35,5 +36,11 @@ namespace _ProjectSpark.actors
         /// </summary>
         /// <returns>bool - true if it can be removed</returns>
         bool IsExpired();
+
+        /// <summary>
+        /// Returns a independent copy of the instance as Memento
+        /// </summary>
+        /// <returns>Memento of Instance</returns>
+        Memento<IActable> Save();
     }
 }

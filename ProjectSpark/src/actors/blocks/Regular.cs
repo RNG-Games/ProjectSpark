@@ -49,5 +49,7 @@ namespace _ProjectSpark.actors.blocks
                 }
             }
         }
+
+        public new virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

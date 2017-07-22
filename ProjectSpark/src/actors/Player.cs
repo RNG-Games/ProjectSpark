@@ -79,6 +79,8 @@ namespace _ProjectSpark.actors
             return false;
         }
 
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
+
         public float StartTime()
         {
             return 0f;

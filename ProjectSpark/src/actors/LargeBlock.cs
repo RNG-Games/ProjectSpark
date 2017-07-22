@@ -67,5 +67,7 @@ namespace _ProjectSpark.actors
                 block.Update(_deltaTime);
             }
         }
+
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

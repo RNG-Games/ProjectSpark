@@ -22,7 +22,7 @@ namespace _ProjectSpark.actors
             position = new Vector2f(scale *x, scale *y);
         }
 
-        public void Draw(RenderWindow _window)
+        public virtual void Draw(RenderWindow _window)
         {
             _window.Draw(texture);
         }
@@ -41,5 +41,7 @@ namespace _ProjectSpark.actors
         {
             return;
         }
+
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

@@ -55,6 +55,8 @@ namespace _ProjectSpark.actors
 
         }
 
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
+
         protected void resetLine()
         {
             Player.getPlayer().resetLine();

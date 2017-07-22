@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.System;
+using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
@@ -32,5 +33,7 @@ namespace _ProjectSpark.actors
         {
             return;
         }
+
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

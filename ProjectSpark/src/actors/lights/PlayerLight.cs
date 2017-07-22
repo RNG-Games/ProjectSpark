@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
+using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.lights
 {
@@ -19,5 +20,7 @@ namespace _ProjectSpark.actors.lights
             position = Player.getPlayer().getPosition();
             texture.Position = position;
         }
+
+        public new virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

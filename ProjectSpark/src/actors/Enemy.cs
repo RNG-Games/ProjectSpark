@@ -40,5 +40,7 @@ namespace _ProjectSpark.actors
         {
             return;
         }
+
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
 using SFML.Graphics;
+using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
@@ -50,6 +51,7 @@ namespace _ProjectSpark.actors
             return starttime;
         }
 
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
 
         public virtual void Update(float _deltaTime)
         {

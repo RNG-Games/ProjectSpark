@@ -16,5 +16,7 @@ namespace _ProjectSpark.actors.blocks
         {
             this.texture = new Sprite(Resources.GetTexture(texture)) { Position = position };
         }
+
+        public new virtual Memento<IActable> Save() => new Memento<IActable>(this);
     }
 }

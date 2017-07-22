@@ -133,8 +133,8 @@ namespace _ProjectSpark.actors
 
             if (position.Y > 2000)
             {
+                resetVelocity();
                 position.Y = 0;
-                velocity = new Vector2f(0, 500);
             }
 
             if (fixLine)

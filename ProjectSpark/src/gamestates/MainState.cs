@@ -29,26 +29,25 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
-            actors.Add(new LargeBlock("spike", 10, 10, 6, 7));
-            actors.Add(new LargeBlock("spike", 11, 11, 8, 9));
-            actors.Add(new LargeBlock("spike", 12, 12, 10, 11));
-            actors.Add(new LargeBlock("spike", 13, 13, 12, 13));
-            actors.Add(new LargeBlock("spike", 14, 14, 14, 15));
-            actors.Add(new LargeBlock("spike", 15, 15, 16, 17));
-            actors.Add(new LargeBlock("spike", 14, 14, 6, 7));
-            actors.Add(new LargeBlock("spike", 15, 15, 8, 9));
-            actors.Add(new LargeBlock("spike", 16, 16, 10, 11));
-            actors.Add(new LargeBlock("spike", 17, 17, 12, 13));
-            actors.Add(new LargeBlock("spike", 18, 18, 14, 15));
-            actors.Add(new LargeBlock("spike", 19, 19, 16, 17));
+            actors.Add(new LargeBlock("regular", 0, 9, 0, 22));
+            actors.Add(new LargeBlock("regular", 29, 39, 0, 22));
+            actors.Add(new LargeBlock("regular", 10, 19, 20, 20));
+            actors.Add(new LargeBlock("spike", 10, 19, 19, 19));
 
-
+            actors.Add(new Trampoline(19, 34));
+            actors.Add(new Trampoline(20, 34));
+            actors.Add(new LargeBlock("regular", 0, 0, 23, 45));
+            actors.Add(new LargeBlock("regular", 19, 20, 35, 45));
+            actors.Add(new LargeBlock("regular", 17, 18, 31, 45));
+            actors.Add(new LargeBlock("spike", 17, 18, 30, 30));
             // enemies
 
             // lines
 
-            actors.Add(new Checkpoint(true, new Vector2f(9, 30), 1));
+            actors.Add(new Checkpoint(true, new Vector2f(10, 29), 1));
             actors.Add(new Transition(new Vector2f(9, 30), 20));
+
+
 
             /*
             //Finalize Setup

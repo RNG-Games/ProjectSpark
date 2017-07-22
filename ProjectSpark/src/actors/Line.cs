@@ -22,7 +22,7 @@ namespace _ProjectSpark.actors
         public Line(Vector2f borders, float y)
         {
             this.borders = borders*scale;
-            position = y*scale;
+            position = (y+0.5f)*scale;
         }
 
         public virtual void Draw(RenderWindow _window)

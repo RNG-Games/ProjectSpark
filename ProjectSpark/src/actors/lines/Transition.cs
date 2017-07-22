@@ -14,11 +14,7 @@ namespace _ProjectSpark.actors.lines
     class Transition : Line
     {        
 
-        public Transition(Vector2f borders, float y) : base(borders, y)
-        {
-            this.borders = borders * scale;
-            position = y * scale;
-        }
+        public Transition(Vector2f borders, float y) : base(borders, y) {}
 
         public override void Update(float _deltaTime)
         {

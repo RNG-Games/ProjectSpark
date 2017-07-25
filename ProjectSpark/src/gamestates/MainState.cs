@@ -10,6 +10,7 @@ using _ProjectSpark.actors.lines;
 using _ProjectSpark.util;
 using System.Collections.Generic;
 using System.Linq;
+using _ProjectSpark.actors.textboxes;
 
 namespace _ProjectSpark.gamestates
 {
@@ -29,6 +30,8 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
+            string[] a = { "Hello $2World", "Goodbye World", "$1meow" };
+            actors.Add(new Speech(new Vector2f(500, 500), a));
             actors.Add(new LargeBlock("regular", 0, 9, 0, 22));
             actors.Add(new LargeBlock("regular", 29, 39, 0, 22));
             actors.Add(new LargeBlock("regular", 10, 19, 20, 20));

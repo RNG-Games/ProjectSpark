@@ -9,67 +9,67 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
-    public class TextBox : IActable
+    abstract class TextBox : IActable
     {
-        protected Text text; 
-        protected string toDisplay;
-        protected Sprite texture = new Sprite(Resources.GetTexture("TestTB.png")); 
-        protected Sprite portrait;
+        protected List<Tuple<Text, int>> letters = new List<Tuple<Text, int>>();
         protected Vector2f position;
-        protected bool expiration;
-        protected float frameCounter;
-        protected float starttime = 0f;
+        protected string[] messages;
+        protected int curr = 0;
+        protected int cutoff = 0;
+        protected int msgLength = 0;
+        Text text = new Text() { Font = new Font(Resources.GetFont("trebuc.ttf")) };
+        protected bool expire = false;
 
-        public TextBox(Vector2f _position, string _text, string _font, string _portrait)
-        {
-            text = new Text("", Resources.GetFont(_font)) {FillColor = new Color(0, 0, 0)};
-            toDisplay = _text;
-            position = _position;
-            expiration = false;
-            portrait = new Sprite(Resources.GetTexture(_portrait));
-        }
+        private Random r = new Random();
+        protected int width = 18;
+        protected bool done = false;
 
-        public TextBox(Vector2f _position, string _text, string _font, string _portrait, float _starttime) :this(_position,_text,_font,_portrait)
-        {
-            starttime = _starttime;
-        }
+        private float velocity = 1;
+        private float acceleration = 5;
+        private float speed = 0;
+        private float counter = 0;
 
         public void Draw(RenderWindow _window)
         {
-            _window.Draw(texture);
-            _window.Draw(portrait);
-            _window.Draw(text);
+            foreach (Tuple<Text, int> _t in letters)
+            {
+                Text t = _t.Item1;
+                int c = _t.Item2;
+
+                switch (c)
+                {
+                    case 1:
+                        Vector2f pos = t.Position; 
+                        t.Position = new Vector2f(t.Position.X + r.Next(-2, 2), t.Position.Y + r.Next(-2, 2));
+                        _window.Draw(t);
+                        t.Position = pos;
+                        break;
+                    case 2:
+                        t.Position = t.Position + new Vector2f(0, 1);
+                        _window.Draw(t);
+                        break;
+                    default:
+                        _window.Draw(t);
+                        break;
+                }
+            }
         }
+
+
 
         public bool IsExpired()
         {
-            return expiration;
+            return expire;
         }
 
         public float StartTime()
         {
-            return starttime;
+            return 0f;
         }
 
         public virtual Memento<IActable> Save() => new Memento<IActable>(this);
 
-        public virtual void Update(float _deltaTime)
-        {
-            frameCounter += _deltaTime;
-            if (frameCounter > 0.1 && toDisplay.Length > 0)  //slowly display the text
-            {
-                text.DisplayedString += toDisplay.ElementAt(0);
-                if (text.DisplayedString.Length % 20 == 0) { text.DisplayedString += '\n'; }
-                toDisplay = toDisplay.Substring(1);  //adjust toDisplay
-                frameCounter = 0;
-            }
-
-            texture.Position = position; 
-            text.Position = new Vector2f (position.X + 100, position.Y + 20);  
-            portrait.Position = new Vector2f(position.X + -25, position.Y -25); //portraits der Charaktere hängen jetzt vorerst in der oberen linken ecke
-
-            if (frameCounter > 1.5) { position = new Vector2f(position.X, position.Y + (float)0.2); } //Despawn animation
-            if (frameCounter > 3) { expiration = true; } //After the full Text is displayed and 2 seconds(?) passed, textbox closes
+        public virtual void Update(float _deltaTime) {
         }
     }
 }

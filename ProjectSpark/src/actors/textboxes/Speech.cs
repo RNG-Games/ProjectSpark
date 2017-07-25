@@ -52,7 +52,7 @@ namespace _ProjectSpark.actors.textboxes
                 {
                     Text t = new Text() { Font = new Font(Resources.GetFont("Anonymous.ttf")) };
                     t.Position = new Vector2f(position.X + j * width, position.Y);
-                    t.Color = new Color(0, 0, 0);
+                    t.FillColor = new Color(0, 0, 0);
 
                     if (_curr[i].Equals('$'))
                     {
@@ -61,7 +61,7 @@ namespace _ProjectSpark.actors.textboxes
                     }
 
                     if (_curr[i].Equals(' ')) effect = 0;
-                    t.DisplayedString = "" + _curr[i];
+                    t.DisplayedString = (_curr[i].Equals('_')) ? " " : "" + _curr[i];
                     letters.Add(new Letter(t, effect));
 
                     ++i; ++j;

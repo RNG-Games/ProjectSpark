@@ -33,7 +33,7 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
-            string[] a = { "Hello $2World", "$1Goodbye World", "meow" };
+            string[] a = { "I'm an $3NPC", "$1I_am_evil", "$2HEHEHEHEHEHE" };
             actors.Add(new Speech(new Vector2f(500, 500), a));
 
             actors.Add(new LargeBlock("regular", 0, 9, 0, 22));

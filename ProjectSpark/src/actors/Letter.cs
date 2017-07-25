@@ -50,6 +50,10 @@ namespace _ProjectSpark.actors
                 case 2:
                     _window.Draw(t);
                     break;
+                case 3:
+                    t.FillColor = new Color(255, 0, 0);
+                    _window.Draw(t);
+                    break;
                 default:
                     _window.Draw(t);
                     break;

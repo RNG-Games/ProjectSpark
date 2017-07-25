@@ -13,6 +13,7 @@ using NetEXT.MathFunctions;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     class Player : IActable
     {
         int scale = Resources.getScale();
@@ -87,7 +88,7 @@ namespace _ProjectSpark.actors
         }
 
         public virtual Memento<IActable> Save() => new Memento<IActable>(this);
-
+        public virtual Memento<Player> SavePl() => new Memento<Player>(this);
         public float StartTime()
         {
             return 0f;
@@ -166,6 +167,11 @@ namespace _ProjectSpark.actors
             emitter.ParticleScale = new Vector2f(0.5f, 0.5f);*/
             dead = true;
             Resawn?.Invoke();
+        }
+
+        public void unkill()
+        {
+            dead = false;
         }
 
         public void setVelocity(float v)

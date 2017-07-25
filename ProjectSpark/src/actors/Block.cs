@@ -10,6 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     abstract class Block : IActable
     {
         protected Vector2f position;

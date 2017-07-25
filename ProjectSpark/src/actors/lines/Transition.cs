@@ -10,7 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors.lines
 {
-
+    [Serializable]
     class Transition : Line
     {        
 

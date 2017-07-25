@@ -10,9 +10,10 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors.lines
 {
-
+    [Serializable]
     class Checkpoint : Line
     {
+        [NonSerialized]
         public Action setCheckpoint;
         bool start = false;
         public Checkpoint(bool start, Vector2f borders, float y) : base(borders, y)

@@ -9,6 +9,7 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     abstract class Light : IActable
     {
         protected Vector2f position;

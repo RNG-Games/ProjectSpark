@@ -11,6 +11,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     class LargeBlock : IActable
     {
         List<Block> blocklist = new List<Block>();

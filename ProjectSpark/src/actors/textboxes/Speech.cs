@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using SFML.System;
 using SFML.Window;
 using SFML.Graphics;
+using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.textboxes
 {
+    [Serializable]
     class Speech : TextBox
     {
         protected float frameCounter;
@@ -24,6 +26,8 @@ namespace _ProjectSpark.actors.textboxes
             messages = msgs;
             msgLength = msgs.Length;
         }
+
+        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
 
         public override void Update(float _deltaTime)
         {

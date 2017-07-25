@@ -9,6 +9,7 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.enemies
 {
+    [Serializable]
     class Horizontal : Enemy {
         // change these if you want to change the speed
         private const float _acc = 400;

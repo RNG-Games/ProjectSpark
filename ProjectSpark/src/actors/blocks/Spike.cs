@@ -11,6 +11,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors.blocks
 {
+    [Serializable]
     class Spike : Block
     {
         public Spike(int x, int y) : base(x, y)

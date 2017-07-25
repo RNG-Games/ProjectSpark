@@ -8,6 +8,7 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.lights
 {
+    [Serializable]
     class PlayerLight : Light
     {
         

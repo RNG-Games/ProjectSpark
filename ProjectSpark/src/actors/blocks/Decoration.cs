@@ -10,6 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors.blocks
 {
+    [Serializable]
     class Decoration : Block
     {
         public Decoration(int x, int y, string texture) : base(x, y)

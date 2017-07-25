@@ -9,6 +9,7 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors.enemies
 {
+    [Serializable]
     class Stationary : Enemy
     {
         private Circle hitbox;

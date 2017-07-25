@@ -25,6 +25,8 @@ namespace _ProjectSpark.gamestates
 	    private List<Memento<IActable>> savePoint;
 	    private bool existingCheckpoint = false;
 	    private Vector2f checkpointCamera;
+	    private Vector2f savePlayerpos;
+	    private bool restore = false;
 
         //test area       
         public MainState()
@@ -51,8 +53,6 @@ namespace _ProjectSpark.gamestates
             actors.Add(new Transition(new Vector2f(9, 30), 20));
 
 
-
-            
             //Finalize Setup
             foreach (var checkpoint in actors.Where(act => act is Checkpoint))
             {
@@ -77,12 +77,17 @@ namespace _ProjectSpark.gamestates
 
 		public override void Update(float _deltaTime)
 		{
-		    _time += _deltaTime;
+            if(!existingCheckpoint)
+                SetCheckpoint();
+            _time += _deltaTime;
             actors = actors.Where(a => !a.IsExpired()).ToList();
             foreach (var actor in actors)
                 actor.Update(_deltaTime);
 
             player.Update(_deltaTime);
+
+            if(restore)
+                Restore();
         }
 
         public override void KeyPressed(object sender, KeyEventArgs e)
@@ -97,10 +102,16 @@ namespace _ProjectSpark.gamestates
 	            savePoint.Add(actor.Save());
 	        }
 	        checkpointCamera = Program.Window.GetView().Center;
+	        savePlayerpos = player.getPosition();
 	        existingCheckpoint = true;
 	    }
 
 	    public void RestoreCheckpoint()
+	    {
+	        restore = true;
+	    }
+
+	    public void Restore()
 	    {
 	        if (!existingCheckpoint)
 	        {
@@ -114,8 +125,20 @@ namespace _ProjectSpark.gamestates
 	            {
 	                actors.Add(memento.GetSavedState());
 	            }
+	            //player = savePlayer.GetSavedState();
 	            Program.Window.GetView().Center = checkpointCamera;
-	        }
+
+	            foreach (var checkpoint in actors.Where(act => act is Checkpoint))
+	            {
+	                var x = (Checkpoint)checkpoint;
+	                x.setCheckpoint = SetCheckpoint;
+	            }
+                player.setPosition(savePlayerpos);
+                player.unkill();
+                Program.Window.SetView(new View(checkpointCamera, Program.Window.GetView().Size));
+                SetCheckpoint();
+            }
+	        restore = false;
 	    }
 	}
 }

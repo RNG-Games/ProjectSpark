@@ -10,6 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     class Letter : IActable
     {
         int c = 0;

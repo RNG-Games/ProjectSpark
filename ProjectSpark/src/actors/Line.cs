@@ -10,7 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors
 {
-
+    [Serializable]
     abstract class Line : IActable
     {
         protected Vector2f borders;

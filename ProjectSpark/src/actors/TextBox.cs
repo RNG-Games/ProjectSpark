@@ -9,6 +9,7 @@ using _ProjectSpark.util;
 
 namespace _ProjectSpark.actors
 {
+    [Serializable]
     abstract class TextBox : IActable
     {
         protected List<Letter> letters = new List<Letter>();

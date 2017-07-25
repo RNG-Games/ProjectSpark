@@ -10,6 +10,7 @@ using SFML.Window;
 
 namespace _ProjectSpark.actors.blocks
 {
+    [Serializable]
     class Regular : Block
     {
         public Regular(int x, int y) : base(x, y)

@@ -42,6 +42,8 @@ namespace _ProjectSpark.actors
         private const float _vel = 500;
         Vector2f velocity = new Vector2f(0, _vel);
 
+        public Action Resawn;
+
         private Player()
         {
             onLine = true;
@@ -163,6 +165,7 @@ namespace _ProjectSpark.actors
             //emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
             emitter.ParticleScale = new Vector2f(0.5f, 0.5f);*/
             dead = true;
+            Resawn?.Invoke();
         }
 
         public void setVelocity(float v)

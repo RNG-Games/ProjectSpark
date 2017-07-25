@@ -52,18 +52,14 @@ namespace _ProjectSpark.gamestates
 
 
 
-            /*
+            
             //Finalize Setup
-            foreach (var checkpoint in actors.Where(a => a is CheckPoint Class))
+            foreach (var checkpoint in actors.Where(act => act is Checkpoint))
             {
-                //TODO wichtig für checkpoint
-                //
-                //Die checkpoint Klasse sollte ne 'public Action setCheckpoint' besitzen, die gecallt wird, wenn der Player mit dem Checkpoint interagiert
-                //Und da wir faul sind/ nicht irgendeinen schrott durchreichen wollen, machen wir das so:
-                //wenn gemacht, nächste Zeile auskommentoeren
-                //checkpoint.createSave = SetCheckpoint
+                var x = (Checkpoint) checkpoint;
+                x.setCheckpoint = SetCheckpoint;
             }
-            //TODO gleichermaßen sollte der Player bei Tod die RestoreCheckpoint ausführen*/
+            player.Resawn = RestoreCheckpoint;
         }
 
         public override void Draw(RenderWindow _window) {

@@ -34,6 +34,7 @@ namespace _ProjectSpark.gamestates
             // blocks
             string[] a = { "Hello $2World", "$1Goodbye World", "meow" };
             actors.Add(new Speech(new Vector2f(500, 500), a));
+
             actors.Add(new LargeBlock("regular", 0, 9, 0, 22));
             actors.Add(new LargeBlock("regular", 29, 39, 0, 22));
             actors.Add(new LargeBlock("regular", 10, 19, 20, 20));
@@ -47,6 +48,11 @@ namespace _ProjectSpark.gamestates
             actors.Add(new LargeBlock("spike", 17, 18, 30, 30));
             // enemies
 
+            actors.Add(new Vertical(10, 4, 8));
+            actors.Add(new Vertical(11, 4, 8));
+            actors.Add(new Vertical(12, 4, 8));
+            actors.Add(new Vertical(13, 4, 8));
+            actors.Add(new Vertical(14, 4, 8));
             // lines
 
             actors.Add(new Checkpoint(true, new Vector2f(10, 29), 1));

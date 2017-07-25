@@ -23,7 +23,7 @@ namespace _ProjectSpark.actors
 
         private const float _acc = 200;
         private const float _v = 100;
-        private float acceleration = 0;
+        private float acceleration = 200;
         private float velocity = _v;
         Sprite texture;
 
@@ -46,8 +46,7 @@ namespace _ProjectSpark.actors
                     t.Position = pos;
                     break;
                 case 2:
-                    texture.Position = position;
-                    _window.Draw(texture);
+                    _window.Draw(t);
                     break;
                 default:
                     _window.Draw(t);
@@ -69,18 +68,17 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
-            Console.WriteLine(position.Y);
-            position.Y += velocity * _deltaTime;
-            if (position.Y >= lowerBorder)
-            {
-                velocity = -_v;
-                position.Y = lowerBorder;
-            }
-            if (position.Y <= upperBorder)
-            {
-                velocity = _v;
-                position.Y = upperBorder;
-            }
+            if (position.Y >= lowerBorder) acceleration = -_acc; 
+            else if (position.Y <= upperBorder) acceleration = _acc;
+            else acceleration = 0;
+
+            position.Y += _deltaTime * velocity; // move
+            velocity += _deltaTime * acceleration;
+
+            if (velocity > _v) velocity = _v;
+            if (velocity < -_v) velocity = -_v;
+
+            t.Position = position;
         }
 
         public int getEffect()

@@ -75,8 +75,8 @@ namespace _ProjectSpark.actors
         public void Update(float _deltaTime)
         {
             t.Position = position;
-            s += 10;
-            position.Y += (float) Math.Sin(s * 0.5 * Math.PI / 100);
+            s += 1;
+            position.Y += (float) Math.Sin(s * 0.5 * Math.PI / 25);
         }
 
         public int getEffect()

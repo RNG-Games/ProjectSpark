@@ -33,7 +33,7 @@ namespace _ProjectSpark.gamestates
         public MainState()
         {
             // blocks
-            string[] a = { "Xypher: Yup, I know this one, but it's just too $1much_for_me, using YF's message system already. The word wrap was everything I missed from YF, though, so I'm quite happy with this little script.", "I'm an $3NPC", "$1I_am_evil", "$2HEHEHEHEHEHE" };
+            string[] a = {"$1much_for_me, using YF's message system already. HAAAAAAAAAAA", "I'm an $3NPC", "$1I_am_evil", "$2HEHEHEHEHEHEHEHEHEHEHEHEHEHEHE" , "test" };
             actors.Add(new Speech(new Vector2f(500, 500), a));
 
             actors.Add(new LargeBlock("regular", 0, 9, 0, 22));

@@ -17,25 +17,14 @@ namespace _ProjectSpark.actors
         Text t;
         Random r = new Random();
         Vector2f position;
-        float upperBorder;
-        float lowerBorder;
-        const float range = 10;
-
-        private const float _acc = 100;
-        private const float _v = 50;
-        private float acceleration = 0;
-        private float velocity = _v;
-        Sprite texture;
 
         private int s = 0;
         public Letter(Text letter, int effect) {
             t = letter;
             c = effect;
+            //t.Rotation = -10;
             position = t.Position;
-            position.Y -= 12;
-            lowerBorder = position.Y + range;
-            upperBorder = position.Y - range;
-            texture = new Sprite(Resources.GetTexture("testblock.png")) { Position = position };
+            position.Y += 5;
         }
 
         public void Draw(RenderWindow _window) {

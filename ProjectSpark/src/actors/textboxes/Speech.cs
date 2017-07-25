@@ -16,10 +16,9 @@ namespace _ProjectSpark.actors.textboxes
         private float frameCounter;
         private int i = 0;
         private int j = 0;
-        private bool pressed = false;
         private int line = 0;
-        private const int capacityX = 40;
-        private const int capacityY = 4;
+        private const int capacityX = 30;
+        private const int capacityY = 2;
 
         private int effect = 0;
         public Speech(Vector2f pos, string[] msgs)
@@ -27,6 +26,13 @@ namespace _ProjectSpark.actors.textboxes
             position = pos;
             messages = msgs;
             msgLength = msgs.Length;
+            overlay = new Sprite(Resources.GetTexture("testbox.png")) { Position = position};
+            button = new Sprite(Resources.GetTexture("testclick.png")) { Position = position + new Vector2f(650, 80) };
+            button.Texture.Smooth = true;
+            overlay.Texture.Smooth = true;
+            overlay.Scale = new Vector2f(0.5f, 0.5f);
+
+            position += new Vector2f(20, 20);
         }
 
         public virtual Memento<IActable> Save() => new Memento<IActable>(this);
@@ -37,6 +43,7 @@ namespace _ProjectSpark.actors.textboxes
             frameCounter += _deltaTime;
             if (Keyboard.IsKeyPressed(Keyboard.Key.S) && !pressed)
             {
+                letters.Clear();
                 pressed = true;
                 if (curr < msgLength - 1) ++curr;
                 else expire = true;
@@ -45,7 +52,6 @@ namespace _ProjectSpark.actors.textboxes
                 i = 0;
                 j = 0;
                 line = 0;
-                letters.Clear();
             }
 
             string _curr = messages[curr];
@@ -66,7 +72,7 @@ namespace _ProjectSpark.actors.textboxes
                 if (_curr[i].Equals(' ')) effect = 0;
                 t.DisplayedString = (_curr[i].Equals('_')) ? " " : "" + _curr[i];
                 letters.Add(new Letter(t, effect));
-
+                Console.WriteLine(t.GetGlobalBounds().Width);
                 ++i; ++j;
                 frameCounter = 0;
             }
@@ -76,17 +82,24 @@ namespace _ProjectSpark.actors.textboxes
 
         private void wordwrap(int i, string s)
         {
+            int sub = 0;
             if (i == 0 || s[i-1].Equals(' ') || s[i - 1].Equals('_'))
             {
                 while (i+1 < s.Length)
                 {
+                    if (s[i].Equals('$')) sub += 2;
+
                     if (s[i + 1].Equals(' ')) break;
                     ++i;
                 }
+
+                i -= sub;
+
                 if ((i - line * capacityX) > capacityX) {
                     ++line;
                     j = 0;
 
+                    
                     if (line % capacityY == 0) letters.Clear();
                 }
             }

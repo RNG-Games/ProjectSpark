@@ -12,6 +12,7 @@ namespace _ProjectSpark.actors
     [Serializable]
     abstract class TextBox : IActable
     {
+        protected bool pressed = true;
         protected List<Letter> letters = new List<Letter>();
         protected Vector2f position;
         protected string[] messages;
@@ -20,17 +21,15 @@ namespace _ProjectSpark.actors
         protected int msgLength = 0;
         Text text = new Text() { Font = new Font(Resources.GetFont("trebuc.ttf")) };
         protected bool expire = false;
-
+        protected Sprite overlay;
+        protected Sprite button;
         protected int width = 18;
         protected bool done = false;
 
-        private float velocity = 1;
-        private float acceleration = 5;
-        private float speed = 0;
-        private float counter = 0;
-
         public void Draw(RenderWindow _window)
         {
+            _window.Draw(overlay);
+            if (!pressed) _window.Draw(button);
             foreach (Letter t in letters)
             {
                 t.Draw(_window);

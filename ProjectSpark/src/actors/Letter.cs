@@ -19,18 +19,20 @@ namespace _ProjectSpark.actors
         Vector2f position;
         float upperBorder;
         float lowerBorder;
-        const float range = 20;
+        const float range = 10;
 
-        private const float _acc = 200;
-        private const float _v = 100;
-        private float acceleration = 200;
+        private const float _acc = 100;
+        private const float _v = 50;
+        private float acceleration = 0;
         private float velocity = _v;
         Sprite texture;
 
+        private int s = 0;
         public Letter(Text letter, int effect) {
             t = letter;
             c = effect;
             position = t.Position;
+            position.Y -= 6;
             lowerBorder = position.Y + range;
             upperBorder = position.Y - range;
             texture = new Sprite(Resources.GetTexture("testblock.png")) { Position = position };
@@ -68,17 +70,9 @@ namespace _ProjectSpark.actors
 
         public void Update(float _deltaTime)
         {
-            if (position.Y >= lowerBorder) acceleration = -_acc; 
-            else if (position.Y <= upperBorder) acceleration = _acc;
-            else acceleration = 0;
-
-            position.Y += _deltaTime * velocity; // move
-            velocity += _deltaTime * acceleration;
-
-            if (velocity > _v) velocity = _v;
-            if (velocity < -_v) velocity = -_v;
-
             t.Position = position;
+            s += 10;
+            position.Y += (float) Math.Sin(s * 0.5 * Math.PI / 100);
         }
 
         public int getEffect()

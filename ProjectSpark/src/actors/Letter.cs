@@ -32,7 +32,7 @@ namespace _ProjectSpark.actors
             t = letter;
             c = effect;
             position = t.Position;
-            position.Y -= 6;
+            position.Y -= 12;
             lowerBorder = position.Y + range;
             upperBorder = position.Y - range;
             texture = new Sprite(Resources.GetTexture("testblock.png")) { Position = position };

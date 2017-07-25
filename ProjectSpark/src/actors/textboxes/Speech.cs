@@ -13,13 +13,15 @@ namespace _ProjectSpark.actors.textboxes
     [Serializable]
     class Speech : TextBox
     {
-        protected float frameCounter;
-        protected int i = 0;
-        protected int j = 0;
-        protected bool pressed = false;
+        private float frameCounter;
+        private int i = 0;
+        private int j = 0;
+        private bool pressed = false;
+        private int line = 0;
+        private const int capacityX = 40;
+        private const int capacityY = 4;
 
         private int effect = 0;
-        private bool affected = false;
         public Speech(Vector2f pos, string[] msgs)
         {
             position = pos;
@@ -40,36 +42,56 @@ namespace _ProjectSpark.actors.textboxes
                 else expire = true;
 
                 effect = 0;
-                affected = false;
                 i = 0;
                 j = 0;
+                line = 0;
                 letters.Clear();
             }
 
             string _curr = messages[curr];
 
-                if (i < _curr.Length && frameCounter > 0.1 && _curr.Length > 0)
+            if (i < _curr.Length && frameCounter > 0.025 && _curr.Length > 0)
+            {
+                wordwrap(i, _curr);
+                Text t = new Text() { Font = new Font(Resources.GetFont("Anonymous.ttf")) };
+                t.Position = new Vector2f(position.X + j * width, position.Y + line%capacityY * 40);
+                t.FillColor = new Color(0, 0, 0);
+
+                if (_curr[i].Equals('$'))
                 {
-                    Text t = new Text() { Font = new Font(Resources.GetFont("Anonymous.ttf")) };
-                    t.Position = new Vector2f(position.X + j * width, position.Y);
-                    t.FillColor = new Color(0, 0, 0);
-
-                    if (_curr[i].Equals('$'))
-                    {
-                        i += 2;
-                        effect = (int) Char.GetNumericValue(_curr[i - 1]);
-                    }
-
-                    if (_curr[i].Equals(' ')) effect = 0;
-                    t.DisplayedString = (_curr[i].Equals('_')) ? " " : "" + _curr[i];
-                    letters.Add(new Letter(t, effect));
-
-                    ++i; ++j;
-                    frameCounter = 0;
+                    i += 2;
+                    effect = (int) Char.GetNumericValue(_curr[i - 1]);
                 }
-                if (i == _curr.Length) pressed = false;
+
+                if (_curr[i].Equals(' ')) effect = 0;
+                t.DisplayedString = (_curr[i].Equals('_')) ? " " : "" + _curr[i];
+                letters.Add(new Letter(t, effect));
+
+                ++i; ++j;
+                frameCounter = 0;
+            }
+            if (i == _curr.Length) pressed = false;
 
         }
+
+        private void wordwrap(int i, string s)
+        {
+            if (i == 0 || s[i-1].Equals(' ') || s[i - 1].Equals('_'))
+            {
+                while (i+1 < s.Length)
+                {
+                    if (s[i + 1].Equals(' ')) break;
+                    ++i;
+                }
+                if ((i - line * capacityX) > capacityX) {
+                    ++line;
+                    j = 0;
+
+                    if (line % capacityY == 0) letters.Clear();
+                }
+            }
+        }
+
 
     }
 }

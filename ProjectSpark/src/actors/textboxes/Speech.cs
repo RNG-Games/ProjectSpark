@@ -58,7 +58,7 @@ namespace _ProjectSpark.actors.textboxes
 
                     if (_curr[i].Equals(' ')) effect = 0;
                     t.DisplayedString = "" + _curr[i];
-                    letters.Add(Tuple.Create(t, effect));
+                    letters.Add(new Letter(t, effect));
 
                     ++i; ++j;
                     frameCounter = 0;

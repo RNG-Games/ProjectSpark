@@ -11,7 +11,7 @@ namespace _ProjectSpark.actors
 {
     abstract class TextBox : IActable
     {
-        protected List<Tuple<Text, int>> letters = new List<Tuple<Text, int>>();
+        protected List<Letter> letters = new List<Letter>();
         protected Vector2f position;
         protected string[] messages;
         protected int curr = 0;
@@ -20,7 +20,6 @@ namespace _ProjectSpark.actors
         Text text = new Text() { Font = new Font(Resources.GetFont("trebuc.ttf")) };
         protected bool expire = false;
 
-        private Random r = new Random();
         protected int width = 18;
         protected bool done = false;
 
@@ -31,27 +30,9 @@ namespace _ProjectSpark.actors
 
         public void Draw(RenderWindow _window)
         {
-            foreach (Tuple<Text, int> _t in letters)
+            foreach (Letter t in letters)
             {
-                Text t = _t.Item1;
-                int c = _t.Item2;
-
-                switch (c)
-                {
-                    case 1:
-                        Vector2f pos = t.Position; 
-                        t.Position = new Vector2f(t.Position.X + r.Next(-2, 2), t.Position.Y + r.Next(-2, 2));
-                        _window.Draw(t);
-                        t.Position = pos;
-                        break;
-                    case 2:
-                        t.Position = t.Position + new Vector2f(0, 1);
-                        _window.Draw(t);
-                        break;
-                    default:
-                        _window.Draw(t);
-                        break;
-                }
+                t.Draw(_window);
             }
         }
 
@@ -70,6 +51,10 @@ namespace _ProjectSpark.actors
         public virtual Memento<IActable> Save() => new Memento<IActable>(this);
 
         public virtual void Update(float _deltaTime) {
+            foreach (Letter t in letters)
+            {
+                if (t.getEffect() == 2) t.Update(_deltaTime);
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace _ProjectSpark
         private static float _gameTime;
         private static GameState _current;
         private static Text _text;
-        private static Vector2f globalCenter = new Vector2f(960, 540);
+        public static Vector2f globalCenter = new Vector2f(960, 540);
 
         #endregion
 
@@ -154,7 +154,10 @@ namespace _ProjectSpark
 
         #region Events
 
-        private static void Window_OnClose(object sender, EventArgs e) { Window.Close(); }
+        private static void Window_OnClose(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
         private static void Window_OnKeyPressed(object sender, KeyEventArgs e)
         {

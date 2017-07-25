@@ -21,7 +21,10 @@ namespace _ProjectSpark.actors.lines
             base.Update(_deltaTime);
             if (onLine)
             {
-                if (!enabled) Program.MoveCameraDown(position - scale, 3, resetLine);
+
+                if (!enabled){
+                    Program.MoveCameraDown(position - scale, 3, resetLine);
+                }
                 enabled = true;
                 Vector2f plPos = Player.getPlayer().getPosition();
                 if (Player.getPlayer().getLeftBorder() < borders.X - scale / 2) Player.getPlayer().setLeftBorder((int)borders.X - scale / 2);

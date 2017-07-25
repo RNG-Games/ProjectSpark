@@ -7,6 +7,7 @@ using SFML.System;
 
 namespace _ProjectSpark.util
 {
+    [Serializable]
     class Circle
     {
         public Vector2f middle { get; protected set; }

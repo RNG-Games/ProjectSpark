@@ -27,6 +27,7 @@ namespace _ProjectSpark.gamestates
 	    private Vector2f checkpointCamera;
 	    private Vector2f savePlayerpos;
 	    private bool restore = false;
+	    private Vector2f saveGlCenter;
 
         //test area       
         public MainState()
@@ -107,6 +108,7 @@ namespace _ProjectSpark.gamestates
 	        {
 	            savePoint.Add(actor.Save());
 	        }
+	        saveGlCenter = Program.globalCenter;
 	        checkpointCamera = Program.Window.GetView().Center;
 	        savePlayerpos = player.getPosition();
 	        existingCheckpoint = true;
@@ -141,6 +143,7 @@ namespace _ProjectSpark.gamestates
 	            }
                 player.setPosition(savePlayerpos);
                 player.unkill();
+	            Program.globalCenter = saveGlCenter;
                 Program.Window.SetView(new View(checkpointCamera, Program.Window.GetView().Size));
                 SetCheckpoint();
             }

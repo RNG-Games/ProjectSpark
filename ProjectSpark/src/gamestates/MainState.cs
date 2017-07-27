@@ -22,7 +22,7 @@ namespace _ProjectSpark.gamestates
         Player player = Player.getPlayer();    
         List<IActable> actors = new List<IActable>();
 
-	    private List<Memento<IActable>> savePoint;
+	    private List<Memento<IActable>> savePoint = new List<Memento<IActable>>();
 	    private bool existingCheckpoint = false;
 	    private Vector2f checkpointCamera;
 	    private Vector2f savePlayerpos;
@@ -103,7 +103,8 @@ namespace _ProjectSpark.gamestates
 
 	    public void SetCheckpoint()
 	    {
-	        savePoint = new List<Memento<IActable>>();
+
+	        savePoint.Clear();
 	        foreach (var actor in actors)
 	        {
 	            savePoint.Add(actor.Save());
@@ -142,10 +143,11 @@ namespace _ProjectSpark.gamestates
 	                x.setCheckpoint = SetCheckpoint;
 	            }
                 player.setPosition(savePlayerpos);
+                player.setVelocity(0);
                 player.unkill();
 	            Program.globalCenter = saveGlCenter;
                 Program.Window.SetView(new View(checkpointCamera, Program.Window.GetView().Size));
-                SetCheckpoint();
+                //SetCheckpoint();
             }
 	        restore = false;
 	    }

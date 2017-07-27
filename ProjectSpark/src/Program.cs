@@ -111,11 +111,11 @@ namespace _ProjectSpark
             DetachWindow();
             if (!WindowCache.ContainsKey(_isFullscreen))
             {
+                var context = new ContextSettings() {AttributeFlags = ContextSettings.Attribute.Default};
                 var window = new RenderWindow(
                     _isFullscreen ? VideoMode.DesktopMode : new VideoMode(1280, 720),
                     "MyApp",
-                    _isFullscreen ? Styles.Fullscreen : Styles.Default/*,
-                    new ContextSettings() { AntialiasingLevel = 16 }*/);
+                    _isFullscreen ? Styles.Fullscreen : Styles.Default, context);
 
                 /* Set window icon
                 using (var image = Resources.GetImage("icon.png"))
@@ -156,7 +156,11 @@ namespace _ProjectSpark
 
         private static void Window_OnClose(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Window.Close();
+            while (Window.IsOpen)
+            {
+                Window.Close();
+            }
         }
 
         private static void Window_OnKeyPressed(object sender, KeyEventArgs e)

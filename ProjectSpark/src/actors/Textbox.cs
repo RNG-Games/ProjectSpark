@@ -11,6 +11,7 @@ using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using TwistedLogik.Ultraviolet.Input;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D.Text;
 using ProjectSpark.glyphshaders;
+using ProjectSpark.Input;
 
 namespace ProjectSpark.actors
 {
@@ -26,15 +27,18 @@ namespace ProjectSpark.actors
         private int i = 0;
         private TextRenderer tr;
         private SpriteFont Trebuchet;
-
+        private int currIndex = 0;
+        private bool pressed = true;
         private int skips = 0;
         private int sub = 0;
+        private bool expire = false;
+        private float speed = 0.1f;
 
         public Textbox(string[] messages, Vector2f position)
         {
             this.position = position;
             msgs = messages;
-            curr = msgs[0];
+            curr = msgs[currIndex];
             _curr = " ";
             tr = new TextRenderer();
             tr.RegisterGlyphShader("shaky", new Shaky());
@@ -51,8 +55,25 @@ namespace ProjectSpark.actors
 
         public void Update(UltravioletTime time)
         {
+            if (Resources.Input.GetActions().ActionKey.IsDown() && !pressed)
+            {
+                _curr = " ";
+                i = 0;
+                skips = 0;
+                sub = 0;
+                speed = 0.1f;
+
+                pressed = true;
+                if (currIndex < msgs.Length - 1) ++currIndex;
+                else expire = true;
+            }
+            else if (Resources.Input.GetActions().ActionKey.IsDown() && pressed) speed = 0.025f;
+            else if (Resources.Input.GetActions().ActionKey.IsUp() && pressed) speed = 0.1f;
+
+            curr = msgs[currIndex];
+
             frameCounter += Resources.deltaTime;
-            if (i < curr.Length && frameCounter > 0.1 && curr.Length > 0)
+            if (i < curr.Length && frameCounter > speed && curr.Length > 0)
             {
                 if (curr[i].Equals(' ')) wordwrap(i, curr);
                 if (curr[i].Equals('|'))
@@ -68,13 +89,14 @@ namespace ProjectSpark.actors
                 }
                 _curr += curr[i++];
             }
+            if (i == curr.Length) pressed = false;
         }
 
         private void wordwrap(int i, string s)
         {
             int j = 0;
             ++i;
-            int start = (i - skips) - sub; //- line * capacityX;
+            int start = (i - skips) - sub;
             if (i < s.Length && s[i].Equals('|')) j = push(i, s);
             else
             {
@@ -111,7 +133,7 @@ namespace ProjectSpark.actors
 
         public bool IsExpired()
         {
-            return false;
+            return expire;
         }
 
         public float StartTime()

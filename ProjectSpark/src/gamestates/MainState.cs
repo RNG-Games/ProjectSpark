@@ -24,9 +24,9 @@ namespace ProjectSpark.gamestates
             actors.Add(new Trampoline(20, 10));
             actors.Add(new Decoration(20, 5, "deco"));
             actors.Add(new LargeBlock("spike", 0, 39, 20, 21));
-            actors.Add(new Stationary(20, 11));
+            /*actors.Add(new Stationary(20, 11));
             actors.Add(new Vertical(22, 10, 12));
-            actors.Add(new Horizontal(11, 21, 23));
+            actors.Add(new Horizontal(11, 21, 23));*/
             actors.Add(new Decoration(22, 10, "deco"));
             actors.Add(new Decoration(22, 12, "deco"));
             actors.Add(new Decoration(21, 11, "deco"));

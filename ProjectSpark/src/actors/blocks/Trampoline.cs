@@ -52,11 +52,11 @@ namespace ProjectSpark.actors.blocks
                 }
                 if (!bounce && playerPos.X >= position.X && newLeftBorder > Player.getPlayer().leftBorder)
                 {
-                    Player.getPlayer().rightBorder = (int) newLeftBorder;
+                    Player.getPlayer().leftBorder = (int) newLeftBorder;
                 }
                 if (!bounce && playerPos.X <= position.X && newRightBorder < Player.getPlayer().rightBorder)
                 {
-                    Player.getPlayer().leftBorder = (int) newRightBorder;
+                    Player.getPlayer().rightBorder = (int) newRightBorder;
                 }
             }
         }

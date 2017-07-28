@@ -12,6 +12,7 @@ namespace ProjectSpark.Input
             ExitApplication = CreateAction("EXIT_APPLICATION");
             MoveLeft = CreateAction("MOVE_LEFT");
             MoveRight = CreateAction("MOVE_RIGHT");
+            ActionKey = CreateAction("ACTION_KEY");
 
             base.OnCreatingActions();
         }
@@ -23,6 +24,7 @@ namespace ProjectSpark.Input
             MoveLeft.Secondary = CreateKeyboardBinding(Key.A);
             MoveRight.Primary = CreateKeyboardBinding(Key.Right);
             MoveRight.Secondary = CreateKeyboardBinding(Key.D);
+            ActionKey.Primary = CreateKeyboardBinding(Key.Space);
 
             base.OnResetting();
         }
@@ -30,5 +32,6 @@ namespace ProjectSpark.Input
         public InputAction ExitApplication { get; private set; }
         public InputAction MoveLeft { get; private set; }
         public InputAction MoveRight { get; private set; }
+        public InputAction ActionKey { get; private set; }
     }
 }

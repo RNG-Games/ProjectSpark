@@ -9,6 +9,7 @@ using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Content;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using TwistedLogik.Ultraviolet.Input;
+using ProjectSpark.Input;
 
 namespace ProjectSpark.actors.lines
 {
@@ -33,7 +34,7 @@ namespace ProjectSpark.actors.lines
             if (onLine)
             {
                 if (!start) setCheckpoint?.Invoke();
-                //if (Keyboard.IsKeyPressed(Keyboard.Key.Space)) resetLine();
+                if (Resources.Input.GetActions().ActionKey.IsDown()) resetLine();
                 Vector2f plPos = Player.getPlayer().position;
                 if (Player.getPlayer().leftBorder < borders.X - scale / 2) Player.getPlayer().leftBorder = (int) borders.X - scale / 2;
                 if (Player.getPlayer().rightBorder > borders.Y + scale / 2) Player.getPlayer().rightBorder = (int) borders.Y + scale / 2;

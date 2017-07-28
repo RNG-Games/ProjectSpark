@@ -99,6 +99,8 @@
     <Compile Include="src\actors\Line.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
+    <Compile Include="src\Input\GameInputActions.cs" />
+    <Compile Include="src\Input\IUltravioletInputExtensions.cs" />
     <Compile Include="src\Resources.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\Player.cs" />

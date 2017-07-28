@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectSpark.assets;
 using ProjectSpark.gamestates;
+using ProjectSpark.Input;
 using ProjectSpark.util;
 using TwistedLogik.Nucleus;
 using TwistedLogik.Ultraviolet;
@@ -47,6 +48,7 @@ namespace ProjectSpark
             Ultraviolet.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(1280,720);
             _content = ContentManager.Create("Content");
             Resources.ContentManager = _content;
+            Resources.Input = Ultraviolet.GetInput();
             tr = new TextRenderer();
             spriteBatch = SpriteBatch.Create();
 
@@ -75,6 +77,11 @@ namespace ProjectSpark
             _current = States.Peek();
             //TODO Update camera
             Resources.deltaTime = (float) time.ElapsedTime.TotalSeconds;
+
+            if (Resources.Input.GetActions().ExitApplication.IsPressed())
+            {
+                Exit();
+            }
             _current.Update(time);
 
             base.OnUpdating(time);

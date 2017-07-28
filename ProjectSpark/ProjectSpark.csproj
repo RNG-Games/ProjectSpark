@@ -99,6 +99,7 @@
     <Compile Include="src\actors\Line.cs" />
     <Compile Include="src\actors\lines\Checkpoint.cs" />
     <Compile Include="src\actors\lines\Transition.cs" />
+    <Compile Include="src\actors\Textbox.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
     <Compile Include="src\glyphshaders\Shaky.cs" />

@@ -122,7 +122,7 @@ namespace ProjectSpark
             _current.Draw(spriteBatch);
 
             var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
-            tr.Draw(spriteBatch, "|shader:wavy|Hallo Welt ich teste gerade |shader:shaky|glyph shaders|shader| !!!|shader|", new Vector2(100,100), Color.White, settings);
+            tr.Draw(spriteBatch, "|shader:wavy|Hallo Welt ich teste gerade |shader:shaky|glyph shaders|shader| !!!", new Vector2(100,100), Color.White, settings);
             spriteBatch.End();
             base.OnDrawing(time);
         }

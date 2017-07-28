@@ -91,6 +91,7 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
+    <Compile Include="src\actors\LargeBlock.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
     <Compile Include="src\Resources.cs" />

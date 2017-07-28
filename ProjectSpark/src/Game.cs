@@ -74,6 +74,7 @@ namespace ProjectSpark
         {
             _current = States.Peek();
             //TODO Update camera
+            Resources.deltaTime = (float) time.ElapsedTime.TotalSeconds;
             _current.Update(time);
 
             base.OnUpdating(time);

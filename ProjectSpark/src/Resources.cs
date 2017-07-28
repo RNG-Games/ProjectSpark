@@ -10,6 +10,7 @@ namespace ProjectSpark
     public static class Resources
     {
         public static int Scale => 48;
+        public static float deltaTime { get; set; }
         public static ContentManager ContentManager { get; set; }
     }
 }

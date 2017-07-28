@@ -20,6 +20,7 @@ namespace ProjectSpark.gamestates
 
             actors.Add(new Trampoline(20, 10));
             actors.Add(new Decoration(20, 5, "deco"));
+            actors.Add(new LargeBlock("spike", 0, 39, 20, 21));
         }
 
         public override void Update(UltravioletTime time)

@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SFML.System;
+using TwistedLogik.Ultraviolet;
 
-namespace _ProjectSpark.util
+namespace ProjectSpark.util
 {
-    [Serializable]
-    class Circle
+    public class Circle
     {
-        public Vector2f middle { get; protected set; }
+        public Vector2 middle { get; protected set; }
         public float radius { get; protected set; }
 
         public Circle() { }
 
-        public Circle(Vector2f middle, float radius)
+        public Circle(Vector2 middle, float radius)
         {
             this.middle = middle;
             this.radius = radius;
@@ -23,26 +22,26 @@ namespace _ProjectSpark.util
 
         public Circle(float x, float y, float radius)
         {
-            middle = new Vector2f(x,y);
+            middle = new Vector2(x,y);
             this.radius = radius;
         }
 
         public void setPosition(float x, float y)
         {
-            this.middle = new Vector2f(x,y);
+            this.middle = new Vector2(x,y);
         }
 
-        public void setPosition(Vector2f middle)
+        public void setPosition(Vector2 middle)
         {
             this.middle = middle;
         }
 
         public void addToPosition(float x, float y)
         {
-            this.middle += new Vector2f(x,y);
+            this.middle += new Vector2(x,y);
         }
 
-        public void addToPostion(Vector2f move)
+        public void addToPostion(Vector2 move)
         {
             this.middle += move;
         }
@@ -53,7 +52,7 @@ namespace _ProjectSpark.util
                                                                                                        (radius + radius) is squared too*/
         }
 
-        public bool intersectsWithRectangle(Vector2f topleft, int width, int height)
+        public bool intersectsWithRectangle(Vector2 topleft, int width, int height)
         {
             for (float i = topleft.X; i <= topleft.X + width; i++)
             {

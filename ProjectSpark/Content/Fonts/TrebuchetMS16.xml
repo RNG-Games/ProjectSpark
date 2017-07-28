@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SpriteFont>
+  <Face Style="Regular">
+    <Texture>Textures/TrebuchetMS16Texture.png</Texture>
+    <TextureRegion>0 0 251 140</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Bold">
+    <Texture>Textures/TrebuchetMS16Texture.png</Texture>
+    <TextureRegion>0 140 255 140</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Italic">
+    <Texture>Textures/TrebuchetMS16Texture.png</Texture>
+    <TextureRegion>0 280 252 140</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="BoldItalic">
+    <Texture>Textures/TrebuchetMS16Texture.png</Texture>
+    <TextureRegion>0 420 256 140</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+</SpriteFont>

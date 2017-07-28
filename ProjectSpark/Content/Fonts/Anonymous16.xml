@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SpriteFont>
+  <Face Style="Regular">
+    <Texture>Textures/Anonymous16Texture.png</Texture>
+    <TextureRegion>0 0 256 150</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Bold">
+    <Texture>Textures/Anonymous16Texture</Texture>
+    <TextureRegion>0 150 249 175</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Italic">
+    <Texture>Textures/Anonymous16Texture.png</Texture>
+    <TextureRegion>0 325 256 150</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="BoldItalic">
+    <Texture>Textures/Anonymous16Texture.png</Texture>
+    <TextureRegion>0 475 249 175</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+</SpriteFont>

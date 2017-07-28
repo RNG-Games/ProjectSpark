@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TwistedLogik.Ultraviolet.Content;
 
-namespace ProjectSpark
+namespace ProjectSpark.assets
 {
-    public static class Resources
+    public static class GlobalSpriteID
     {
-        public static int Scale => 48;
-        public static ContentManager ContentManager { get; set; }
+        public static readonly AssetID player;
     }
 }

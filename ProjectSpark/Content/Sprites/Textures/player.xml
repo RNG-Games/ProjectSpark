@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<TextureAtlas>
+  <Metadata>
+
+  </Metadata>
+  <Images>
+    <Include>player_01</Include>
+  </Images>
+</TextureAtlas>

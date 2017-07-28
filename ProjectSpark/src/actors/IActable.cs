@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SFML.Graphics;
-using _ProjectSpark.util;
+﻿using TwistedLogik.Ultraviolet;
+using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 
-namespace _ProjectSpark.actors
+namespace ProjectSpark.actors
 {
     /// <summary>
     /// Required by actors
@@ -16,14 +11,14 @@ namespace _ProjectSpark.actors
         /// <summary>
         /// Drawing Stuff
         /// </summary>
-        /// <param name="_window">RenderWindow in which is drawn</param>
-        void Draw(RenderWindow _window);
+        /// <param name="spriteBatch">spriteBatch - use it or not</param>
+        void Draw(SpriteBatch spriteBatch);
 
         /// <summary>
         /// Update the actor
         /// </summary>
-        /// <param name="_deltaTime"></param>
-        void Update(float _deltaTime);
+        /// <param name="time">Time of the game</param>
+        void Update(UltravioletTime time);
 
         /// <summary>
         /// Starting time at which the update of the actor can start
@@ -36,11 +31,5 @@ namespace _ProjectSpark.actors
         /// </summary>
         /// <returns>bool - true if it can be removed</returns>
         bool IsExpired();
-
-        /// <summary>
-        /// Returns a independent copy of the instance as Memento
-        /// </summary>
-        /// <returns>Memento of Instance</returns>
-        Memento<IActable> Save();
     }
 }

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<SpriteFont>
+  <Face Style="Regular">
+    <Texture>Textures/Rabelo16Texture.png</Texture>
+    <TextureRegion>0 0 256 145</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Bold">
+    <Texture>Textures/Rabelo16Texture.png</Texture>
+    <TextureRegion>0 145 254 145</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="Italic">
+    <Texture>Textures/Rabelo16Texture.png</Texture>
+    <TextureRegion>0 290 256 145</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+  <Face Style="BoldItalic">
+    <Texture>Textures/Rabelo16Texture.png</Texture>
+    <TextureRegion>0 435 254 145</TextureRegion>
+    <Kernings DefaultAdjustment="0" />
+  </Face>
+</SpriteFont>

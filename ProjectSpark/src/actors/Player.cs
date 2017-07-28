@@ -3,120 +3,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NetEXT.Animation;
-using _ProjectSpark.util;
-using SFML.Graphics;
-using SFML.System;
-using SFML.Window;
-using NetEXT.Particles;
-using NetEXT.MathFunctions;
+using ProjectSpark.assets;
+using TwistedLogik.Ultraviolet;
+using TwistedLogik.Ultraviolet.Content;
+using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
+using TwistedLogik.Ultraviolet.Input;
 
-namespace _ProjectSpark.actors
+namespace ProjectSpark.actors
 {
-    [Serializable]
-    class Player : IActable
+    public class Player : IActable
     {
-        int scale = Resources.getScale();
-        Vector2f position;
-        Sprite texture;
+        private int scale = Resources.Scale;
+        public Vector2 position { get; set; }
+        private Sprite texture;
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
-        private Vector2f borders;
-        private bool onLine = false;
+        private Vector2 borders;
+        public bool onLine { get; private set; }= false;
         private bool fixLine = false;
-        private Line currLine = null;
+        //private Line currLine = null;
         private float currLineY = 0;
-        private Vector2f direction = new Vector2f(0,0);
-        private int leftBorder = int.MinValue;
-        private int rightBorder = int.MaxValue;
+        private Vector2 direction = new Vector2(0,0);
+        public int leftBorder { get; set; }= int.MinValue;
+        public int rightBorder { get; set; }= int.MaxValue;
 
-        private ParticleSystem system;
-        private UniversalEmitter emitter;
+        //Particles maybe
 
-        const float _spd = 500f;
-        const float _onLineSpd = 700f;
-        float speed = _spd;
+        private const float _spd = 500f;
+        private const float _onLineSpd = 700f;
+        private float speed = _spd;
 
-        Vector2f gravity = new Vector2f(0, 800);
-        Vector2f upwardGravity = new Vector2f(0, 1200);
+        Vector2 gravity = new Vector2(0,800);
+        Vector2 upwardGravity = new Vector2(0, 1200);
         private const float _vel = 500;
-        Vector2f velocity = new Vector2f(0, _vel);
+        public Vector2 velocity { get; set; }= new Vector2(0, _vel);
 
-        public Action Resawn;
+        public Action Respawn;
 
         private Player()
         {
             onLine = true;
-            position = new Vector2f(1000, 24);
-            texture = new Sprite(Resources.GetTexture("player.png")) { Position = position };
-            system = new ParticleSystem(Resources.GetTexture("player.png"));
-            emitter = new UniversalEmitter();
-            emitter.EmissionRate = 1000f;
-            emitter.ParticleLifetime =
-                NetEXT.MathFunctions.Distributions.Uniform(Time.FromSeconds(0.001f), Time.FromSeconds(0.7f));
-            system.AddEmitter(emitter, Time.FromSeconds(0.3f));
+            position = new Vector2(1000,24);
+            texture = Resources.ContentManager.Load<Sprite>(GlobalSpriteID.player);
         }
 
         public static Player getPlayer()
         {
-            if (spawned) return instance;
-            instance = new actors.Player();
+            if(spawned) return instance;
+            instance = new Player();
             spawned = true;
-            return instance; 
-            
+            return instance;
         }
 
-        public Vector2f getPosition()
-        {
-            return position;
-        }
-
-        public void Draw(RenderWindow _window)
+        public void Update(UltravioletTime time)
         {
             if (dead)
             {
-                system.Draw(_window,RenderStates.Default);
                 return;
             }
-            _window.Draw(texture);
-        }
 
-        public bool IsExpired()
-        {
-            return false;
-        }
-
-        public virtual Memento<IActable> Save() => new Memento<IActable>(this);
-        public virtual Memento<Player> SavePl() => new Memento<Player>(this);
-        public float StartTime()
-        {
-            return 0f;
-        }
-
-        public void Update(float _deltaTime)
-        {
-            
-            if (dead)
+            if (!onLine)
             {
-                system.Update(Time.FromSeconds(_deltaTime));
-                return;
-            }
-
-            if (!onLine) { 
-            position += _deltaTime * velocity;
-            if (velocity.Y < 0)
+                position += time.ElapsedTime.Seconds * velocity;
+                if (velocity.Y < 0)
                 {
-                    velocity += _deltaTime * upwardGravity;
+                    velocity += time.ElapsedTime.Seconds * upwardGravity;
                 }
-            else
+                else
                 {
-                    velocity += _deltaTime * gravity;
+                    velocity += time.ElapsedTime.Seconds * gravity;
                 }
             }
 
-            var move = new Vector2f(0, 0);
+            var move = new Vector2(0,0);
             speed = onLine ? _onLineSpd : _spd;
+            //TODO: Input
+            /*
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                     move.X -= speed * _deltaTime;
@@ -125,48 +88,54 @@ namespace _ProjectSpark.actors
             {
                     move.X += speed * _deltaTime;
             }
-
-            direction.X = move.X;
+            */
             position += move;
-            if (position.X < leftBorder) position.X = leftBorder;
-            if (position.X > rightBorder - scale) position.X = rightBorder - scale;
-            texture.Position = position;
+            if (position.X < leftBorder) position = new Vector2(leftBorder, position.Y);
+            if (position.X > rightBorder - scale) position = new Vector2(rightBorder - scale, position.Y);
 
             //just for test purposes:
-
             if (position.Y > 2000)
             {
                 resetVelocity();
-                position.Y = 0;
+                position = new Vector2(position.X, 0);
             }
 
             if (fixLine)
             {
-                position.Y = currLineY;
-                currLine.setLine();
+                position = new Vector2(position.X, currLineY);
+                //currLine.setLine();
                 onLine = true;
             }
-
             leftBorder = int.MinValue;
             rightBorder = int.MaxValue;
             fixLine = false;
-            currLine = null;
-            direction.Y = velocity.Y;
+            //currLine = null
+            direction += new Vector2(move.X, velocity.Y);
         }
 
-        public Circle hitbox()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            return new Circle(position + new Vector2f(scale/2, scale/2), scale/2);
+            if (dead)
+            {
+                return;
+            }
+            spriteBatch.DrawScaledSprite(texture["player"].Controller, position, new Vector2(1,1));
+        }
+
+        public bool IsExpired()
+        {
+            return false;
+        }
+
+        public util.Circle hitbox()
+        {
+            return new util.Circle(position + new Vector2(scale/2f, scale/2f), scale/2f);
         }
 
         public void kill()
         {
-            /*system.Position = position + new Vector2f(12,12);
-            emitter.ParticleVelocity = Distributions.Deflect(direction, 15f);
-            //emitter.ParticleRotation = Distributions.Uniform(0f, 0f);
-            emitter.ParticleScale = new Vector2f(0.5f, 0.5f);*/
             dead = true;
-            Resawn?.Invoke();
+            Respawn?.Invoke();
         }
 
         public void unkill()
@@ -174,71 +143,26 @@ namespace _ProjectSpark.actors
             dead = false;
         }
 
-        public void setVelocity(float v)
-        {
-            velocity = new Vector2f(velocity.X, v);
-        }
-
-        public void setVelocity(Vector2f v)
-        {
-            velocity = v;
-        }
-
-        public void setBorders(float x, float y)
-        {
-            borders = new Vector2f(x, y);
-        }
-
-        public bool getOnLine()
-        {
-            return onLine;
-        }
-
         public void resetLine()
         {
             onLine = false;
         }
 
-        public int getLeftBorder()
+        public void setCurrLine(float y/*, Line currLine*/)
         {
-            return leftBorder;
-        }
-
-        public int getRightBorder()
-        {
-            return rightBorder;
-        }
-
-        public void setLeftBorder(int value)
-        {
-            leftBorder = value;
-        }
-
-        public void setRightBorder(int value)
-        {
-            rightBorder = value;
-        }
-
-        public Vector2f getVelocity()
-        {
-            return velocity;
-        }
-
-        public void setCurrLine(float y, Line currLine)
-        {
-            this.currLine = currLine;
+            //this.currLine = currLine;
             currLineY = y;
             fixLine = true;
         }
 
         public void resetVelocity()
         {
-            velocity.Y = _vel;
+            velocity = new Vector2(velocity.X, _vel);
         }
 
-        public void setPosition(Vector2f pos)
+        public float StartTime()
         {
-            position = pos;
+            return 0f;
         }
     }
 }

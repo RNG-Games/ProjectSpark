@@ -18,7 +18,8 @@ namespace ProjectSpark.gamestates
             //Add Stuff
             player = Player.getPlayer();
 
-            actors.Add(new Regular(20, 10));
+            actors.Add(new Trampoline(20, 10));
+            actors.Add(new Decoration(20, 5, "deco"));
         }
 
         public override void Update(UltravioletTime time)

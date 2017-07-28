@@ -46,7 +46,7 @@ namespace ProjectSpark.actors
         {
 
             if (done) return;
-            Vector2f playerPos = Player.getPlayer().position + new Vector2(scale/2, scale/2);
+            Vector2f playerPos = Player.getPlayer().position + new Vector2f(scale/2, scale/2);
             Vector2f next;
 
             if (playerPos.X >= borders.X && playerPos.X <= borders.Y)

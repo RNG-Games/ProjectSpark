@@ -14,5 +14,6 @@ namespace ProjectSpark
         public static float deltaTime { get; set; }
         public static ContentManager ContentManager { get; set; }
         public static IUltravioletInput Input { get; set; }
+        public static IUltravioletGraphics gfx { get; set; }
     }
 }

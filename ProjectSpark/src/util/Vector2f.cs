@@ -24,6 +24,11 @@ namespace ProjectSpark.util
 
         public float Length() => (float)Math.Sqrt(LengthSquared());
         public float LengthSquared() => this * this;
+        public void Normalize()
+        {
+            X = X / Length();
+            Y = Y / Length();
+        }
 
         public override string ToString() => $"Vector2({X},{Y})";
         public override int GetHashCode() => ((Vector2)this).GetHashCode();

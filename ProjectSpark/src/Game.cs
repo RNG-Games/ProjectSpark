@@ -25,6 +25,7 @@ namespace ProjectSpark
             : base("Tide Productions", "Project Spark") 
         { }
 
+        #region Don't touch
         protected override UltravioletContext OnCreatingUltravioletContext()
         {
             var configuration = new OpenGLUltravioletConfiguration();
@@ -42,16 +43,21 @@ namespace ProjectSpark
             return new OpenGLUltravioletContext(this, configuration);
         }
 
+        #endregion
+
+        #region Loading
+
         protected override void OnLoadingContent()
         {
             //TODO: Attach & Detach Window & Apply changes
             var gfx = Ultraviolet.GetGraphics();
             Ultraviolet.GetPlatform().Windows.GetPrimary().Caption = "Project Spark Test";
-            Ultraviolet.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(1280,720);
+            Ultraviolet.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(1280, 720);
             _content = ContentManager.Create("Content");
             Resources.ContentManager = _content;
             LoadInputBindings();
             Resources.Input = Ultraviolet.GetInput();
+            Resources.gfx = Ultraviolet.GetGraphics();
             tr = new TextRenderer();
             tr.RegisterGlyphShader("shaky", new Shaky());
             tr.RegisterGlyphShader("wavy", new Wavy());
@@ -84,17 +90,14 @@ namespace ProjectSpark
             Ultraviolet.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
         }
 
-        protected void SaveInputBindings()
-        {
-            var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
-            Ultraviolet.GetInput().GetActions().Save(inputBindingsPath);
-        }
+        #endregion
 
+        #region Update & Render
         protected override void OnUpdating(UltravioletTime time)
         {
             _current = States.Peek();
-            //TODO Update camera
-            Resources.deltaTime = (float) time.ElapsedTime.TotalSeconds;
+            UpdateCamera(time);
+            Resources.deltaTime = (float)time.ElapsedTime.TotalSeconds;
 
             if (Resources.Input.GetActions().ExitApplication.IsPressed())
             {
@@ -104,14 +107,14 @@ namespace ProjectSpark
 
             base.OnUpdating(time);
         }
-        
+
         protected override void OnDrawing(UltravioletTime time)
         {
             var gfx = Ultraviolet.GetGraphics();
             gfx.Clear(new Color(222, 206, 206));
-            var X = new Vector2(1,1);
+            var X = new Vector2(1, 1);
             Vector2f k = X;
-            var scaleX = (float)1280/ 1920;
+            var scaleX = (float)1280 / 1920;
             var scaleY = (float)720 / 1080;
             var matrix = Matrix.CreateScale(scaleX, scaleY, 1.0f);
 
@@ -123,12 +126,20 @@ namespace ProjectSpark
             spriteBatch.End();
             base.OnDrawing(time);
         }
+        #endregion
 
+        #region End
         protected override void OnShutdown()
         {
             SaveInputBindings();
 
             base.OnShutdown();
+        }
+
+        protected void SaveInputBindings()
+        {
+            var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
+            Ultraviolet.GetInput().GetActions().Save(inputBindingsPath);
         }
 
         protected override void Dispose(bool disposing)
@@ -140,6 +151,65 @@ namespace ProjectSpark
             base.Dispose(disposing);
         }
 
+        #endregion
+
+        #region Camera
+
+        private static Action recall = null;
+        private static bool moveCamera = false;
+        private static float cameraTargetPosition;
+        private static float cameraSpeed;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="endposition"></param>
+        /// <param name="time">in seconds!!!</param>
+        public static void MoveCameraDown(float endposition, float time)
+        {
+            if (moveCamera)
+                throw new InvalidOperationException();
+            cameraTargetPosition = endposition;
+            cameraSpeed = (endposition - Resources.gfx.GetViewport().Y)/time;
+            moveCamera = true;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="endposition"></param>
+        /// <param name="time">in seconds!!!</param>
+        /// <param name="release"></param>
+        public static void MoveCameraDown(float endposition, float time, Action release)
+        {
+            MoveCameraDown(endposition, time);
+            recall = release;
+        }
+
+        public void UpdateCamera(UltravioletTime time)
+        {
+            var vp = Resources.gfx.GetViewport();
+            if (moveCamera)
+            {
+                if (Resources.gfx.GetViewport().Y - cameraTargetPosition >= 0)
+                {
+                    CameraMovementDone();
+                    return;
+                }
+                Resources.gfx.SetViewport(new Viewport(vp.X, vp.Y + (int)(cameraSpeed * time.ElapsedTime.TotalSeconds), vp.Width, vp.Height));
+            }
+        }
+
+        private static void CameraMovementDone()
+        {
+            cameraSpeed = 0f;
+            moveCamera = false;
+            recall?.Invoke();
+            recall = null;
+        }
+
+        #endregion
+
+        #region Attributes
         private ContentManager _content;
         private Stack<GameState> States = new Stack<GameState>();
         private GameState _current;
@@ -148,5 +218,7 @@ namespace ProjectSpark
         private SpriteFont Rabelo;
         private SpriteFont Trebuchet;
         private TextRenderer tr;
+        #endregion
+
     }
 }

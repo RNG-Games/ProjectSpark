@@ -24,7 +24,7 @@ namespace ProjectSpark.actors.lines
             {
 
                 if (!enabled){
-                    //Program.MoveCameraDown(position - scale, 3, resetLine);
+                    Game.MoveCameraDown(position - scale, 3, resetLine);
                 }
                 enabled = true;
                 Vector2f plPos = Player.getPlayer().position;

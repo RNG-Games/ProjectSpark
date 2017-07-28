@@ -38,6 +38,7 @@ namespace ProjectSpark.actors
             _curr = " ";
             tr = new TextRenderer();
             tr.RegisterGlyphShader("shaky", new Shaky());
+            tr.RegisterGlyphShader("rainbow", new Rainbow());
             tr.RegisterGlyphShader("wavy", new Wavy());
             Trebuchet = Resources.ContentManager.Load<SpriteFont>(GlobalFontID.TrebuchetMS16);
         }

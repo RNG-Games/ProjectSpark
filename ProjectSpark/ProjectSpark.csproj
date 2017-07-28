@@ -102,6 +102,7 @@
     <Compile Include="src\actors\Textbox.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
+    <Compile Include="src\glyphshaders\Rainbow.cs" />
     <Compile Include="src\glyphshaders\Shaky.cs" />
     <Compile Include="src\glyphshaders\Wavy.cs" />
     <Compile Include="src\Input\GameInputActions.cs" />

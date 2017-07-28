@@ -33,7 +33,7 @@ namespace ProjectSpark.gamestates
             actors.Add(new Decoration(23, 11, "deco"));
             actors.Add(new Checkpoint(true, new Vector2f(10, 23), 3));
             actors.Add(new Transition(new Vector2f(10, 23), 19));
-            string[] test = { "Hello, |shader:wavy||c:ffff0000|World!|c||shader| |shader:shaky||shader:wavy|meow|shader| I am|shader| a motherfucking cat yeah I am the coolest no doubt meeeeeeeeeow" };
+            string[] test = { "Hello, |shader:wavy||c:ffff0000|World!|c||shader| |shader:shaky||shader:wavy|meow|shader| I am|shader| a motherfucking cat yeah I am the coolest no doubt meeeeeeeeeow |shader:rainbow|Lesbian Gay Bisexual Trans Queer/Questioning Intersex Asexuality + pride!!!|shader|" };
             actors.Add(new Textbox(test , new Vector2f(500, 500)));
         }
 

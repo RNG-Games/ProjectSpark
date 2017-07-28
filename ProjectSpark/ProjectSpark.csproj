@@ -91,6 +91,10 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
+    <Compile Include="src\actors\enemies\Horizontal.cs" />
+    <Compile Include="src\actors\enemies\Stationary.cs" />
+    <Compile Include="src\actors\enemies\Vertical.cs" />
+    <Compile Include="src\actors\Enemy.cs" />
     <Compile Include="src\actors\LargeBlock.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
@@ -115,6 +119,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\blocks.sprite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\enemies.sprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\player.sprite">
@@ -175,6 +182,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\Textures\_trampoline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Sprites\Textures\testenemy.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\_testenemy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

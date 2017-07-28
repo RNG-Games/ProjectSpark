@@ -11,5 +11,6 @@ namespace ProjectSpark.assets
     {
         public static readonly AssetID player;
         public static readonly AssetID blocks;
+        public static readonly AssetID enemies;
     }
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprite>
+  <Animations>
+    <Animation Name="testenemy">
+      <Frames Atlas="Textures/testenemy">
+        <Frame AtlasCell="_testenemy"/>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sprite>

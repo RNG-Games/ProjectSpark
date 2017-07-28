@@ -83,7 +83,7 @@ namespace ProjectSpark
         protected override void OnDrawing(UltravioletTime time)
         {
             var gfx = Ultraviolet.GetGraphics();
-            gfx.Clear(new Color(100, 149, 237));
+            gfx.Clear(new Color(222, 206, 206));
             var X = new Vector2(1,1);
             Vector2f k = X;
             var scaleX = (float)1280/ 1920;

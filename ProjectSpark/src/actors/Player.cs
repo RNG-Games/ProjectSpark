@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSpark.assets;
+using ProjectSpark.Input;
+using ProjectSpark.util;
 using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Content;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
@@ -14,17 +16,17 @@ namespace ProjectSpark.actors
     public class Player : IActable
     {
         private int scale = Resources.Scale;
-        public Vector2 position { get; set; }
+        public Vector2f position { get; set; }
         private Sprite texture;
         private bool dead = false;
         private static bool spawned = false;
         private static Player instance;
-        private Vector2 borders;
+        private Vector2f borders;
         public bool onLine { get; private set; } = false;
         private bool fixLine = false;
         private Line currLine = null;
         private float currLineY = 0;
-        private Vector2 direction = new Vector2(0,0);
+        private Vector2f direction = new Vector2(0,0);
         public int leftBorder { get; set; } = int.MinValue;
         public int rightBorder { get; set; } = int.MaxValue;
 
@@ -34,10 +36,10 @@ namespace ProjectSpark.actors
         private const float _onLineSpd = 700f;
         private float speed = _spd;
 
-        Vector2 gravity = new Vector2(0,800);
-        Vector2 upwardGravity = new Vector2(0, 1200);
+        Vector2f gravity = new Vector2(0,800);
+        Vector2f upwardGravity = new Vector2(0, 1200);
         private const float _vel = 500;
-        public Vector2 velocity { get; set; }= new Vector2(0, _vel);
+        public Vector2f velocity { get; set;  }= new Vector2f(0, _vel);
 
         public Action Respawn;
 
@@ -77,21 +79,21 @@ namespace ProjectSpark.actors
                 }
             }
 
-            var move = new Vector2(0,0);
+            var move = new Vector2f(0,0);
             speed = onLine ? _onLineSpd : _spd;
             //TODO: Input
-            /*
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+
+            if (Resources.Input.GetActions().MoveLeft.IsDown())
             {
-                    move.X -= speed * _deltaTime;
+                    move.X -= speed * Resources.deltaTime;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+            if (Resources.Input.GetActions().MoveRight.IsDown())
             {
-                    move.X += speed * _deltaTime;
+                    move.X += speed * Resources.deltaTime;
             }
-            */
+
             position += move;
-            if (position.X < leftBorder) position = new Vector2(leftBorder, position.Y);
+            if (position.X < leftBorder) position = new Vector2f(leftBorder, position.Y);
             if (position.X > rightBorder - scale) position = new Vector2(rightBorder - scale, position.Y);
 
             //just for test purposes:
@@ -112,7 +114,7 @@ namespace ProjectSpark.actors
             rightBorder = int.MaxValue;
             fixLine = false;
             currLine = null;
-            direction += new Vector2(move.X, velocity.Y);
+            direction += new Vector2f(move.X, velocity.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -131,7 +133,7 @@ namespace ProjectSpark.actors
 
         public util.Circle hitbox()
         {
-            return new util.Circle(position + new Vector2(scale/2f, scale/2f), scale/2f);
+            return new util.Circle(position + new Vector2f(scale/2f, scale/2f), scale/2f);
         }
 
         public void kill()

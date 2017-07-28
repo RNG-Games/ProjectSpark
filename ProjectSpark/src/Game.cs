@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using ProjectSpark.assets;
 using ProjectSpark.gamestates;
+using ProjectSpark.Input;
 using ProjectSpark.util;
 using TwistedLogik.Nucleus;
 using TwistedLogik.Ultraviolet;
@@ -48,6 +50,8 @@ namespace ProjectSpark
             Ultraviolet.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(1280,720);
             _content = ContentManager.Create("Content");
             Resources.ContentManager = _content;
+            LoadInputBindings();
+            Resources.Input = Ultraviolet.GetInput();
             tr = new TextRenderer();
             tr.RegisterGlyphShader("shaky", new Shaky());
             tr.RegisterGlyphShader("wavy", new Wavy());
@@ -73,11 +77,29 @@ namespace ProjectSpark
             uvContent.Manifests["Global"]["Sprites"].PopulateAssetLibrary(typeof(GlobalSpriteID));
             uvContent.Manifests["Global"]["Fonts"].PopulateAssetLibrary(typeof(GlobalFontID));
         }
+
+        protected void LoadInputBindings()
+        {
+            var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
+            Ultraviolet.GetInput().GetActions().Load(inputBindingsPath, throwIfNotFound: false);
+        }
+
+        protected void SaveInputBindings()
+        {
+            var inputBindingsPath = Path.Combine(GetRoamingApplicationSettingsDirectory(), "InputBindings.xml");
+            Ultraviolet.GetInput().GetActions().Save(inputBindingsPath);
+        }
+
         protected override void OnUpdating(UltravioletTime time)
         {
             _current = States.Peek();
             //TODO Update camera
             Resources.deltaTime = (float) time.ElapsedTime.TotalSeconds;
+
+            if (Resources.Input.GetActions().ExitApplication.IsPressed())
+            {
+                Exit();
+            }
             _current.Update(time);
 
             base.OnUpdating(time);
@@ -101,7 +123,14 @@ namespace ProjectSpark
             spriteBatch.End();
             base.OnDrawing(time);
         }
-        
+
+        protected override void OnShutdown()
+        {
+            SaveInputBindings();
+
+            base.OnShutdown();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

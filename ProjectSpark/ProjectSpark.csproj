@@ -103,6 +103,8 @@
     <Compile Include="src\assets\GlobalSpriteID.cs" />
     <Compile Include="src\glyphshaders\Shaky.cs" />
     <Compile Include="src\glyphshaders\Wavy.cs" />
+    <Compile Include="src\Input\GameInputActions.cs" />
+    <Compile Include="src\Input\IUltravioletInputExtensions.cs" />
     <Compile Include="src\Resources.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\Player.cs" />

@@ -33,7 +33,7 @@ namespace ProjectSpark
 
         public Vector3 GetScreenScale(IUltravioletPlatform gfx, float width, float height)
         {
-            if(gfx == null) return oldScreenScale;
+            if(gfx.Windows.GetPrimary() == null) return oldScreenScale;
             var scaleX = gfx.Windows.GetPrimary().DrawableSize.Width / width;
             var scaleY = gfx.Windows.GetPrimary().DrawableSize.Height / height;
             oldScreenScale = new Vector3(scaleX, scaleY, 1.0f);

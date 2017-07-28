@@ -27,7 +27,7 @@ namespace ProjectSpark.actors
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawScaledSprite(texture[frame].Controller, position, new Vector2(1, 1));
+            spriteBatch.DrawScaledSprite(texture[frame].Controller, position, new Vector2(1, 1), Color.White, 0, SpriteEffects.None, 0);
         }
 
         public bool IsExpired()

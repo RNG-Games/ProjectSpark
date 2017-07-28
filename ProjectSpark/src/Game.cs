@@ -13,6 +13,7 @@ using TwistedLogik.Ultraviolet.Graphics.Graphics2D.Text;
 using TwistedLogik.Ultraviolet.OpenGL;
 using TwistedLogik.Ultraviolet.OpenGL.Graphics;
 using TwistedLogik.Ultraviolet.Platform;
+using ProjectSpark.glyphshaders;
 
 namespace ProjectSpark
 {
@@ -48,6 +49,8 @@ namespace ProjectSpark
             _content = ContentManager.Create("Content");
             Resources.ContentManager = _content;
             tr = new TextRenderer();
+            tr.RegisterGlyphShader("shaky", new Shaky());
+            tr.RegisterGlyphShader("wavy", new Wavy());
             spriteBatch = SpriteBatch.Create();
 
             LoadContentManifests();
@@ -94,7 +97,7 @@ namespace ProjectSpark
             _current.Draw(spriteBatch);
 
             var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
-            tr.Draw(spriteBatch, "Hello, world!", new Vector2(100,100), Color.White, settings);
+            tr.Draw(spriteBatch, "|shader:wavy|Hallo Welt ich teste gerade |shader:shaky|glyph shaders|shader| !!!|shader|", new Vector2(100,100), Color.White, settings);
             spriteBatch.End();
             base.OnDrawing(time);
         }

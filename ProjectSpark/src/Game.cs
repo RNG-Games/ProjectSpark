@@ -53,6 +53,7 @@ namespace ProjectSpark
             var gfx = Ultraviolet.GetGraphics();
             Ultraviolet.GetPlatform().Windows.GetPrimary().Caption = "Project Spark Test";
             Ultraviolet.GetPlatform().Windows.GetPrimary().ClientSize = new Size2(1280, 720);
+            camera = new Camera();
             _content = ContentManager.Create("Content");
             Resources.ContentManager = _content;
             LoadInputBindings();
@@ -93,10 +94,24 @@ namespace ProjectSpark
         #endregion
 
         #region Update & Render
+
+        private bool fullscreen;
         protected override void OnUpdating(UltravioletTime time)
         {
             _current = States.Peek();
             UpdateCamera(time);
+            if (Resources.Input.GetActions().Fullscreen.IsPressed() && !fullscreen)
+            {
+                Ultraviolet.GetPlatform().Windows.GetPrimary().SetWindowMode(WindowMode.Fullscreen);
+                fullscreen = true;
+            }
+            else if (Resources.Input.GetActions().Fullscreen.IsPressed() && fullscreen)
+            {
+                Ultraviolet.GetPlatform().Windows.GetPrimary().SetWindowMode(WindowMode.Windowed);
+                fullscreen = false;
+            }
+            screenScale = camera.GetScreenScale(Ultraviolet.GetPlatform(), 1920, 1080);
+
             Resources.deltaTime = (float)time.ElapsedTime.TotalSeconds;
 
             if (Resources.Input.GetActions().ExitApplication.IsPressed())
@@ -112,15 +127,10 @@ namespace ProjectSpark
         {
             var gfx = Ultraviolet.GetGraphics();
             gfx.Clear(new Color(222, 206, 206));
-            var X = new Vector2(1, 1);
-            Vector2f k = X;
-            var scaleX = (float)1280 / 1920;
-            var scaleY = (float)720 / 1080;
-            var matrix = Matrix.CreateScale(scaleX, scaleY, 1.0f);
+            var viewMatrix = camera.GetTransform();
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, matrix);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, null, viewMatrix * Matrix.CreateScale(screenScale));
             _current.Draw(spriteBatch);
-
             var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
             tr.Draw(spriteBatch, "|shader:wavy|Hallo Welt ich teste gerade |shader:shaky|glyph shaders|shader| !!!", new Vector2(100,100), Color.White, settings);
             spriteBatch.End();
@@ -170,7 +180,8 @@ namespace ProjectSpark
             if (moveCamera)
                 throw new InvalidOperationException();
             cameraTargetPosition = endposition;
-            cameraSpeed = (endposition - Resources.gfx.GetViewport().Y)/time;
+            cameraSpeed = -(endposition - camera.Position.Y) /time;
+            Console.WriteLine(cameraSpeed);
             moveCamera = true;
         }
         /// <summary>
@@ -187,15 +198,16 @@ namespace ProjectSpark
 
         public void UpdateCamera(UltravioletTime time)
         {
-            var vp = Resources.gfx.GetViewport();
             if (moveCamera)
             {
-                if (Resources.gfx.GetViewport().Y - cameraTargetPosition >= 0)
+                if (-camera.Position.Y >= cameraTargetPosition*screenScale.X)
                 {
                     CameraMovementDone();
-                    return;
                 }
-                Resources.gfx.SetViewport(new Viewport(vp.X, vp.Y + (int)(cameraSpeed * time.ElapsedTime.TotalSeconds), vp.Width, vp.Height));
+                else
+                {
+                    camera.Move(new Vector2f(0, cameraSpeed * (float)time.ElapsedTime.TotalSeconds));
+                }
             }
         }
 
@@ -205,6 +217,7 @@ namespace ProjectSpark
             moveCamera = false;
             recall?.Invoke();
             recall = null;
+            Console.WriteLine("Done");
         }
 
         #endregion
@@ -218,6 +231,9 @@ namespace ProjectSpark
         private SpriteFont Rabelo;
         private SpriteFont Trebuchet;
         private TextRenderer tr;
+        private static Camera camera;
+        private Vector3 screenScale;
+
         #endregion
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using ProjectSpark.actors;
 using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
+using ProjectSpark.actors.blocks;
 
 namespace ProjectSpark.gamestates
 {
@@ -16,6 +17,8 @@ namespace ProjectSpark.gamestates
         {
             //Add Stuff
             player = Player.getPlayer();
+
+            actors.Add(new Regular(20, 10));
         }
 
         public override void Update(UltravioletTime time)

@@ -7,5 +7,6 @@
   </ContentGroup>
   <ContentGroup Name="Sprites" Directory="Sprites" Type="TwistedLogik.Ultraviolet.Graphics.Graphics2D.Sprite">
     <Asset Name="player">player</Asset>
+    <Asset Name="blocks">blocks</Asset>
   </ContentGroup>
 </ContentManifest>

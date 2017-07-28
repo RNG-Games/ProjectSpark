@@ -10,5 +10,6 @@ namespace ProjectSpark.assets
     public static class GlobalSpriteID
     {
         public static readonly AssetID player;
+        public static readonly AssetID blocks;
     }
 }

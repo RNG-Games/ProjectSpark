@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprite>
+  <Animations>
+    <Animation Name="regular">
+      <Frames Atlas="Textures/regular">
+        <Frame AtlasCell="_regular"/>
+      </Frames>
+    </Animation>
+    <Animation Name="spike">
+      <Frames Atlas="Textures/spike">
+        <Frame AtlasCell="_spike"/>
+      </Frames>
+    </Animation>
+    <Animation Name="trampoline">
+      <Frames Atlas="Textures/trampoline">
+        <Frame AtlasCell="_trampoline"/>
+      </Frames>
+    </Animation>
+    <Animation Name="deco">
+      <Frames Atlas="Textures/deco">
+        <Frame AtlasCell="_deco"/>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sprite>

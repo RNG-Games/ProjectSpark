@@ -95,7 +95,6 @@ namespace ProjectSpark
 
             var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
             tr.Draw(spriteBatch, "Hello, world!", new Vector2(100,100), Color.White, settings);
-
             spriteBatch.End();
             base.OnDrawing(time);
         }

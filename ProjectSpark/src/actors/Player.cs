@@ -22,7 +22,7 @@ namespace ProjectSpark.actors
         private Vector2 borders;
         public bool onLine { get; private set; } = false;
         private bool fixLine = false;
-        //private Line currLine = null;
+        private Line currLine = null;
         private float currLineY = 0;
         private Vector2 direction = new Vector2(0,0);
         public int leftBorder { get; set; } = int.MinValue;
@@ -43,7 +43,7 @@ namespace ProjectSpark.actors
 
         private Player()
         {
-            //onLine = true;
+            onLine = true;
             position = new Vector2(1000,24);
             texture = Resources.ContentManager.Load<Sprite>(GlobalSpriteID.player);
         }
@@ -104,14 +104,14 @@ namespace ProjectSpark.actors
             if (fixLine)
             {
                 position = new Vector2(position.X, currLineY);
-                //currLine.setLine();
+                currLine.setLine();
                 onLine = true;
             }
 
             leftBorder = int.MinValue;
             rightBorder = int.MaxValue;
             fixLine = false;
-            //currLine = null
+            currLine = null;
             direction += new Vector2(move.X, velocity.Y);
         }
 
@@ -150,9 +150,9 @@ namespace ProjectSpark.actors
             onLine = false;
         }
 
-        public void setCurrLine(float y/*, Line currLine*/)
+        public void SetCurrLine(float y, Line currLine)
         {
-            //this.currLine = currLine;
+            this.currLine = currLine;
             currLineY = y;
             fixLine = true;
         }

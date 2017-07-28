@@ -20,16 +20,21 @@ namespace ProjectSpark.actors
         protected bool enabled = false;
         protected bool done = false;
         protected bool onLine = false;
+
+        private float scaleX;
+        Sprite texture;
+
         public Line(Vector2f borders, float y)
         {
+            scaleX = borders.Y - borders.X;
             this.borders = borders*scale;
             position = (y+0.5f)*scale;
+            texture = Resources.ContentManager.Load<Sprite>(GlobalSpriteID.lines);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //Vertex[] line = { new Vertex(new Vector2f(borders.X, position), new Color(79,60,59)), new Vertex(new Vector2f(borders.Y, position), new Color(79, 60, 59)) };
-            //_window.Draw(line, 0, 2, PrimitiveType.Lines);
+            spriteBatch.DrawScaledSprite(texture["testline"].Controller, new Vector2(borders.X, position), new Vector2(scaleX, 1));
         }
 
         public bool IsExpired()

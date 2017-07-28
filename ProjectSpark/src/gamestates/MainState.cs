@@ -6,6 +6,8 @@ using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using ProjectSpark.actors.enemies;
 using ProjectSpark.actors.blocks;
+using ProjectSpark.actors.lines;
+using ProjectSpark.util;
 
 namespace ProjectSpark.gamestates
 {
@@ -29,6 +31,7 @@ namespace ProjectSpark.gamestates
             actors.Add(new Decoration(22, 12, "deco"));
             actors.Add(new Decoration(21, 11, "deco"));
             actors.Add(new Decoration(23, 11, "deco"));
+            actors.Add(new Checkpoint(true, new Vector2f(10, 23), 3));
         }
 
         public override void Update(UltravioletTime time)

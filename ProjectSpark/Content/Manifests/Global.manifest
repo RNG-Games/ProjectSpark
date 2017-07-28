@@ -9,5 +9,6 @@
     <Asset Name="player">player</Asset>
     <Asset Name="blocks">blocks</Asset>
     <Asset Name="enemies">enemies</Asset>
+    <Asset Name="lines">lines</Asset>
   </ContentGroup>
 </ContentManifest>

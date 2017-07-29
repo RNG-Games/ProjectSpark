@@ -62,7 +62,7 @@ namespace ProjectSpark.actors
                 i = 0;
                 skips = 0;
                 sub = 0;
-                speed = 0.2f;
+                speed = 0.05f;
 
                 pressed = true;
                 if (currIndex < msgs.Length - 1) ++currIndex;
@@ -72,7 +72,6 @@ namespace ProjectSpark.actors
             else if (Resources.Input.GetActions().UpKey.IsUp() && pressed) speed = 0.05f;
 
             curr = msgs[currIndex];
-            Console.WriteLine(speed);
             frameCounter += Resources.deltaTime;
 
             if (i < curr.Length && frameCounter > speed && curr.Length > 0)

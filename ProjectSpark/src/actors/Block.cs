@@ -30,7 +30,7 @@ namespace ProjectSpark.actors
             spriteBatch.DrawScaledSprite(texture[frame].Controller, position, new Vector2(1, 1), Color.White, 0, SpriteEffects.None, 0);
         }
 
-        public bool IsExpired()
+        public virtual bool IsExpired()
         {
             return false;
         }

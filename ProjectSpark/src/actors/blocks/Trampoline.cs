@@ -13,9 +13,15 @@ namespace ProjectSpark.actors.blocks
 {
     class Trampoline : Block
     {
+        private bool expire = false;
         public Trampoline(int x, int y) : base(x, y)
         {
             frame = "trampoline";
+        }
+
+        public override bool IsExpired()
+        {
+            return expire;
         }
 
         public override void Update(UltravioletTime time)
@@ -49,6 +55,7 @@ namespace ProjectSpark.actors.blocks
                 if (bounce && Player.getPlayer().hitbox().intersectsWithRectangle(position + new Vector2(2, 2), 44, 44))
                 {
                     Player.getPlayer().velocity = new Vector2(0, -900);
+                    expire = true;
                 }
                 if (!bounce && playerPos.X >= position.X && newLeftBorder > Player.getPlayer().leftBorder)
                 {

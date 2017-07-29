@@ -35,6 +35,18 @@ namespace ProjectSpark.gamestates
             string[] test = { "Hello, |shader:wavy||c:ffff0000|World!|c||shader| |shader:shaky||shader:wavy|meow|shader| I am|shader| a motherfucking cat yeah I am the coolest no doubt meeeeeeeeeow |shader:rainbow|Lesbian Gay Bisexual Trans Queer/Questioning Intersex Asexuality + pride!!!|shader|", "this is |c:ffff0000||shader:wavy|part 2|shader||c| of this message!!!! yaaaaaay" };
             //actors.Add(new Textbox(test , new Vector2f(500, 500)));
             Resources.actors.Add(new Npc(22, 3, test, "npc"));
+            Resources.actors.Add(new Circular(20, 15, 2, 0, 3));
+            Resources.actors.Add(new Circular(20, 15, 2, 90, 3));
+            Resources.actors.Add(new Circular(20, 15, 2, 180, 3));
+            Resources.actors.Add(new Circular(20, 15, 2, 270, 3));
+            Resources.actors.Add(new Circular(20, 15, 3, 0, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 90, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 180, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 270, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 45, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 135, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 225, -2));
+            Resources.actors.Add(new Circular(20, 15, 3, 315, -2));
         }
 
         public override void Update(UltravioletTime time)

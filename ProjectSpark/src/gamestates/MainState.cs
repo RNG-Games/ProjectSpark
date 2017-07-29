@@ -48,10 +48,11 @@ namespace ProjectSpark.gamestates
             Resources.actors.Add(new Circular(20, 15, 3, 225, -2));
             Resources.actors.Add(new Circular(20, 15, 3, 315, -2));
 
-            Vector2f[] verteces = { new Vector2f(10, 10), new Vector2f(14, 11) };
+            Vector2f[] verteces = { new Vector2f(10, 10), new Vector2f(14, 11), new Vector2f(9, 19)};
             Resources.actors.Add(new Decoration(10, 10, "deco"));
             Resources.actors.Add(new Decoration(14, 11, "deco"));
-            Resources.actors.Add(new Blockwise(verteces));
+            Resources.actors.Add(new Decoration(9, 19, "deco"));
+            Resources.actors.Add(new Blockwise(verteces, 0));
         }
 
         public override void Update(UltravioletTime time)

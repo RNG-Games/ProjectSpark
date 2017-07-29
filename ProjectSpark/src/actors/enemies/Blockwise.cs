@@ -18,16 +18,20 @@ namespace ProjectSpark.actors.enemies
         private int state = 0;
         private float frameCounter = 0;
         private Vector2f direction;
-        private const float _v = 100;
-
-        public Blockwise(Vector2f[] blocks) : base((int) blocks[0].X, (int) blocks[0].Y)
+        private const float _v = 300;
+        private util.Circle hitbox;
+        private float waitTime;
+        public Blockwise(Vector2f[] blocks, float wait) : base((int) blocks[0].X, (int) blocks[0].Y)
         {
             frame = "testenemy";
             for (int i = 0; i < blocks.Length; ++i)
             {
-                this.blocks.Enqueue(blocks[i] * scale + new Vector2f(scale/2, scale/2));
+                this.blocks.Enqueue(blocks[i] * scale);
             }
             position = this.blocks.Peek();
+
+            waitTime = wait;
+            hitbox = new util.Circle(position + new Vector2f(scale / 2, scale / 2), scale / 2);
         }
 
         public override void Update(UltravioletTime time)
@@ -42,34 +46,34 @@ namespace ProjectSpark.actors.enemies
                 default:
                     break;
             }
+            if (Player.getPlayer().hitbox().intersectsWith(hitbox))
+            {
+                Player.getPlayer().kill();
+            }
         }
 
         private void wait()
         {
             direction = calcDirection();
-            state = 1;
+            if (frameCounter >= waitTime) state = 1;
         }
 
         private void move()
         {
             frameCounter = 0;
-            position += direction * 0.01f; // * direction * Resources.deltaTime;
+            position += _v * direction * Resources.deltaTime;
 
             float length = (blocks.Peek() - position).Length();
-            //if (length < 10f) state = 0;          
+            if (length < 5) state = 0;          
         }
 
         private Vector2f calcDirection()
         {
             Vector2f _curr = blocks.Dequeue();
             blocks.Enqueue(_curr);
-            Console.WriteLine(_curr);
-            Vector2f _next = blocks.Dequeue();
-            blocks.Enqueue(_next);
-            Console.WriteLine(_next);
+            Vector2f _next = blocks.Peek();
             Vector2f _dir = _next - _curr;
             _dir.Normalize();
-            Console.WriteLine(_dir.Length());
             return _dir;
         }
     }

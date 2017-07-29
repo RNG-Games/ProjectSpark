@@ -56,7 +56,7 @@ namespace ProjectSpark.actors
 
         public void Update(UltravioletTime time)
         {
-            if (Resources.Input.GetActions().UpKey.IsDown() && !pressed)
+            if (Resources.Input.GetActions().UpKey.IsPressed() && !pressed)
             {
                 _curr = " ";
                 i = 0;

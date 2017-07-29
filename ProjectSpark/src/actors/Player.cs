@@ -138,6 +138,7 @@ namespace ProjectSpark.actors
 
         public void kill()
         {
+            ++Resources.deaths;
             dead = true;
             Respawn?.Invoke();
         }

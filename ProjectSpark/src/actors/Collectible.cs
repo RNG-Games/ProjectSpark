@@ -45,7 +45,7 @@ namespace ProjectSpark.actors
 
         public void Update(UltravioletTime time)
         {
-            if (Player.getPlayer().hitbox().intersectsWith(hitbox)) collected = true;
+            if (Player.getPlayer().hitbox().intersectsWith(hitbox)) { collected = true; ++Resources.collectables; }
         }
     }
 }

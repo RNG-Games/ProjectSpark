@@ -19,5 +19,7 @@ namespace ProjectSpark
         public static bool blocked { get; set; }
         public static List<IActable> actors { get; set; }
         public static List<IActable> actorBuffer { get; set; }
+        public static int collectables { get; set; }
+        public static int deaths { get; set; }
     }
 }

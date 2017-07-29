@@ -8,14 +8,26 @@ using ProjectSpark.actors.enemies;
 using ProjectSpark.actors.blocks;
 using ProjectSpark.actors.lines;
 using ProjectSpark.util;
+using TwistedLogik.Ultraviolet.Graphics.Graphics2D.Text;
+using ProjectSpark.glyphshaders;
+using ProjectSpark.assets;
 
 namespace ProjectSpark.gamestates
 {
     class MainState : GameState
     {
+        private TextRenderer tr;
+        private SpriteFont Trebuchet;
+        private string collected, death;
         private Player player;
         public MainState()
         {
+            tr = new TextRenderer();
+            tr.RegisterGlyphShader("shaky", new Shaky());
+            tr.RegisterGlyphShader("rainbow", new Rainbow());
+            tr.RegisterGlyphShader("wavy", new Wavy());
+            Trebuchet = Resources.ContentManager.Load<SpriteFont>(GlobalFontID.TrebuchetMS16);
+
             //Add Stuff
             player = Player.getPlayer();
             Resources.actors = new List<IActable>();
@@ -69,6 +81,8 @@ namespace ProjectSpark.gamestates
 
             Resources.actors.AddRange(Resources.actorBuffer);
             Resources.actorBuffer.Clear();
+            death = $"Deaths: {Resources.deaths}";
+            collected = $"Collected: {Resources.collectables}";
 
             player.Update(time);
         }
@@ -80,6 +94,10 @@ namespace ProjectSpark.gamestates
                 actor.Draw(spriteBatch);
             }
             player.Draw(spriteBatch);
+
+            var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
+            tr.Draw(spriteBatch, collected, new Vector2f(10,10), Color.Black, settings);
+            tr.Draw(spriteBatch, death, new Vector2f(10, 30), Color.Black, settings);
         }
     }
 }

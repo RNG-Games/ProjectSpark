@@ -53,6 +53,9 @@ namespace ProjectSpark.gamestates
             Resources.actors.Add(new Decoration(14, 11, "deco"));
             Resources.actors.Add(new Decoration(9, 19, "deco"));
             Resources.actors.Add(new Blockwise(verteces, 0));
+
+            Resources.actors.Add(new Jumping(30, 15, -700));
+            Resources.actors.Add(new Regular(30, 16));
         }
 
         public override void Update(UltravioletTime time)

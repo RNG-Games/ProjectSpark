@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprite>
+  <Animations>
+    <Animation Name="placeholder">
+      <Frames Atlas="Textures/collectable">
+        <Frame AtlasCell="_collectable"/>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sprite>

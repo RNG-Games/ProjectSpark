@@ -56,6 +56,7 @@ namespace ProjectSpark.gamestates
 
             Resources.actors.Add(new Jumping(30, 15, -700));
             Resources.actors.Add(new Regular(30, 16));
+            Resources.actors.Add(new Collectable(30, 10));
         }
 
         public override void Update(UltravioletTime time)

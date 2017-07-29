@@ -14,5 +14,6 @@ namespace ProjectSpark.assets
         public static readonly AssetID enemies;
         public static readonly AssetID lines;
         public static readonly AssetID npcs;
+        public static readonly AssetID collectables;
     }
 }

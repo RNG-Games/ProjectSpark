@@ -91,6 +91,7 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
+    <Compile Include="src\actors\Collectable.cs" />
     <Compile Include="src\actors\enemies\Jumping.cs" />
     <Compile Include="src\actors\enemies\Blockwise.cs" />
     <Compile Include="src\actors\enemies\Circular.cs" />
@@ -130,6 +131,9 @@
     <None Include="Content\Fonts\Textures\rabelo.ttf" />
     <None Include="Content\Fonts\Textures\trebuc.ttf" />
     <None Include="Content\Manifests\Global.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\collectables.sprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\npcs.sprite">
@@ -234,6 +238,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\Textures\_npcsign.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Sprites\Textures\collectable.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\_collectable.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

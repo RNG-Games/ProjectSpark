@@ -14,6 +14,7 @@ namespace ProjectSpark.Input
             MoveRight = CreateAction("MOVE_RIGHT");
             ActionKey = CreateAction("ACTION_KEY");
             Fullscreen = CreateAction("TOGGLE_FULLSCREEN");
+            UpKey = CreateAction("UP_KEY");
             base.OnCreatingActions();
         }
 
@@ -25,6 +26,8 @@ namespace ProjectSpark.Input
             MoveRight.Primary = CreateKeyboardBinding(Key.Right);
             MoveRight.Secondary = CreateKeyboardBinding(Key.D);
             ActionKey.Primary = CreateKeyboardBinding(Key.Space);
+            UpKey.Primary = CreateKeyboardBinding(Key.Up);
+            UpKey.Secondary = CreateKeyboardBinding(Key.W);
             Fullscreen.Primary = CreateKeyboardBinding(Key.F11);
             base.OnResetting();
         }
@@ -34,5 +37,6 @@ namespace ProjectSpark.Input
         public InputAction MoveRight { get; private set; }
         public InputAction ActionKey { get; private set; }
         public InputAction Fullscreen { get; private set; }
+        public InputAction UpKey { get; private set; }
     }
 }

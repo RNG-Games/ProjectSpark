@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSpark.actors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,8 @@ namespace ProjectSpark
         public static ContentManager ContentManager { get; set; }
         public static IUltravioletInput Input { get; set; }
         public static IUltravioletGraphics gfx { get; set; }
+        public static bool blocked { get; set; }
+        public static List<IActable> actors { get; set; }
+        public static List<IActable> actorBuffer { get; set; }
     }
 }

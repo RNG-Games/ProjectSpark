@@ -34,7 +34,7 @@ namespace ProjectSpark.actors.lines
             if (onLine)
             {
                 if (!start) setCheckpoint?.Invoke();
-                if (Resources.Input.GetActions().ActionKey.IsDown()) resetLine();
+                if (Resources.Input.GetActions().ActionKey.IsDown() && !Resources.blocked) resetLine();
                 Vector2f plPos = Player.getPlayer().position;
                 if (Player.getPlayer().leftBorder < borders.X - scale / 2) Player.getPlayer().leftBorder = (int) borders.X - scale / 2;
                 if (Player.getPlayer().rightBorder > borders.Y + scale / 2) Player.getPlayer().rightBorder = (int) borders.Y + scale / 2;

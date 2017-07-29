@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprite>
+  <Animations>
+    <Animation Name="npc">
+      <Frames Atlas="Textures/npc">
+        <Frame AtlasCell="_npc"/>
+      </Frames>
+    </Animation>
+    <Animation Name="npcsign">
+      <Frames Atlas="Textures/npcsign">
+        <Frame AtlasCell="_npcsign"/>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sprite>

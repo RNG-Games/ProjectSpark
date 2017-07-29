@@ -32,10 +32,11 @@ namespace ProjectSpark.actors
         private int skips = 0;
         private int sub = 0;
         private bool expire = false;
-        private float speed = 0.1f;
+        private float speed = 0.2f;
 
         public Textbox(string[] messages, Vector2f position)
         {
+            Resources.blocked = true;
             this.position = position;
             msgs = messages;
             curr = msgs[currIndex];
@@ -55,24 +56,25 @@ namespace ProjectSpark.actors
 
         public void Update(UltravioletTime time)
         {
-            if (Resources.Input.GetActions().ActionKey.IsDown() && !pressed)
+            if (Resources.Input.GetActions().UpKey.IsDown() && !pressed)
             {
                 _curr = " ";
                 i = 0;
                 skips = 0;
                 sub = 0;
-                speed = 0.1f;
+                speed = 0.2f;
 
                 pressed = true;
                 if (currIndex < msgs.Length - 1) ++currIndex;
-                else expire = true;
+                else { expire = true; Resources.blocked = false; }
             }
-            else if (Resources.Input.GetActions().ActionKey.IsDown() && pressed) speed = 0.025f;
-            else if (Resources.Input.GetActions().ActionKey.IsUp() && pressed) speed = 0.1f;
+            else if (Resources.Input.GetActions().UpKey.IsDown() && pressed) speed = 0;
+            else if (Resources.Input.GetActions().UpKey.IsUp() && pressed) speed = 0.05f;
 
             curr = msgs[currIndex];
-
+            Console.WriteLine(speed);
             frameCounter += Resources.deltaTime;
+
             if (i < curr.Length && frameCounter > speed && curr.Length > 0)
             {
                 if (curr[i].Equals(' ')) wordwrap(i, curr);
@@ -88,6 +90,7 @@ namespace ProjectSpark.actors
                     ++skips;
                 }
                 _curr += curr[i++];
+                frameCounter = 0;
             }
             if (i == curr.Length) pressed = false;
         }

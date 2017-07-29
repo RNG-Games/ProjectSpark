@@ -83,11 +83,11 @@ namespace ProjectSpark.actors
             speed = onLine ? _onLineSpd : _spd;
             //TODO: Input
 
-            if (Resources.Input.GetActions().MoveLeft.IsDown())
+            if (Resources.Input.GetActions().MoveLeft.IsDown() && !Resources.blocked)
             {
                     move.X -= speed * Resources.deltaTime;
             }
-            if (Resources.Input.GetActions().MoveRight.IsDown())
+            if (Resources.Input.GetActions().MoveRight.IsDown() && !Resources.blocked)
             {
                     move.X += speed * Resources.deltaTime;
             }

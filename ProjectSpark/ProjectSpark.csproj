@@ -99,6 +99,7 @@
     <Compile Include="src\actors\Line.cs" />
     <Compile Include="src\actors\lines\Checkpoint.cs" />
     <Compile Include="src\actors\lines\Transition.cs" />
+    <Compile Include="src\actors\Npc.cs" />
     <Compile Include="src\actors\Textbox.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
@@ -126,6 +127,9 @@
     <None Include="Content\Fonts\Textures\rabelo.ttf" />
     <None Include="Content\Fonts\Textures\trebuc.ttf" />
     <None Include="Content\Manifests\Global.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\npcs.sprite">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\blocks.sprite">
@@ -213,6 +217,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Sprites\Textures\testline.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Sprites\Textures\npc.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\npcsign.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\_npc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\_npcsign.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

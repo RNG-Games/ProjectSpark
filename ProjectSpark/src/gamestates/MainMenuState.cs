@@ -8,6 +8,7 @@ using ProjectSpark.glyphshaders;
 using ProjectSpark.input;
 using ProjectSpark.util;
 using TwistedLogik.Ultraviolet;
+using TwistedLogik.Ultraviolet.Audio;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D.Text;
 
@@ -28,6 +29,9 @@ namespace ProjectSpark.gamestates
         private Sprite selector;
         private Vector2f position;
 
+        private Song rainy;
+        private SongPlayer songPlayer;
+
         public MainMenuState()
         {
             selected = 0;
@@ -36,10 +40,15 @@ namespace ProjectSpark.gamestates
             spriteFont = Resources.ContentManager.Load<SpriteFont>(GlobalFontID.TrebuchetMS32);
             selector = Resources.ContentManager.Load<Sprite>(GlobalSpriteID.selectorplaceholder);
             position = new Vector2f(50,50);
+            rainy = Resources.ContentManager.Load<Song>(GlobalSongID.RainyNostalgia);
+            songPlayer = SongPlayer.Create();
+            songPlayer.Play(rainy);
+            songPlayer.IsLooping = true;
         }
 
         public override void Update(UltravioletTime time)
         {
+            songPlayer.Update(time);
             var move = 0;
             if(Resources.Input.GetActions().SelectKey.IsPressed())
                 Select();
@@ -121,6 +130,8 @@ namespace ProjectSpark.gamestates
                     IsFinished = true;
                     break;
             }
+            if(selected != MMenuHighligh.Options)
+                songPlayer.Stop();
         }
     }
 }

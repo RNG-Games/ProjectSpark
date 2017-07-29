@@ -83,6 +83,7 @@ namespace ProjectSpark
             uvContent.Manifests.Load(contentManifestFiles);
             uvContent.Manifests["Global"]["Sprites"].PopulateAssetLibrary(typeof(GlobalSpriteID));
             uvContent.Manifests["Global"]["Fonts"].PopulateAssetLibrary(typeof(GlobalFontID));
+            uvContent.Manifests["Global"]["Songs"].PopulateAssetLibrary(typeof(GlobalSongID));
         }
 
         protected void LoadInputBindings()

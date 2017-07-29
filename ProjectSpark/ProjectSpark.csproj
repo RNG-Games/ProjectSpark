@@ -106,6 +106,7 @@
     <Compile Include="src\actors\Npc.cs" />
     <Compile Include="src\actors\Textbox.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
+    <Compile Include="src\assets\GlobalSongID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
     <Compile Include="src\gamestates\MainMenuState.cs" />
     <Compile Include="src\glyphshaders\Rainbow.cs" />
@@ -292,6 +293,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\Textures\selectorplaceholder.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Songs\RainyNostalgia.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

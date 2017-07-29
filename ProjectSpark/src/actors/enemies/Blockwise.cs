@@ -64,7 +64,7 @@ namespace ProjectSpark.actors.enemies
             position += _v * direction * Resources.deltaTime;
 
             float length = (blocks.Peek() - position).Length();
-            if (length < 5) state = 0;          
+            if (length < 3) { position = blocks.Peek(); state = 0; }        
         }
 
         private Vector2f calcDirection()

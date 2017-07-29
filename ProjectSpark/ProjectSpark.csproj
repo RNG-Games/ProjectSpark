@@ -91,6 +91,7 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
+    <Compile Include="src\actors\enemies\Blockwise.cs" />
     <Compile Include="src\actors\enemies\Circular.cs" />
     <Compile Include="src\actors\enemies\Horizontal.cs" />
     <Compile Include="src\actors\enemies\Stationary.cs" />

@@ -26,8 +26,9 @@ namespace ProjectSpark.util
         public float LengthSquared() => this * this;
         public void Normalize()
         {
-            X = X / Length();
-            Y = Y / Length();
+            var l = Length();
+            X = X / l;
+            Y = Y / l;
         }
 
         public override string ToString() => $"Vector2({X},{Y})";

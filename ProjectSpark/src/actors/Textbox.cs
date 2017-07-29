@@ -11,7 +11,7 @@ using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using TwistedLogik.Ultraviolet.Input;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D.Text;
 using ProjectSpark.glyphshaders;
-using ProjectSpark.Input;
+using ProjectSpark.input;
 
 namespace ProjectSpark.actors
 {

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectSpark.assets;
+using ProjectSpark.input;
 using ProjectSpark.util;
 using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Content;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 using TwistedLogik.Ultraviolet.Input;
-using ProjectSpark.Input;
 
 namespace ProjectSpark.actors.lines
 {

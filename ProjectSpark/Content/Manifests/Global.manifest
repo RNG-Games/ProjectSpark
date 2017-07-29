@@ -4,6 +4,10 @@
     <Asset Name="Anonymous16">Anonymous16</Asset>
     <Asset Name="Rabelo16">Rabelo16</Asset>
     <Asset Name="TrebuchetMS16">TrebuchetMS16</Asset>
+    <Asset Name="TrebuchetMS20">TrebuchetMS20</Asset>
+    <Asset Name="TrebuchetMS24">TrebuchetMS24</Asset>
+    <Asset Name="TrebuchetMS28">TrebuchetMS28</Asset>
+    <Asset Name="TrebuchetMS32">TrebuchetMS32</Asset>
   </ContentGroup>
   <ContentGroup Name="Sprites" Directory="Sprites" Type="TwistedLogik.Ultraviolet.Graphics.Graphics2D.Sprite">
     <Asset Name="player">player</Asset>
@@ -12,5 +16,6 @@
     <Asset Name="lines">lines</Asset>
     <Asset Name="npcs">npcs</Asset>
     <Asset Name="collectables">collectables</Asset>
+    <Asset Name="selectorplaceholder">selectorplaceholder</Asset>
   </ContentGroup>
 </ContentManifest>

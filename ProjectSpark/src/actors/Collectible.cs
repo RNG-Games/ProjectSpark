@@ -8,8 +8,6 @@ using ProjectSpark.util;
 using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Content;
 using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
-using TwistedLogik.Ultraviolet.Input;
-using ProjectSpark.Input;
 
 namespace ProjectSpark.actors
 {

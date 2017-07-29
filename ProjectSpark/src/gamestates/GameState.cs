@@ -8,7 +8,7 @@ using TwistedLogik.Ultraviolet.Graphics.Graphics2D;
 
 namespace ProjectSpark.gamestates
 {
-    abstract class GameState
+    public abstract class GameState
     {
         public abstract void Update(UltravioletTime time);
         public abstract void Draw(SpriteBatch spriteBatch);

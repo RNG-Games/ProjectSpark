@@ -1,7 +1,7 @@
 ﻿using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Input;
 
-namespace ProjectSpark.Input
+namespace ProjectSpark.input
 {
     public static class IUltravioletInputExtensions
     {

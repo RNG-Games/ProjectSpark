@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using ProjectSpark.assets;
 using ProjectSpark.gamestates;
-using ProjectSpark.Input;
 using ProjectSpark.util;
 using TwistedLogik.Nucleus;
 using TwistedLogik.Ultraviolet;
@@ -16,6 +15,7 @@ using TwistedLogik.Ultraviolet.OpenGL;
 using TwistedLogik.Ultraviolet.OpenGL.Graphics;
 using TwistedLogik.Ultraviolet.Platform;
 using ProjectSpark.glyphshaders;
+using ProjectSpark.input;
 
 namespace ProjectSpark
 {
@@ -71,7 +71,7 @@ namespace ProjectSpark
             Rabelo = _content.Load<SpriteFont>(GlobalFontID.Rabelo16);
             Trebuchet = _content.Load<SpriteFont>(GlobalFontID.TrebuchetMS16);
 
-            States.Push(new MainState());
+            States.Push(new MainMenuState());
         }
 
         protected void LoadContentManifests()
@@ -99,6 +99,21 @@ namespace ProjectSpark
         protected override void OnUpdating(UltravioletTime time)
         {
             _current = States.Peek();
+            if (_current.IsFinished)
+                States.Pop();
+            if (_current.NewState != null)
+            {
+                States.Push(_current.NewState);
+                _current.NewState = null;
+            }
+            if (States.Count == 0)
+            {
+                Exit();
+                return;
+            }
+
+            _current = States.Peek();
+
             UpdateCamera(time);
             if (Resources.Input.GetActions().Fullscreen.IsPressed() && !fullscreen)
             {

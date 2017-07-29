@@ -107,12 +107,13 @@
     <Compile Include="src\actors\Textbox.cs" />
     <Compile Include="src\assets\GlobalFontID.cs" />
     <Compile Include="src\assets\GlobalSpriteID.cs" />
+    <Compile Include="src\gamestates\MainMenuState.cs" />
     <Compile Include="src\glyphshaders\Rainbow.cs" />
     <Compile Include="src\Camera.cs" />
     <Compile Include="src\glyphshaders\Shaky.cs" />
     <Compile Include="src\glyphshaders\Wavy.cs" />
-    <Compile Include="src\Input\GameInputActions.cs" />
-    <Compile Include="src\Input\IUltravioletInputExtensions.cs" />
+    <Compile Include="src\input\GameInputActions.cs" />
+    <Compile Include="src\input\IUltravioletInputExtensions.cs" />
     <Compile Include="src\Resources.cs" />
     <Compile Include="src\actors\IActable.cs" />
     <Compile Include="src\actors\Player.cs" />
@@ -246,6 +247,51 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Sprites\Textures\_collectible.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\TrebuchetMS20.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\TrebuchetMS24.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\Textures\TrebuchetMS20Texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Textures\TrebuchetMS24Texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\Textures\TrebuchetMS28Texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Textures\TrebuchetMS32Texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\TrebuchetMS28.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\TrebuchetMS32.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Sprites\Textures\_selectorplaceholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Sprites\selectorplaceholder.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Sprites\Textures\selectorplaceholder.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

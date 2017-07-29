@@ -1,7 +1,7 @@
 ﻿using TwistedLogik.Ultraviolet;
 using TwistedLogik.Ultraviolet.Input;
 
-namespace ProjectSpark.Input
+namespace ProjectSpark.input
 {
     public class GameInputActions : InputActionCollection
     {
@@ -15,6 +15,8 @@ namespace ProjectSpark.Input
             ActionKey = CreateAction("ACTION_KEY");
             Fullscreen = CreateAction("TOGGLE_FULLSCREEN");
             UpKey = CreateAction("UP_KEY");
+            DownKey = CreateAction("DOWN_KEY");
+            SelectKey = CreateAction("SELECT_KEY");
             base.OnCreatingActions();
         }
 
@@ -28,7 +30,10 @@ namespace ProjectSpark.Input
             ActionKey.Primary = CreateKeyboardBinding(Key.Space);
             UpKey.Primary = CreateKeyboardBinding(Key.Up);
             UpKey.Secondary = CreateKeyboardBinding(Key.W);
+            DownKey.Primary = CreateKeyboardBinding(Key.Down);
+            DownKey.Secondary = CreateKeyboardBinding(Key.S);
             Fullscreen.Primary = CreateKeyboardBinding(Key.F11);
+            SelectKey.Primary = CreateKeyboardBinding(Key.Return);
             base.OnResetting();
         }
 
@@ -38,5 +43,7 @@ namespace ProjectSpark.Input
         public InputAction ActionKey { get; private set; }
         public InputAction Fullscreen { get; private set; }
         public InputAction UpKey { get; private set; }
+        public InputAction DownKey { get; private set; }
+        public InputAction SelectKey { get; private set; }
     }
 }

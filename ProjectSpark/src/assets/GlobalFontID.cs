@@ -12,5 +12,9 @@ namespace ProjectSpark.assets
         public static readonly AssetID Anonymous16;
         public static readonly AssetID Rabelo16;
         public static readonly AssetID TrebuchetMS16;
+        public static readonly AssetID TrebuchetMS20;
+        public static readonly AssetID TrebuchetMS24;
+        public static readonly AssetID TrebuchetMS28;
+        public static readonly AssetID TrebuchetMS32;
     }
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprite>
+  <Animations>
+    <Animation Name="selectorplaceholder">
+      <Frames Atlas="Textures/selectorplaceholder">
+        <Frame AtlasCell="_selectorplaceholder"/>
+      </Frames>
+    </Animation>
+  </Animations>
+</Sprite>

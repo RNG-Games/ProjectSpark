@@ -55,7 +55,7 @@ namespace ProjectSpark.actors
             if (Player.getPlayer().hitbox().intersectsWith(hitbox) && !activated) act = true;
             else act = false;
 
-            if (act && Resources.Input.GetActions().UpKey.IsDown())
+            if (act && Resources.Input.GetActions().UpKey.IsPressed(true))
             {
                 _textbox = new Textbox(messages, position + new Vector2f(48, -64));
                 activated = true;

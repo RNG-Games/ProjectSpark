@@ -91,7 +91,7 @@
     <Compile Include="src\actors\blocks\Regular.cs" />
     <Compile Include="src\actors\blocks\Spike.cs" />
     <Compile Include="src\actors\blocks\Trampoline.cs" />
-    <Compile Include="src\actors\Collectable.cs" />
+    <Compile Include="src\actors\Collectible.cs" />
     <Compile Include="src\actors\enemies\Jumping.cs" />
     <Compile Include="src\actors\enemies\Blockwise.cs" />
     <Compile Include="src\actors\enemies\Circular.cs" />
@@ -242,10 +242,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Content\Sprites\Textures\collectable.xml">
+    <None Include="Content\Sprites\Textures\collectible.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Sprites\Textures\_collectable.png">
+    <None Include="Content\Sprites\Textures\_collectible.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

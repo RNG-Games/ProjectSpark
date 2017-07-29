@@ -13,16 +13,18 @@ using ProjectSpark.Input;
 
 namespace ProjectSpark.actors
 {
-    class Collectable : IActable
+    class Collectible : IActable
     {
         Vector2f position;
         util.Circle hitbox;
         float scale = Resources.Scale;
         bool collected = false;
         Sprite texture;
+        int index = 0;
 
-        public Collectable(float x, float y)
+        public Collectible(float x, float y, int index)
         {
+            this.index = index;
             position = new Vector2f(x, y) * scale;
             texture = Resources.ContentManager.Load<Sprite>(GlobalSpriteID.collectables);
             hitbox = new util.Circle(position + new Vector2f(scale / 2, scale / 2), scale / 2);

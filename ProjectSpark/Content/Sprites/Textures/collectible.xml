@@ -4,6 +4,6 @@
 
   </Metadata>
   <Images>
-    <Include>_collectable</Include>
+    <Include>_collectible</Include>
   </Images>
 </TextureAtlas>

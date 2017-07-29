@@ -2,8 +2,8 @@
 <Sprite>
   <Animations>
     <Animation Name="placeholder">
-      <Frames Atlas="Textures/collectable">
-        <Frame AtlasCell="_collectable"/>
+      <Frames Atlas="Textures/collectible">
+        <Frame AtlasCell="_collectible"/>
       </Frames>
     </Animation>
   </Animations>

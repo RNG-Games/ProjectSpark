@@ -247,7 +247,7 @@ namespace ProjectSpark
         private SpriteFont Rabelo;
         private SpriteFont Trebuchet;
         private TextRenderer tr;
-        private static Camera camera;
+        public static Camera camera;
         private Vector3 screenScale;
 
         #endregion

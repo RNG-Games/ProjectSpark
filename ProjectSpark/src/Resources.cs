@@ -21,5 +21,6 @@ namespace ProjectSpark
         public static List<IActable> actorBuffer { get; set; }
         public static int collectables { get; set; }
         public static int deaths { get; set; }
+        public static byte[] StageData { get; set; }
     }
 }

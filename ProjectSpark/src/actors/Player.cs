@@ -18,7 +18,7 @@ namespace ProjectSpark.actors
         private int scale = Resources.Scale;
         public Vector2f position { get; set; }
         private Sprite texture;
-        private bool dead = false;
+        public bool dead { get; private set; }
         private static bool spawned = false;
         private static Player instance;
         private Vector2f borders;
@@ -41,7 +41,6 @@ namespace ProjectSpark.actors
         private const float _vel = 500;
         public Vector2f velocity { get; set;  }= new Vector2f(0, _vel);
 
-        public Action Respawn;
 
         private Player()
         {
@@ -140,7 +139,6 @@ namespace ProjectSpark.actors
         {
             ++Resources.deaths;
             dead = true;
-            Respawn?.Invoke();
         }
 
         public void unkill()

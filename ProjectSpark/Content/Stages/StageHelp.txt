@@ -1,0 +1,94 @@
+Use BitConverterTest.exe to determine the hex values of the numbers
+
+The Object ID should be written direct as a byte
+every other values as a string
+after every value (not the id) is a zero byte (00)
+
+Trampoline
+	01
+	int x
+	int y
+	
+Decoration
+	02
+	int x
+	int y
+	string texture
+
+LargeBlock
+	03
+	string type
+	int lm
+	int rm
+	int tm
+	int bm
+
+Stationary
+	04
+	int x
+	int y
+
+Vertical
+	05
+	int x
+	int upper
+	int lower
+
+Horizontal
+	06
+	int y
+	int left
+	int right
+	
+Checkpoint
+	bool (01 == true)
+	07
+	int borderX
+	int borderY
+	int y
+	
+Transition
+	08
+	int borderX
+	int borderY
+	int y
+	
+NPC
+	09
+	int x
+	int y
+	int num (number of messages
+	string[] text (messages devided by 00)
+	string texture
+
+Circular
+	0A
+	int x
+	int y
+	int r
+	int a
+	int speed
+	
+Blockwise
+	0B
+	int count (number of verts)
+	[int x
+	int y]
+	int wait
+	
+Jumping
+	0C
+	int x
+	int y
+	int velocity
+	
+Regular
+	0D
+	int x
+	int y
+
+Collectible
+	0E
+	int x
+	int y
+	int index

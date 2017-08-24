@@ -122,7 +122,7 @@ namespace ProjectSpark.gamestates
             {
                 case MMenuHighligh.Play:
                     IsFinished = true;
-                    NewState = new MainState();
+                    NewState = new MainState("Content/Stages/TestStage.bin");
                     break;
                 case MMenuHighligh.Options:
                     break;

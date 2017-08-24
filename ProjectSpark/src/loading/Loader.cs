@@ -48,6 +48,8 @@ namespace ProjectSpark.loading
 
         public static bool ApplyLoadedData(List<IActable> actors, byte[] data)
         {
+            if (data == null)
+                return false;
             //Head: FE 34 BD
             var pos = 0;
             if (data[0] != 0xFE || data[1] != 0x34 || data[2] != 0xBD)

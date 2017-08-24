@@ -145,7 +145,7 @@ namespace ProjectSpark
             gfx.Clear(new Color(222, 206, 206));
             var viewMatrix = camera.GetTransform();
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone, null, viewMatrix * Matrix.CreateScale(screenScale));
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.DepthRead, RasterizerState.CullNone, null, viewMatrix * Matrix.CreateScale(screenScale));
             _current.Draw(spriteBatch);
             var settings = new TextLayoutSettings(Trebuchet, null, null, TextFlags.Standard);
             tr.Draw(spriteBatch, "|shader:wavy|Hallo Welt ich teste gerade |shader:shaky|glyph shaders|shader| !!!", new Vector2(100,100), Color.White, settings);
@@ -196,7 +196,7 @@ namespace ProjectSpark
             if (moveCamera)
                 throw new InvalidOperationException();
             cameraTargetPosition = endposition;
-            cameraSpeed = -(endposition - camera.Position.Y) /time;
+            cameraSpeed = -400;
             Console.WriteLine(cameraSpeed);
             moveCamera = true;
         }

@@ -70,6 +70,8 @@ namespace ProjectSpark.gamestates
             Resources.actors.Add(new Trampoline(13, 38));
             Resources.actors.Add(new Trampoline(13, 39));
             Resources.actors.Add(new Trampoline(7, 39));
+
+            PostLoading();
         }
 
         private void PostLoading()
@@ -122,8 +124,9 @@ namespace ProjectSpark.gamestates
         private void Respawn()
         {
             Resources.actors.Clear();
-            Loader.ApplyLoadedData(Resources.actors, Resources.StageData);
-
+            var reload = Loader.ApplyLoadedData(Resources.actors, Resources.StageData);
+            if(!reload)
+                throw new Exception("¯\\_(ツ)_/¯");
             player.position = CheckPlayerPos;
             Game.camera.Position = CheckCameraPos;
             PostLoading();

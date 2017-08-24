@@ -38,9 +38,14 @@ namespace ProjectSpark.gamestates
             Resources.actorBuffer = new List<IActable>();
 
             Loader.Load(stage, Resources.actors);
+            PostLoading();
+        }
+
+        private void PostLoading()
+        {
             foreach (var checkp in Resources.actors.Where(a => a is Checkpoint))
             {
-                ((Checkpoint) checkp).setCheckpoint = SetCheck;
+                ((Checkpoint)checkp).setCheckpoint = SetCheck;
             }
             CheckPlayerPos = Player.getPlayer().position;
             CheckCameraPos = Game.camera.Position;
@@ -90,7 +95,7 @@ namespace ProjectSpark.gamestates
 
             player.position = CheckPlayerPos;
             Game.camera.Position = CheckCameraPos;
-
+            PostLoading();
             player.unkill();
         }
     }

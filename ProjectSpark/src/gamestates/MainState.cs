@@ -37,8 +37,39 @@ namespace ProjectSpark.gamestates
             Resources.actors = new List<IActable>();
             Resources.actorBuffer = new List<IActable>();
 
-            Loader.Load(stage, Resources.actors);
-            PostLoading();
+            /*Loader.Load(stage, Resources.actors);
+            PostLoading();*/
+
+            Resources.actors.Add(new LargeBlock("regular", 0, 1, 0, 53));
+            Resources.actors.Add(new LargeBlock("regular", 2, 21, 14, 28));
+            Resources.actors.Add(new LargeBlock("regular", 16, 21, 29, 29));
+            Resources.actors.Add(new LargeBlock("regular", 2, 4, 29, 53));
+            Resources.actors.Add(new LargeBlock("regular", 5, 21, 41, 53));
+            Resources.actors.Add(new LargeBlock("regular", 18, 19, 35, 40));
+            Resources.actors.Add(new LargeBlock("regular", 7, 26, 0, 2));
+            Resources.actors.Add(new LargeBlock("regular", 27, 30, 0, 53));
+
+            Resources.actors.Add(new Checkpoint(true, new Vector2f(3, 6), 1));
+
+            Resources.actors.Add(new LargeBlock("spike", 2, 21, 13, 13));
+            Resources.actors.Add(new LargeBlock("spike", 18, 19, 30, 30));
+            Resources.actors.Add(new LargeBlock("spike", 18, 19, 34, 34));
+            Resources.actors.Add(new LargeBlock("spike", 5, 17, 40, 40));
+            Resources.actors.Add(new LargeBlock("spike", 20, 21, 40, 40));
+
+            Resources.actors.Add(new Transition(new Vector2f(23, 26), 15));
+            Resources.actors.Add(new Transition(new Vector2f(23, 26), 20));
+            Resources.actors.Add(new Transition(new Vector2f(23, 26), 25));
+            Resources.actors.Add(new Transition(new Vector2f(23, 26), 30));
+            Resources.actors.Add(new Transition(new Vector2f(23, 26), 52));
+            Resources.actors.Add(new Transition(new Vector2f(6, 9), 32));
+
+            Resources.actors.Add(new Trampoline(4, 12));
+            Resources.actors.Add(new Trampoline(19, 12));
+            Resources.actors.Add(new Trampoline(24, 39));
+            Resources.actors.Add(new Trampoline(13, 38));
+            Resources.actors.Add(new Trampoline(13, 39));
+            Resources.actors.Add(new Trampoline(7, 39));
         }
 
         private void PostLoading()

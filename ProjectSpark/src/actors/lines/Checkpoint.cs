@@ -33,6 +33,11 @@ namespace ProjectSpark.actors.lines
             base.Update(time);
             if (onLine)
             {
+                if (!enabled && !start)
+                {
+                    Game.MoveCameraDown(position - scale, 3);
+                }
+                enabled = true;
                 if (!start) setCheckpoint?.Invoke();
                 if (Resources.Input.GetActions().ActionKey.IsDown() && !Resources.blocked) resetLine();
                 Vector2f plPos = Player.getPlayer().position;
